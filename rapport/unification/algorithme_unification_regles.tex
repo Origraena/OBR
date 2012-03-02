@@ -1,0 +1,12 @@
+\begin{center}
+\begin{algorithm}[H]
+\caption{UnificationR\`egles}\label{unification_regles}
+\algsetup{indent=2em,linenodelimiter= }
+\begin{algorithmic}[1]
+\REQUIRE $R_{1} = (H_{1},C_{1})$, $R_{2} = (H_{2},C_{2})$ : r\`egles \`a conclusions atomiques
+\ENSURE succ\'es si $R_{1}$ peut amener \`a declencher $R_{2}$, i.e. si $\exists H,\mu$ :  $H contenu H_{2}$, $\mu$ un unificateur et $\mu(C_{1}) = \mu(H)$ ; \'echec sinon
+\RETURN $Unification(H_{2}, R_{1})$
+\end{algorithmic}
+\end{algorithm}
+\end{center}
+

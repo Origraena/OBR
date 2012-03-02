@@ -1,0 +1,32 @@
+\begin{itemize}
+	\item UnificationLocale (pire des cas) $= \bigcirc(np)$
+	\item Extension (pire des cas) $= \bigcirc(np)$
+	\item Unification (pire des cas) $= \bigcirc(n^{2}p)$
+\end{itemize}
+
+Extension\\
+On effectue simplement un parcours en largeur \`a partir d'un sommet donn\'e qui peut \'eventuellement s'arr\^eter plus
+t\^ot qu'un parcours classique. La complexit\'e en temps dans le pire des cas est donc au plus la m\^eme, c'est \`a dire lin\'eaire
+au nombre de sommets plus le nombre d'arcs. Le graphe repr\'esentant la conjonction d'atomes $H_{1}$ poss\`edent $n \times ariteMax(H_{1})$ ar\^etes
+et $n \times (ariteMax(H_{1}) + 1)à$ sommets.
+On sait donc que $C_{Extension}^{temps} = \bigcirc(n \times ariteMax(H_1))$.
+
+
+Deux cas :\\
+	i) D\'ecouverte d'un sommet atome : \\
+		parcours classique => on r\'ecup\`ere tous les voisins blancs \\
+		parcours extension => on r\'ecup\'ere tous les voisins blancs de couleur logique noire (en effet arr\^et imm\'ediat si un voisin de couleur logique noire est d\'ecouvert.\\
+	ii) D\'ecouverte d'un sommet variable :\\
+		pas de diff\'erence\\
+On a donc que l'algo ne suit que les sommets atomes pouvant \^etre unifies localement. C'est \`a dire (entre autres) que leur pr\'edicat est \'egal \`a pr\'edicat($C_{2}$).
+
+
+
+%Le parcours suit au pire $2(n \times p)+1$ ar\^etes.
+%Supposons que l'algorithme ait d\'ej\`a parcouru $2(n \times p)$ ar\^etes %et qu'il d\'ecouvre un sommet toujours blanc.
+...
+
+
+%On a donc $C_{Extension}^{temps} = \bigcirc$
+
+

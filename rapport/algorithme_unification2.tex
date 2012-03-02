@@ -1,0 +1,116 @@
+\section {Unification de R\`egles}
+
+\subsection{Algorithme d'Unification}
+\begin{center}
+\begin{algorithm}[H]
+\caption{Unification}\label{unification}
+\algsetup{indent=2em,linenodelimiter= }
+\begin{algorithmic}[1]
+\REQUIRE $H_{1}$ : conjonction d'atomes, $R = (H_{2},C_{2})$ : r\`egle \`a conclusion atomique 
+\ENSURE succ\`es si $C_{2}$ peut s'unifier avec $H_{1}$ 
+
+\STATE $\triangleright$ Pr\'etraitement
+\STATE $Q \leftarrow \emptyset\ \ \ \triangleright$ ensemble de conjonctions d'atomes
+\FORALL {$atome\ a \in H_{1}$}
+	\IF {pr\'edicat($a$)  = pr\'edicat($C_{2}$)}
+		\STATE $ajouter(\{a\},\ Q)$
+	\ENDIF
+\ENDFOR
+
+\STATE $\triangleright$ Remplissage des ensembles $Q' \in Q$
+\FORALL {$Q' \in Q$}
+	\STATE $valide \leftarrow vrai$
+	\FORALL {$\exists-variable\ v \in C_{2}\ in\ position\ i$}
+		\FORALL {$atome\ a \in Q'$}
+			\IF {$a_{i}\ est\ une\ variable$}
+				\STATE $Q' \leftarrow Q' \cup \{b \in H_{1}-Q'\ :\ a_{i} \in b\}$
+			\ELSE
+				\STATE $Q' \leftarrow \emptyset$
+				\STATE $valide \leftarrow faux$
+			\ENDIF
+		\ENDFOR
+	\ENDFOR
+\ENDFOR
+
+\STATE $\triangleright$ Test sur chaque sous ensemble
+\FORALL {$Q' \in Q$}
+	\IF {$Q' \neq \emptyset$}
+		\IF {$UnificationLocale(Q',R) =$ succ\`es}
+			\RETURN succ\`es
+		\ENDIF
+	\ENDIF
+\ENDFOR
+\RETURN \'echec
+
+\end{algorithmic}
+\end{algorithm}
+\end{center}
+
+\subsection{Unification Locale}
+
+\begin{center}
+\begin{algorithm}[H]
+\caption{UnificationLocale}\label{unification_locale}
+\algsetup{indent=2em,linenodelimiter= }
+\begin{algorithmic}[1]
+\REQUIRE $H_{1}$ : conjonction d'atomes, $R = (H_{2},C_{2})$ : r\`egle \`a conclusion atomique 
+\ENSURE succ\`es si $C_{2}$ peut s'unifier avec $H_{1}$ 
+\STATE $\triangleright$ V\'erification des pr\'edicats
+\FORALL {$atome\ a \in H_{1}$}
+	\IF {pr\'edicat($a$) $\neq$ pr\'edicat($C_{2}$)}
+		\RETURN \'echec
+	\ENDIF
+\ENDFOR
+\STATE $u \leftarrow \emptyset\ \ \ \triangleright$ substitution 
+\FORALL {$terme\ t_{i} \in C_{2}$}
+	\STATE $\triangleright$ def : $a_{i}$ = terme de a en position i
+	\STATE $E \leftarrow \{a_{i} : \forall\ atome\ a \in H_{1}\}$
+	\IF {$t_{i}\ est\ une\ constante$}
+		\IF {$\exists\ v \in E : v\ est\ une\ constante\ et\ v \neq t_{i},\ ou\ v\ est\ une\ \exists-variable$}
+			\RETURN \'echec
+		\ELSE
+			\STATE $u \leftarrow \{(v,t_{i}) : v \in E\ et\ v \neq t_{i}\}$
+			%\STATE $u \leftarrow u \circ \{(v,t_{i}) : v \in E\ et\ v \neq t_{i}\}$
+		\ENDIF
+	\ELSIF {$t_{i}\ est\ une\ \exists-variable$}
+		\IF {$\exists\ v \in E : v\ est\ une\ \exists-variable\ et\ v \neq t_{i},\ ou\ v\ est\ une\ constante$}
+			\RETURN \'echec
+		\ELSE
+			\STATE $u \leftarrow \{(v,t_{i}) : v \in E\ et\ v \neq t_{i}\}$
+			%\STATE $u \leftarrow u \circ \{(v,t_{i}) : v \in E\ et\ v \neq t_{i}\}$
+		\ENDIF
+	\ELSE
+		\IF {$\exists\ v_{1},v_{2} \in E : v_{1} \neq v_{2}\ et\ v_{1},v_{2}\ ne\ sont\ pas\ des\ \forall-variables$}
+			\RETURN \'echec
+		\ELSIF {$\exists\ c \in E : c\ est\ une\ constante$}
+			\STATE $u \leftarrow \{(v,c) : v \in E \cup \{t_{i}\}\ et\ v \neq c\}$
+			%\STATE $u \leftarrow u \circ \{(v,c) : v \in E\ et\ v \neq c\} \cup \{(t_{i},c)\}$
+		\ELSE
+			\STATE $u \leftarrow \{(v,t_{i}) : v \in E\ et\ v \neq t_{i}\}$
+			%\STATE $u \leftarrow u \circ \{(v,t_{i}) : v \in E\ et\ v \neq t_{i}\}$
+		\ENDIF
+	\ENDIF	
+	\STATE $H_{1} \leftarrow u(H_{1})$
+	\STATE $C_{2} \leftarrow u(C_{2})$
+\ENDFOR
+\RETURN succ\`es 
+
+\end{algorithmic}
+\end{algorithm}
+\end{center}
+
+\subsection{Unification de r\`egles}
+\begin{center}
+\begin{algorithm}[H]
+\caption{UnificationR\`egles}\label{unification_regles}
+\algsetup{indent=2em,linenodelimiter= }
+\begin{algorithmic}[1]
+\REQUIRE $R_{1} = (H_{1},C_{1})$, $R_{2} = (H_{2},C_{2})$ : r\`egles \`a conclusions atomiques
+\ENSURE succ\'es si $R_{1}$ peut amener \`a declencher $R_{2}$, i.e. si $\exists H,\mu$ :  $H \in H_{2}$, $\mu$ un unificateur et $\mu(C_{1}) = \mu(H)$ ; \'echec sinon
+\RETURN $Unification(H_{2}, R_{1})$
+\end{algorithmic}
+\end{algorithm}
+\end{center}
+
+\subsection{Complexit\'e}
+

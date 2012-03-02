@@ -1,0 +1,22 @@
+\select@language {french}
+\contentsline {chapter}{\numberline {1}}{2}{chapter.1}
+\contentsline {section}{\numberline {1.1}D\'efinitions}{2}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Pr\'edicat}{2}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Atome}{2}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}R\`egle}{2}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}Repr\'esentation des Conjonctions d'Atomes}{3}{subsection.1.1.4}
+\contentsline {subsection}{\numberline {1.1.5}Impl\'ementation du Graphe}{3}{subsection.1.1.5}
+\contentsline {subsection}{\numberline {1.1.6}Substitution}{4}{subsection.1.1.6}
+\contentsline {subsection}{\numberline {1.1.7}Unificateur logique}{4}{subsection.1.1.7}
+\contentsline {subsection}{\numberline {1.1.8}Unificateur de conclusion atomique}{4}{subsection.1.1.8}
+\contentsline {subsection}{\numberline {1.1.9}Bonne unification atomique}{4}{subsection.1.1.9}
+\contentsline {section}{\numberline {1.2}Unification de R\`egles}{5}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Algorithme d'Unification}{5}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Extension des Conjonctions d'Atomes}{6}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Algorithme d'Unification Locale}{7}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}Correction}{8}{subsection.1.2.4}
+\contentsline {subsubsection}{Propri\'et\'es}{8}{section*.2}
+\contentsline {subsection}{\numberline {1.2.5}Complexites}{8}{subsection.1.2.5}
+\contentsline {subsubsection}{Temps}{8}{section*.3}
+\contentsline {subsubsection}{Espace}{9}{section*.4}
+\contentsline {chapter}{\numberline {2}Bibliographie}{10}{chapter.2}

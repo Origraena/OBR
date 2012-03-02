@@ -1,0 +1,50 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{algorithm,algorithmic,geometry,hyperref}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+
+\author{Hadrien Negros, Swan Rocher}
+\title{Outils d'Analyse d'une Base de R\`egles}
+\pagestyle{headings}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\hypersetup{urlcolor=black,linkcolor=black,colorlinks=true}
+\begin{document}
+
+\maketitle
+\large
+\newpage
+%\thispagestyle{empty}
+%{\centering \Large \bfseries Remerciements \par}
+%\begin{spacing}{1.5}
+%{\ \par}
+% texte Remerciements
+%\end{spacing}
+
+\tableofcontents
+
+\large
+\setlength{\parskip}{5mm plus2mm minus2mm}
+
+\begin{spacing}{1.5}
+% begin includes
+\chapter{}
+\input{./definitions/definitions.tex}
+\input{./unification/unification.tex}
+% end includes
+\end{spacing}
+
+%\appendix
+%\input{../part6_annexes/main/part6_annexes}
+\chapter{Bibliographie}\label{bibli}
+%Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein : {\em Introduction \`a l'Algorithmique, 2nd Edition} (2001), partie 6. 
+%\chapter{Code Source}\label{code}
+%\includepdf[pages=-]{21.pdf}
+% end includes
+\end{document}
+
+
+

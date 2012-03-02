@@ -1,0 +1,112 @@
+\section{D\'efinitions}
+
+\subsection{Pr\'edicat}
+	\begin{itemize}
+		\item Un pr\'edicat not\'e $p \backslash n$ est un symbole relationnel d'arit\'e $n$.
+		\item On suppose que tout nom de pr\'edicat est unique.
+		\item On note $p_{i}$ la $i^{eme}$ position de $p$.
+		\item On note $P_{K}$ l'ensemble des pr\'edicats de $K$.
+	\end{itemize}
+
+\subsection{Atome}
+	Un atome $a = p(a_{1},a_{2},...,a_{n})$ associe un terme \`a chaque position d'un pr\'edicat $p \backslash n$.
+	On note :
+	\begin{itemize}
+		\item $a_{i}$ le terme en position $i$ dans $a$. Un terme peut \^etre une {\em constante} ou une {\em variable}.
+		Une variable peut \^etre universelle (not\'ee $\forall-var$) ou existentielle (not\'ee $\exists-var$).
+		\item $dom(a) = \{a_{i} : \forall i \in [1,n]\}$, l'ensemble des termes de $a$
+		\item $var(a)$ l'ensemble des variables de $a$
+		\item $cst(a)$ l'ensemble des constantes de $a$
+	\end{itemize}
+	Ces notations s'\'etendent aux {\em conjonctions d'atomes}.
+
+\subsection{R\`egle}
+	Une r\`egle $R = (H,C)$ est d\'efinie par :
+	\begin{itemize}
+		\item $H$ : conjonction d'atomes repr\'esentant l'hypoth\`ese de $R$,
+		\item $C$ : conjonction d'atomes repr\'esentant la conclusion de $R$.
+	\end{itemize}
+	On note :
+	\begin{itemize}
+		\item $dom(R) = dom(H) \cup dom(C)$
+		\item $var(R) = var(H) \cup var(C)$
+		\item $cst(R) = cst(H) \cup cst(C)$
+		\item $fr(R)$ l'ensemble des variables fronti\`eres de $R$, avec $a_{i}$ est une variable fronti\`ere ssi $a_{i}$ est une variable telle que $a_{i} \in var(H) \cap var(C)$.
+		\item $cutp(R) = fr(R) \cup cst(R)$ l'ensemble des points de coupure de $R$
+	\end{itemize}
+
+\subsection{Repr\'esentation des Conjonctions d'Atomes}
+	Une conjonction d'atomes $K = k_{1} \and k_{2} \and ... \and k_{n}$ avec $k_{i} = q(t_{1}, t_{2}, ..., t{p})$ peut
+	\^etre repr\'esent\'ee par le graphe non orient\'e $G_{K} = (V_{K},E_{K},\omega)$ avec $V_{K}$ son ensemble de sommets, $E_{K}$,
+	son ensemble d'ar\^etes et $\omega$ une fonction de poids sur les ar\^etes construits de la mani\`ere suivante : \\
+	$V_{K} = A_{K} \cup T_{K}$ avec $A_{K} = \{i : k_{i} \in K\}$ et $T_{K} = \{t_{j} \in dom(K)\}$ \\
+	$E_{K} = \{(i,t_{j}) : \forall k_{i} \in K, \forall t_{j} \in dom(k_{i})\}$ \\
+	$\omega(i,t_{j}) = j : \forall (i,t_{j}) \in E_{K}$ \\
+
+	On remarque que quelques propri\'et\'es sont directement induites par cette repr\'esentation :
+	\begin{itemize}
+		\item $G_{K}$ admet une bipartition de ses sommets, en effet toutes les ar\^etes ont une extr\'emit\'e dans $A_{K}$ etre
+		l'autre dans $T_{K}$, or par construction $A_{K} \cap T_{K} = \emptyset$.
+	\end{itemize}
+
+\subsection{Impl\'ementation du Graphe}
+	Par la suite on supposera que le graphe $G_{K}$ est impl\'ement\'e par deux ensembles de sommets (les atomes et les termes), ainsi que par une liste de voisinage pour chaque sommet.
+	De plus, chaque sommet peut avoir connaissance de son type de contenu parmis : $atome$, $terme$, $constante$, $\forall-var$, $\exists-var$
+	en temps constant.
+
+	On note $n$ (resp. $t$) le nombre d'atomes (resp. de termes) dans $K$. 
+
+	Op\'erations (et temps d'ex\'ecution associ\'e) :
+	\begin{itemize}
+		\item Parcourir les sommets $atomes$ : $n$.
+		\item Parcourir tous les sommets : $n + t$.
+		\item Acc\'eder au $i^{eme}$ voisin d'un sommet : $constant$.
+	\end{itemize}
+
+\subsection{Substitution}
+	Une substitution de taille $n$ d'un ensemble de symboles $X$ dans un ensemble de symboles $Y$ est une fonction de $X$ 
+	vers $Y$ repr\'esent\'ee par l'ensemble de couples suivants (avec $n \leq |X|$) :
+	\begin{itemize}
+		\item $s = \{(x_{i},y_{i})\ :\ \forall i \in [1,n]\ x_{i} \in X,\ y_{i} \in Y, \forall j \neq i\ x_{i} \neq x_{j}\}$
+		\item $s(x_{i}) = y_{i}\ \forall i \in [1,n]$
+		\item $s(x_{i}) = x_{i}\ \forall i \in [n+1,|X|]\ x_{i} \in X$
+	\end{itemize}
+
+\subsection{Unificateur logique}
+	Un unificateur logique entre deux atomes $a_{1}$ et $a_{2}$ est une substitution $\mu$ telle que :
+	\begin{itemize}
+		\item $\mu : var(a_{1}) \cup var(a_{2}) \rightarrow dom(a_{1}) \cup dom(a_{2})$
+		\item $\mu(a_{1}) = \mu(a_{2})$
+	\end{itemize}
+	Cette d\'efinition s'\'etend aux conjonctions d'atomes.
+
+\subsection{Unificateur de conclusion atomique}
+	Un unificateur de conclusion atomique est un unificateur logique $\mu = \{(x_{i},t_{i}) : \forall i \in [1,n]\}$
+	entre l'hypoth\`ese d'une r\`egle $R_{1} = (H_{1},C_{1})$ et la conclusion atomique d'une r\`egle $R_{2} = (H_{2},C_{2})$ et est d\'efini de la mani\`ere suivante :
+	\begin{itemize}
+		\item $\mu : fr(R_{2}) \cup var(H_{1}) \rightarrow dom(C_{2}) \cup cst(H_{1})$
+		\item $\forall (x_{i},t_{i}) \in \mu\ si\ x_{i} \in fr(R_{2})\ alors\ t_{i} \in cutp(R_{2}) \cup cst(H_{1})$
+	\end{itemize}
+    
+\subsection{Bonne unification atomique}
+	Un bon unificateur de conclusion atomique est un unificateur de conclusion atomique $\mu = \{x_{i},t_{i}) : \forall i \in [1,n]\}$
+	entre un sous ensemble $Q$ de l'hypoth\`ese d'une r\`egle $R_{1} = (H_{1},C_{1})$ et la conclusion d'une r\`egle atomique
+	$R_{2} = (H_{2},C_{2})$ tel que :\\
+	$\forall (x_{i},t_{i}) \in \mu : si\ x_{i} \in H_{1} \setminus Q\ alors\ t_{i}\ n'est\ pas\ une\ \exists-var$
+
+	Un tel ensemble $Q$ est appel\'e un {\em bon ensemble d'unification atomique} de l'hypoth\`ese de $R_{1}$ par la conclusion de $R_{2}$.
+	On note que $Q$ est donc d\'efini comme suit :
+	\begin{itemize}
+		\item $Q \subseteq H_{1}$
+		\item $\forall\ position\ i\ de\ \exists-var\ dans\ C_{2}, \forall\ atome\ a\ \in Q, si\ a_i \in var(H_{1})\ alors\ \forall\ atome\ b \in H_{1} : si\ \exists\ b_j \in b : a_i = b_j, alors\ b \in Q$
+	\end{itemize}
+.
+
+	Un {\em bon ensemble d'unification atomique minimal} $Q$ de $H_{1}$ par $C_{2}$ enracin\'e en $a$ est d\'efini tel que :
+	\begin{itemize}
+		\item $Q$ est un bon ensemble d'unification atomique de $H_{1}$ par $C_{2}$
+		\item $a \in Q$
+		\item $|Q| = min(|Q_i| : Q_i\ est\ un\ bon\ ensemble\ d'unification\ atomique\ de\ H_1\ par\ C_2\ et\ a \in Q_i)$
+	\end{itemize}
+
+
