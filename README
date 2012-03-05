@@ -14,10 +14,16 @@
 | /                                                    root |
 |    dev/                                  development root |
 |       src/                                  sources files |
+|       lib/                                  library files |
+|          graphs.jar                     graph library [1] |
 |       build.sh                      compile sources files |
 |       clean.sh                          clean class files |
 |       obr.sh                               execute binary |
 |   rapport/                                     latex root |
 |   gantt.xls                                         Gantt |
 +-----------------------------------------------------------+
+
++-------References-----------------------------------------------------+
+| [1] https://github.com/Origraena/moca/tree/master/common/graphs/java |
++----------------------------------------------------------------------+
 
