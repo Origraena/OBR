@@ -1,1 +1,1 @@
-java -cp src/ OBR
+java -cp target/class/:lib/graphs.jar OBR
