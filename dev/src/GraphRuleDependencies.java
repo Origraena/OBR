@@ -2,6 +2,8 @@ package obr;
 
 import moca.graphs.DirectedSimpleGraph;
 import moca.graphs.vertices.Vertex;
+import java.util.Scanner;
+
 
 import java.util.Iterator;
 
@@ -12,8 +14,9 @@ import java.util.Iterator;
  */
 public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolean> {
 
-	public GraphRuleDependencies() {
-		super();
+	public GraphRuleDependencies(String filePath) {
+		fromFile(filePath);
+		System.out.println(this);
 	}
 
 	public GraphRuleDependencies(GraphRuleDependencies g) {
@@ -49,10 +52,33 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 	private DirectedSimpleGraph<StronglyConnectedComponent,Boolean> _stronglyConnectedComponents;
 
 	// TODO
-	// toString() : String (pseudo visu)
-	// fromFile(String filename) : boolean 
+	// toString() : String (pseudo visu) 
 	// toFile(String filename) : boolean (tostring dans le fichier)
 	// methode affichage composantes fortement connexes qui retourne une String
+
+	public void fromFile(String filePath) throws FileNotFoundException{
+
+		try {
+			Scanner scanner=new Scanner(new File(filePath));
+			while(scanner.hasNext())
+			      addVertex(new Vertex<AtomicRule>(new AtomicRule(scanner.nextLine())));
+			} catch (FileNotFoundException e) {
+					      e.printStackTrace();
+			}
+		scanner.close();
+	}
+	
+	public String toString(){
+		String result = new String("");
+		Vertex<AtomicRule> r = null;
+		for (Iterator<Vertex<AtomicRule> > ruleIterator = vertexIterator() ; ruleIterator.hasNext() ; ) {
+			r = ruleIterator.next();
+			result += r;
+			}
+			
+		return result;
+	
+	}
 
 };
 

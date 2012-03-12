@@ -47,6 +47,8 @@ public class OBR {
 			System.out.println("R2 --> R1 ? " + AtomicRule.localUnification(h1,r2,r2.existentialIndex()));
 			System.out.println("R2 --> R3 ? " + AtomicRule.localUnification(h3,r2,r2.existentialIndex()));
 
+			GraphRuleDependencies grd = new GraphRuleDependencies("../basetest");
+
 		}
 		catch (Exception e) {
 			System.out.println(e);
