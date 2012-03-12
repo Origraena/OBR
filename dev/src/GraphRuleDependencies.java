@@ -10,7 +10,7 @@ import java.util.Iterator;
  * 	if a vertex already in the graph is added once again, it may produce strange behaviour
  * 	if an edge is added manually it may produce errors
  */
-public class GraphRuleDependencies extends DirectedSimpleGraph<Rule,Boolean> {
+public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolean> {
 
 	public GraphRuleDependencies() {
 		super();
@@ -24,10 +24,10 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<Rule,Boolean> {
 	 * Whenever a vertex is added, the rule is checked for unification against all others.
 	 * This provides an always updated graph.
 	 */
-	public void addVertex(Vertex<Rule> rule) {
+	public void addVertex(Vertex<AtomicRule> rule) {
 		super.addVertex(rule);
-		Vertex<Rule> r = null;
-		for (Iterator<Vertex<Rule> > ruleIterator = vertexIterator() ; ruleIterator.hasNext() ; ) {
+		Vertex<AtomicRule> r = null;
+		for (Iterator<Vertex<AtomicRule> > ruleIterator = vertexIterator() ; ruleIterator.hasNext() ; ) {
 			r = ruleIterator.next();
 			try {
 				if (rule.getValue().mayImply(r.getValue()))
@@ -45,6 +45,14 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<Rule,Boolean> {
 			}
 		}
 	}
+
+	private DirectedSimpleGraph<StronglyConnectedComponent,Boolean> _stronglyConnectedComponents;
+
+	// TODO
+	// toString() : String (pseudo visu)
+	// fromFile(String filename) : boolean 
+	// toFile(String filename) : boolean (tostring dans le fichier)
+	// methode affichage composantes fortement connexes qui retourne une String
 
 };
 
