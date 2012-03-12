@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
-public class AtomicRule extends GraphAtomConjonction {
+public class AtomicRule extends GraphAtomConjunction {
 
 	/* Constants */
 	public static final String HEAD_SEPARATOR	=	new String("-->");
@@ -65,7 +65,7 @@ public class AtomicRule extends GraphAtomConjonction {
 		if (v.getID() < getNbAtoms())
 			return true;
 		for (Iterator<NeighbourEdge<Integer> > iterator = _graph.neighbourIterator(v.getID()) ; iterator.hasNext() ;)
-			if (!(_graph.getVertex(iterator.next().getIDV()) == v))
+			if (!(_graph.getVertex(iterator.next().getIDV()) == _head))
 				return true;
 		return false;
 	}
@@ -155,31 +155,30 @@ public class AtomicRule extends GraphAtomConjonction {
 	 * @param R The rule whose head will be unified.
 	 * @return True if success, false otherwise.
 	 */
-/*	public static boolean existUnification(GraphAtomConjonction H1, AtomicRule R) {
+	public static boolean existUnification(GraphAtomConjunction H1, AtomicRule R) {
 
 			/** init */
-/*		GraphAtomConjonction H2 = R.getBody();								// rule body
-		Atom C2 = R.getHead();											// rule head
+		GraphAtomConjunction H2 = R.getBody();								// rule body
 		boolean isLocallyUnifiable[] = new boolean[H1.getNbAtoms()];	// valuing true while atom is supposed locally unifiable
 		int E[] = R.getExistentialIndex();								// positions of existential variables in the rule
-		Vertex<Atom> current = null;
-		AtomConjonction Q = null;
+		Vertex<Object> head = null;
+		Vertex<Object> current = null;
+		GraphAtomConjunction Q = null;
 
 			/** preprocessing */
-/*		for (Iterator<Vertex<Atom> > iterator = H1.firstSetIterator() ; iterator.hasNext() ; ) {
-			current = iterator.next();
-			if (localUnification(new GraphAtomConjonction(current.getValue().toString()), R) == true)
-				isLocallyUnifiable[current.getID()] = true;
+		for (int i = 0 ; i < H1.getNbAtoms() ; i++) {
+			Q = H1.subAtomConjunction(i,i+1);
+			if (localUnification(Q,R) == true)
+				isLocallyUnifiable[i] = true;
 			else
-				isLocallyUnifiable[current.getID()] = false;
+				isLocallyUnifiable[i] = false;
 		}
 
 			/** extension */
-/*		for (Iterator<Vertex<Atom> > iterator = H1.firstSetIterator() ; iterator.hasNext() ; ) {
-			current = iterator.next();
-			if (isLocallyUnifiable[current.getID()] == true) {
+		for (int i = 0 ; i < H1.getNbAtoms() ; i++) {
+			if (isLocallyUnifiable[i] == true) {
 				try {
-					Q = extension(H1, current, isLocallyUnifiable, E);
+					Q = extension(H1, i, isLocallyUnifiable, E);
 					if (localUnification(Q,R) == true)
 						return true;
 				}
@@ -193,113 +192,79 @@ public class AtomicRule extends GraphAtomConjonction {
 		// no set have been found => failure
 		return false;
 	}
-*/
-	public static boolean localUnification(GraphAtomConjonction H1, AtomicRule R, int[] existentialIndex) {
-		
-		System.out.println("localUnification");
-		System.out.println("H1 = "+H1);
-		System.out.println("R = "+R);
 
+	public static GraphAtomConjunction extension(GraphAtomConjunction H1, int atomRootID, boolean isLocallyUnifiable[], int E[]) {
+		GraphAtomConjunction result = new GraphAtomConjunction();
+		boolean isColored = new boolean[H1.getNbAtoms()];
+		Fifo<Vertex<Object> > waiting = new Fifo<Vertex<Object> >();
+		for (int i = 0 ; i < H1.getNbAtoms() ; i++) {
+			
+
+		}
+
+	}
+
+	public static boolean localUnification(GraphAtomConjunction H1, AtomicRule R, int[] existentialIndex) {
+		
 			/** predicate check */
 		for (Iterator<Vertex<Object> > iterator = H1._graph.firstVertexIterator() ; iterator.hasNext() ;)
 			if ((((Predicate)(iterator.next().getValue())).compareTo((Predicate)(R.getHead().getValue()))) != 0)
 				return false;
 	
-	//	System.out.println("predicate ok!");
 
 			/** graph generation */
-		GraphAtomConjonction unification = H1.clone();	// TODO not necessary if method subgraph
+		GraphAtomConjunction unification = H1;//.clone();	// TODO not necessary if method subgraph
 		unification._graph.addInFirstSet(((Predicate)(R.getHead().getValue())).clone());	
 		for (Iterator<NeighbourEdge<Integer> > iterator = R._graph.neighbourIterator(R.getHead().getID()) ; iterator.hasNext() ;) {
 			NeighbourEdge<Integer> edge = iterator.next();
 			Term t = (Term)(R.get(edge.getIDV()));
-			if ((t.getLabel().length() >= 2) && (t.getLabel().charAt(t.getLabel().length()-1) != 'R') && (t.getLabel().charAt(t.getLabel().length()-2) != '_'))
-				t.setLabel(t.getLabel()+"_R");
-			int idV = unification.addTerm(t);
+			unification._graph.addInSecondSet(t);
 			try {
-				unification._graph.addEdge(unification.getNbAtoms()-1,idV,new Integer(edge.getValue()));
+				unification._graph.addEdge(unification.getNbAtoms()-1,unification._graph.getNbVertices()-1,new Integer(edge.getValue()));
 			}
 			catch (IllegalEdgeException e) { }
 		}
 
-		System.out.println("Graph generated!");
-		System.out.println(unification);
+		
+			/** index */
+		int headIndex = 0;
 
-			/** iterators init */
-		ArrayList<Iterator<NeighbourEdge<Integer> > > iterators = new ArrayList<Iterator<NeighbourEdge<Integer> > >(H1.getNbAtoms());
-		Iterator<NeighbourEdge<Integer> > headIterator = unification._graph.neighbourIterator(unification.getNbAtoms()-1);
-		for (int i = 0 ; i < unification.getNbAtoms()-1 ; i++) {
-			iterators.add(unification._graph.neighbourIterator(i));
-		}
-
-		NeighbourEdge<Integer> headEdge = null;
-		NeighbourEdge<Integer> bodyEdge = null;
 		Vertex<Object> headVertex = null;
 		Vertex<Object> bodyVertex = null;
 		Term headTerm = null;
 		Term bodyTerm = null;
+		int arity = ((Predicate)(R.getHead().getValue())).getArity();
 
 		boolean[] isexistential = new boolean[unification.getNbTerms()];
 		for (int i = 0 ; i < unification.getNbTerms() ; i++)
 			isexistential[i] = false;
 		for (int i = 0 ; i < existentialIndex.length ; i++)
-			isexistential[existentialIndex[i]-unification.getNbAtoms()] = true;
+			isexistential[unification.getVertexTermFromAtom(unification.getNbAtoms()-1,existentialIndex[i]).getID()-unification.getNbAtoms()] = true;
 
-	//	System.out.println("Init finished!");
 
-		int debug = 0;
+				System.out.println(unification);
 			/** algorithm */
-		while ((headIterator!=null)&&(headIterator.hasNext())) {
-	//		System.out.println("iteration = "+debug);
-			try {
-				headEdge = headIterator.next();
-			}
-			catch (ConcurrentModificationException e) {
-	//			System.out.println("ConcurrentModificationException from head iterator : "+e);
-				headIterator = null;
-			}
-	//		System.out.println("headEdge = "+headEdge);
-			headVertex = unification._graph.getVertex(headEdge.getIDV());
-	//		System.out.println("headVertex = "+headVertex);
+		while (headIndex < arity) {
+			headVertex = unification.getVertexTermFromAtom(unification.getNbAtoms()-1,headIndex);
 			headTerm = (Term)(headVertex.getValue());
-	//		System.out.println("headTerm = "+headTerm);
-			int debug2 = 0;
-			for (Iterator<NeighbourEdge<Integer> > bodyIterator : iterators) {
-				try {
-	//			System.out.println("for : "+debug2);
-				bodyEdge = bodyIterator.next();	// cannot fail because the predicates are checked
-	//			System.out.println("bodyEdge = "+bodyEdge);
-				bodyVertex = unification._graph.getVertex(bodyEdge.getIDV());
-	//			System.out.println("bodyVertex = "+bodyVertex);
+			for (int i = 0 ; i < unification.getNbAtoms() - 1 ; i++) {
+				bodyVertex = unification.getVertexTermFromAtom(i,headIndex);
 				bodyTerm = (Term)(bodyVertex.getValue());
-	//			System.out.println("bodyTerm = "+bodyTerm);
 				if (headVertex.getID() != bodyVertex.getID()) {
-				//if (headTerm != bodyTerm) {
 					if ((headTerm.isConstant() || isexistential[headVertex.getID()-unification.getNbAtoms()])
 					&&  (bodyTerm.isConstant() || isexistential[bodyVertex.getID()-unification.getNbAtoms()]))
 						return false;
-					else if ((bodyTerm.isVariable()) && (!isexistential[bodyVertex.getID()-unification.getNbAtoms()])) {
+					else if ((bodyTerm.isVariable()) && (!isexistential[bodyVertex.getID()-unification.getNbAtoms()]))
 						unification._graph.contract(bodyVertex.getID(),headVertex.getID());
-	//					System.out.println("case2");
-					}
 					else {
 						unification._graph.contract(headVertex.getID(),bodyVertex.getID());
 						headVertex = bodyVertex;
 						headTerm = bodyTerm;
-	//					System.out.println("case1");
-	//					System.out.println("headVertex = "+headVertex);
-	//					System.out.println("headTerm = "+headTerm);
 					}
 				}
-				}
-				catch (ConcurrentModificationException e) { 
-	//				System.out.println("+++"+e);
-				}
-	//			System.out.println("graph updated :");
 				System.out.println(unification);
-				debug2++;
 			}
-			debug++;
+			headIndex++;
 		}
 		return true;
 

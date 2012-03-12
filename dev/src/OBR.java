@@ -17,7 +17,7 @@ public class OBR {
 			System.out.println(q);
 			System.out.println(q2);
 
-			GraphAtomConjonction gac = new GraphAtomConjonction("p<x,y>;q<z>;q<x>");
+			GraphAtomConjunction gac = new GraphAtomConjunction("p<x,y>;q<z>;q<x>");
 
 			AtomicRule r = new AtomicRule("p<x,y>;q<z>-->r<x,y,x>");
 
@@ -30,15 +30,15 @@ public class OBR {
 			for (int i = r.getNbAtoms() ; i < 6 ; i++)
 			System.out.println("vertex["+i+"]"+r.isExistential(r.getVertex(i))+"  "+r.isHead(r.getVertex(i)));
 
-			GraphAtomConjonction gac2 = gac.clone();
+			GraphAtomConjunction gac2 = gac.clone();
 			gac2.getVertex(0).setValue(new Object());
 			System.out.println(gac.getVertex(0));
 			System.out.println(gac2.getVertex(0));
 			
 			AtomicRule r2 = new AtomicRule("r<a,b,c>-->p<x,y>");
-			GraphAtomConjonction h1 = new GraphAtomConjonction("p<x,y>;q<z>");
-			GraphAtomConjonction h2 = new GraphAtomConjonction("r<a,b,c>");
-			GraphAtomConjonction h3 = new GraphAtomConjonction("p<x,'a'>;p<y,'b'>");
+			GraphAtomConjunction h1 = new GraphAtomConjunction("p<x,y>;q<z>");
+			GraphAtomConjunction h2 = new GraphAtomConjunction("r<a,b,c>");
+			GraphAtomConjunction h3 = new GraphAtomConjunction("p<x,'a'>;p<y,'b'>");
 
 			System.out.println("R1 = "+r);
 			System.out.println("R2 = "+r2);

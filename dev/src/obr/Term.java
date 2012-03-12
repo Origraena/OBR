@@ -24,8 +24,11 @@ public class Term {
 		return !isConstant();
 	}
 
+	/**
+	 * check if the term is a constant generated from a rule application
+	 */
 	boolean isExistential() {
-		return (_label.charAt(0)=='_');
+		return (isConstant() && (_label.charAt(1)=='_'));
 	}
 
 	boolean isUniversal() {

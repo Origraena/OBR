@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 
-public class GraphAtomConjonction implements AtomConjonction {
+public class GraphAtomConjunction implements AtomConjunction {
 
 	/* Constants */
 	public static final String ATOM_SEPARATOR	=	new String(";");
@@ -23,7 +23,7 @@ public class GraphAtomConjonction implements AtomConjonction {
 	public static final String BEGIN_TERM_LIST	=	Atom.BEGIN_TERM_LIST;
 	public static final char END_TERM_LIST		=	Atom.END_TERM_LIST.charAt(Atom.END_TERM_LIST.length()-1);
 
-	public GraphAtomConjonction() {
+	public GraphAtomConjunction() {
 		try {
 			_graph = new BipartedGraph<Object,Integer>(
 				new VertexArrayList<Object>(),
@@ -34,7 +34,7 @@ public class GraphAtomConjonction implements AtomConjonction {
 	}
 
 	/** @see .fromString(String) */
-	public GraphAtomConjonction(String stringRepresentation) {
+	public GraphAtomConjunction(String stringRepresentation) {
 		try {
 			_graph = new BipartedGraph<Object,Integer>(
 				new VertexArrayList<Object>(),
@@ -45,7 +45,7 @@ public class GraphAtomConjonction implements AtomConjonction {
 		catch (Exception e) { }
 	}
 
-	public GraphAtomConjonction(GraphAtomConjonction toCopy) {
+	public GraphAtomConjunction(GraphAtomConjunction toCopy) {
 		try {
 			_graph = new BipartedGraph<Object,Integer>(toCopy._graph);
 		}
@@ -159,6 +159,10 @@ public class GraphAtomConjonction implements AtomConjonction {
 		return _graph.get(i);
 	}
 
+	public Predicate getPredicate(int i) throws NoSuchElementException {
+		return (Predicate)(getVertexAtom(i).getValue());
+	}
+
 	/** global id */
 	public Vertex<Object> getVertex(int i) throws NoSuchElementException {
 		return _graph.getVertex(i);
@@ -188,8 +192,27 @@ public class GraphAtomConjonction implements AtomConjonction {
 		return _graph.getNeighbour(atomID,termIndex);
 	}
 
+	public GraphAtomConjunction subAtomConjunction(int beginAtomID, int endAtomID) {
+		if ((beginAtomID > endAtomID) || (endAtomID > getNbAtoms()))
+			return null;
+		GraphAtomConjunction result = new GraphAtomConjunction();
+		NeighbourEdge<Integer> edge = null;
+		int termID = -1;
+		for (int i = beginAtomID ; i < endAtomID ; i++) {
+			result._graph.addInFirstSet(getPredicate(i).clone());
+		}
+		for (int i = beginAtomID ; i < endAtomID ; i++) {
+			for (Iterator<NeighbourEdge<Integer> > iterator = _graph.neighbourIterator(i) ; iterator.hasNext() ; ) {
+				edge = iterator.next();
+				termID = result.addTerm(getTerm(edge.getIDV()-getNbAtoms()).clone());
+				try { result._graph.addEdge(i-beginAtomID,termID,new Integer(edge.getValue())); }
+				catch (IllegalEdgeException e) { }
+			}
+		}
+		return result;
+	}
 
-	public GraphAtomConjonction cloneIn(GraphAtomConjonction copy) {
+	public GraphAtomConjunction cloneIn(GraphAtomConjunction copy) {
 		for (Iterator<Object> iterator = _graph.firstIterator() ; iterator.hasNext() ; ) {
 			copy.addAtom(((Predicate)(iterator.next())).clone());
 		}
@@ -205,12 +228,39 @@ public class GraphAtomConjonction implements AtomConjonction {
 		return copy;
 	}
 
-	public GraphAtomConjonction clone() {
-		GraphAtomConjonction copy = new GraphAtomConjonction();
+	public GraphAtomConjunction clone() {
+		GraphAtomConjunction copy = new GraphAtomConjunction();
 		return cloneIn(copy);
 	}
 
+	public Iterator<Vertex<Object> > vertexAtomIterator() {
+		return _graph.firstVertexIterator();
+	}
+
+	public Iterator<Vertex<Object> > vertexTermIterator() {
+		return _graph.secondVertexIterator();
+	}
+
 	protected BipartedGraph<Object,Integer> _graph = null;
+
+
+	public class TermIterator implements Iterator<Vertex<Object> > {
+		public TermIterator(GraphAtomConjunction source, Iterator<NeighbourEdge<Integer> > iterator) {
+			_source = source;
+			_iterator = iterator;
+		}
+		public boolean hasNext() {
+			return _iterator.hasNext();
+		}
+		public Vertex<Object> next() throws NoSuchElementException {
+			return _source.getVertex(_iterator.next().getIDV());
+		}
+		public void remove() throws UnsupportedOperationException { throw new UnsupportedOperationException(); }
+
+		private GraphAtomConjunction _source;
+		private Iterator<NeighbourEdge<Integer> > _iterator;
+	};
+
 
 };
 

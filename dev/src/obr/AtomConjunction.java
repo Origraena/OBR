@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 
-public interface AtomConjonction /*extends Iterable<Atom>*/ {
+public interface AtomConjunction /*extends Iterable<Atom>*/ {
 
 //	public Atom get(int i) throws NoSuchElementException;
 
