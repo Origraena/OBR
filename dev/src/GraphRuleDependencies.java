@@ -8,6 +8,7 @@ import java.util.Iterator;
 /**
  * Unsecure :
  * 	if a vertex already in the graph is added once again, it may produce strange behaviour
+ * 	if an edge is added manually it may produce errors
  */
 public class GraphRuleDependencies extends DirectedSimpleGraph<Rule,Boolean> {
 
@@ -28,11 +29,20 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<Rule,Boolean> {
 		Vertex<Rule> r = null;
 		for (Iterator<Vertex<Rule> > ruleIterator = vertexIterator() ; ruleIterator.hasNext() ; ) {
 			r = ruleIterator.next();
-			if (rule.getValue().mayImply(r.getValue()))
-				addEdge(rule.getID(),r.getID(),true);
-			if ((rule != r) && (r.getValue().mayImply(rule.getValue())))
-				addEdge(r.getID(),rule.getID(),true);
-
+			try {
+				if (rule.getValue().mayImply(r.getValue()))
+					addEdge(rule.getID(),r.getID(),true);
+			}
+			catch (IllegalEdgeException e) {
+				// the edge already exists
+			}
+			try {
+				if ((rule != r) && (r.getValue().mayImply(rule.getValue())))
+					addEdge(r.getID(),rule.getID(),true);
+			}
+			catch (IllegalEdgeException e) {
+				// the edge already exists
+			}
 		}
 	}
 

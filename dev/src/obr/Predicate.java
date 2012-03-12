@@ -1,6 +1,8 @@
 package obr;
 
-public class Predicate {
+import java.lang.Comparable;
+
+public class Predicate implements Comparable<Predicate> {
 
 	public Predicate(String label, int arity) {
 		_label = label;
@@ -43,7 +45,20 @@ public class Predicate {
 		_label = substr[0];
 		_arity = new Integer(substr[1]).intValue();
 	}
+
+	public Predicate clone() {
+		return new Predicate(new String(_label),_arity);
+	}
 	
+	public int compareTo(Predicate p) {
+		if (getArity() < p.getArity())
+			return -1;
+		else if (getArity() > p.getArity())
+			return 1;
+		else
+			return _label.compareTo(p.getLabel());
+	}
+
 	private String _label;
 	private int _arity = 1;
 

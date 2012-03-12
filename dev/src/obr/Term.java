@@ -8,6 +8,14 @@ public class Term {
 		_label = label;
 	}
 
+	public String getLabel() {
+		return _label;
+	}
+
+	public void setLabel(String value) {
+		_label = value;
+	}
+
 	boolean isConstant() {
 		return (_label.charAt(0) == '\'');
 	}
@@ -30,6 +38,10 @@ public class Term {
 
 	public void fromString(String str) {
 		_label = str;
+	}
+
+	public Term clone() {
+		return new Term(new String(_label));
 	}
 
 	private String _label;

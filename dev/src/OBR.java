@@ -17,27 +17,35 @@ public class OBR {
 			System.out.println(q);
 			System.out.println(q2);
 
-			String s = "salut";
-			String[] s2 = s.split("<");
-			String[] s3 = s.split("v");
-			System.out.println(s2.length);
-			System.out.println(s3.length);
-			for (String sss : s2)
-				System.out.println(sss);
-			for (String sss : s3)
-				System.out.println(sss);
+			GraphAtomConjonction gac = new GraphAtomConjonction("p<x,y>;q<z>;q<x>");
 
+			AtomicRule r = new AtomicRule("p<x,y>;q<z>-->r<x,y,x>");
 
-			Atom a1 = new AtomArrayList(p);
-			a1.set(0,"x");
-			a1.set(1,"y");
-			Atom a2 = new AtomArrayList("q<'a'>");
-			Atom a3 = new AtomArrayList(a1);
-			Atom a4 = new AtomArrayList("p<x,y>");
-			System.out.println(a1);
-			System.out.println(a2);
-			System.out.println(a3);
-			System.out.println(a4);
+			
+			System.out.println("nb atoms = " +gac.getNbAtoms()+" nb terms = "+gac.getNbTerms());
+			System.out.println(gac);
+			System.out.println(r);
+			System.out.println("nb atoms = " +r.getNbAtoms()+" nb terms = "+r.getNbTerms());
+
+			for (int i = r.getNbAtoms() ; i < 6 ; i++)
+			System.out.println("vertex["+i+"]"+r.isExistential(r.getVertex(i))+"  "+r.isHead(r.getVertex(i)));
+
+			GraphAtomConjonction gac2 = gac.clone();
+			gac2.getVertex(0).setValue(new Object());
+			System.out.println(gac.getVertex(0));
+			System.out.println(gac2.getVertex(0));
+			
+			AtomicRule r2 = new AtomicRule("r<a,b,c>-->p<x,y>");
+			GraphAtomConjonction h1 = new GraphAtomConjonction("p<x,y>;q<z>");
+			GraphAtomConjonction h2 = new GraphAtomConjonction("r<a,b,c>");
+			GraphAtomConjonction h3 = new GraphAtomConjonction("p<x,'a'>;p<y,'b'>");
+
+			System.out.println("R1 = "+r);
+			System.out.println("R2 = "+r2);
+			System.out.println("H3 = "+h3);
+			System.out.println("R1 --> R2 ? " + AtomicRule.localUnification(h2,r,r.existentialIndex()));
+			System.out.println("R2 --> R1 ? " + AtomicRule.localUnification(h1,r2,r2.existentialIndex()));
+			System.out.println("R2 --> R3 ? " + AtomicRule.localUnification(h3,r2,r2.existentialIndex()));
 
 		}
 		catch (Exception e) {
