@@ -2,9 +2,9 @@ package obr;
 
 import moca.graphs.DirectedSimpleGraph;
 import moca.graphs.vertices.Vertex;
+import moca.graphs.edges.IllegalEdgeException;
+
 import java.util.Scanner;
-
-
 import java.util.Iterator;
 
 /**
@@ -15,8 +15,8 @@ import java.util.Iterator;
 public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolean> {
 
 	public GraphRuleDependencies(String filePath) {
-		fromFile(filePath);
-		System.out.println(this);
+//		fromFile(filePath);
+//		System.out.println(this);
 	}
 
 	public GraphRuleDependencies(GraphRuleDependencies g) {
@@ -27,9 +27,9 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 	 * Whenever a vertex is added, the rule is checked for unification against all others.
 	 * This provides an always updated graph.
 	 */
-	public void addVertex(Vertex<AtomicRule> rule) {
+	public void addVertex(AtomicRule rule) {
 		super.addVertex(rule);
-		Vertex<AtomicRule> r = null;
+		Vertex<AtomicRule> r = getVertex(getNbVertices()-1);
 		for (Iterator<Vertex<AtomicRule> > ruleIterator = vertexIterator() ; ruleIterator.hasNext() ; ) {
 			r = ruleIterator.next();
 			try {
@@ -49,14 +49,14 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 		}
 	}
 
-	private DirectedSimpleGraph<StronglyConnectedComponent,Boolean> _stronglyConnectedComponents;
+//	private DirectedSimpleGraph<StronglyConnectedComponent,Boolean> _stronglyConnectedComponents;
 
 	// TODO
 	// toString() : String (pseudo visu) 
 	// toFile(String filename) : boolean (tostring dans le fichier)
 	// methode affichage composantes fortement connexes qui retourne une String
 
-	public void fromFile(String filePath) throws FileNotFoundException{
+/*	public void fromFile(String filePath) throws FileNotFoundException{
 
 		try {
 			Scanner scanner=new Scanner(new File(filePath));
@@ -66,18 +66,14 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 					      e.printStackTrace();
 			}
 		scanner.close();
-	}
+	}*/
 	
 	public String toString(){
-		String result = new String("");
-		Vertex<AtomicRule> r = null;
-		for (Iterator<Vertex<AtomicRule> > ruleIterator = vertexIterator() ; ruleIterator.hasNext() ; ) {
-			r = ruleIterator.next();
-			result += r;
-			}
-			
-		return result;
-	
+		StringBuilder stringBuilder = new StringBuilder();
+		for (AtomicRule rule : this) {
+			stringBuilder.append(rule);
+		}	
+		return stringBuilder.toString();
 	}
 
 };

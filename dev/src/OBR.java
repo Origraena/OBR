@@ -47,7 +47,43 @@ public class OBR {
 			System.out.println("R2 --> R1 ? " + AtomicRule.localUnification(h1,r2,r2.existentialIndex()));
 			System.out.println("R2 --> R3 ? " + AtomicRule.localUnification(h3,r2,r2.existentialIndex()));
 
-			GraphRuleDependencies grd = new GraphRuleDependencies("../basetest");
+			//GraphRuleDependencies grd = new GraphRuleDependencies("../basetest");
+			System.out.println(" ");
+			AtomicRule R1 = new AtomicRule("p<x,y>;q<y>-->r<x,y,z>");
+			AtomicRule R2 = new AtomicRule("r<x,y,z>;r<x,y,x>-->p<x,x>");
+			AtomicRule R3 = new AtomicRule("r<'a','b',x>-->r<x,x,y>");
+			AtomicRule R4 = new AtomicRule("p<x,y>;p<'a',y>-->p<'a',z>");
+			System.out.println("R1 : "+R1);
+			System.out.println("R2 : "+R2);
+			System.out.println("R3 : "+R3);
+			System.out.println("R4 : "+R4);
+
+			System.out.println("R1");
+			System.out.println("R1 --> R1 ? "+R1.mayImply(R1));
+			System.out.println("R1 --> R2 ? "+R1.mayImply(R2));
+			System.out.println("R1 --> R3 ? "+R1.mayImply(R3));
+			System.out.println("R1 --> R4 ? "+R1.mayImply(R4));
+			System.out.println("");
+
+			System.out.println("R2");
+			System.out.println("R2 --> R1 ? "+R2.mayImply(R1));
+			System.out.println("R2 --> R2 ? "+R2.mayImply(R2));
+			System.out.println("R2 --> R3 ? "+R2.mayImply(R3));
+			System.out.println("R2 --> R4 ? "+R2.mayImply(R4));
+			System.out.println("");
+			
+			System.out.println("R3");
+			System.out.println("R3 --> R1 ? "+R3.mayImply(R1));
+			System.out.println("R3 --> R2 ? "+R3.mayImply(R2));
+			System.out.println("R3 --> R3 ? "+R3.mayImply(R3));
+			System.out.println("R3 --> R4 ? "+R3.mayImply(R4));
+			System.out.println("");
+
+			System.out.println("R4");
+			System.out.println("R4 --> R1 ? "+R4.mayImply(R1));
+			System.out.println("R4 --> R2 ? "+R4.mayImply(R2));
+			System.out.println("R4 --> R3 ? "+R4.mayImply(R3));
+			System.out.println("R4 --> R4 ? "+R4.mayImply(R4));
 
 		}
 		catch (Exception e) {

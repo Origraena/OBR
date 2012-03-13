@@ -61,6 +61,22 @@ public class GraphAtomConjunction implements AtomConjunction {
 		return _graph.getNbVerticesInSecondSet();
 	}
 
+	public boolean isAtom(Vertex<Object> v) {
+		if (v == null)
+			return false;
+		if (v.getID() < getNbAtoms())
+			return true;
+		return false;
+	}
+
+	public boolean isTerm(Vertex<Object> v) {
+		if (v == null)
+			return false;
+		if (v.getID() < getNbAtoms())
+			return false;
+		return true;
+	}
+
 	public Atom getAtom(int i) throws NoSuchElementException {
 		if ((i >= getNbAtoms()) || (i < 0))
 			throw new NoSuchElementException();
@@ -152,7 +168,33 @@ public class GraphAtomConjunction implements AtomConjunction {
 		_graph.addInSecondSet(new Term(termLabel));
 		return _graph.getNbVertices() - 1;
 	}
+	
+	public boolean addEdge(int atomID, int termID, Integer position) {
+		try {
+			_graph.addEdge(atomID,termID,position);
+			return true;
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
 
+	/**
+	 * Add an atom from another graph atom conjunction.
+	 * Unsecure :
+	 * 	no check against the vertex to be sure it is an atom Vertex
+	 */
+	public void addAtom(Vertex<Object> atom, GraphAtomConjunction source) {
+		Iterator<NeighbourEdge<Integer> > termIterator = source.neighbourIterator(atom.getID());
+		NeighbourEdge<Integer> edge = null;
+		int termID = -1;
+		addAtom((Predicate)(atom.getValue()));
+		while (termIterator.hasNext()) {
+			edge = termIterator.next();
+			termID = addTerm(source.getTerm(edge.getIDV()-source.getNbAtoms()));
+			addEdge(getNbAtoms()-1,termID,new Integer(edge.getValue()));
+		}
+	}
 
 	/** global id */
 	public Object get(int i) throws NoSuchElementException {
@@ -241,11 +283,23 @@ public class GraphAtomConjunction implements AtomConjunction {
 		return _graph.secondVertexIterator();
 	}
 
+	public NeighbourIterator vertexTermIteratorFromAtom(int atomID) {
+		return new NeighbourIterator(this,_graph.neighbourIterator(atomID));
+	}
+
+	public NeighbourIterator vertexAtomIteratorFromTerm(int termID) {
+		return new NeighbourIterator(this,_graph.neighbourIterator(termID));
+	}
+
+	public Iterator<NeighbourEdge<Integer> > neighbourIterator(int vertexID) {
+		return _graph.neighbourIterator(vertexID);
+	}
+
 	protected BipartedGraph<Object,Integer> _graph = null;
 
 
-	public class TermIterator implements Iterator<Vertex<Object> > {
-		public TermIterator(GraphAtomConjunction source, Iterator<NeighbourEdge<Integer> > iterator) {
+	public class NeighbourIterator implements Iterator<Vertex<Object> > {
+		public NeighbourIterator(GraphAtomConjunction source, Iterator<NeighbourEdge<Integer> > iterator) {
 			_source = source;
 			_iterator = iterator;
 		}

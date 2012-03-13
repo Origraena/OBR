@@ -6,6 +6,7 @@ import moca.graphs.vertices.VertexArrayList;
 import moca.graphs.edges.NeighbourEdge;
 import moca.graphs.edges.UndirectedNeighboursLists;
 import moca.graphs.edges.IllegalEdgeException;
+import moca.lists.Fifo;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -39,22 +40,6 @@ public class AtomicRule extends GraphAtomConjunction {
 
 	public Atom getHeadAtom() {
 		return getAtom(_head.getID());
-	}
-
-	public boolean isAtom(Vertex<Object> v) {
-		if (v == null)
-			return false;
-		if (v.getID() < getNbAtoms())
-			return true;
-		return false;
-	}
-
-	public boolean isTerm(Vertex<Object> v) {
-		if (v == null)
-			return false;
-		if (v.getID() >= getNbAtoms())
-			return true;
-		return false;
 	}
 
 	public boolean isBody(Vertex<Object> v) throws NoSuchElementException {
@@ -130,6 +115,10 @@ public class AtomicRule extends GraphAtomConjunction {
 		return super.toString(getNbAtoms()-1)+HEAD_SEPARATOR+getHeadAtom();
 	}
 
+	public GraphAtomConjunction getBody() {
+		return subAtomConjunction(0, getNbAtoms()-1);
+	}
+
 	public AtomicRule cloneIn(AtomicRule copy) {
 		super.cloneIn(copy);
 		copy._head = copy.getVertex(_head.getID());
@@ -139,6 +128,10 @@ public class AtomicRule extends GraphAtomConjunction {
 	public AtomicRule clone() {
 		AtomicRule copy = new AtomicRule();
 		return cloneIn(copy);
+	}
+
+	public boolean mayImply(AtomicRule R) {
+		return existUnification(R.getBody(), this);
 	}
 
 	private Vertex<Object> _head = null;
@@ -156,11 +149,9 @@ public class AtomicRule extends GraphAtomConjunction {
 	 * @return True if success, false otherwise.
 	 */
 	public static boolean existUnification(GraphAtomConjunction H1, AtomicRule R) {
-
 			/** init */
-		GraphAtomConjunction H2 = R.getBody();								// rule body
 		boolean isLocallyUnifiable[] = new boolean[H1.getNbAtoms()];	// valuing true while atom is supposed locally unifiable
-		int E[] = R.getExistentialIndex();								// positions of existential variables in the rule
+		int E[] = R.existentialIndex();								// positions of existential variables in the rule
 		Vertex<Object> head = null;
 		Vertex<Object> current = null;
 		GraphAtomConjunction Q = null;
@@ -168,7 +159,7 @@ public class AtomicRule extends GraphAtomConjunction {
 			/** preprocessing */
 		for (int i = 0 ; i < H1.getNbAtoms() ; i++) {
 			Q = H1.subAtomConjunction(i,i+1);
-			if (localUnification(Q,R) == true)
+			if (localUnification(Q,R,E) == true)
 				isLocallyUnifiable[i] = true;
 			else
 				isLocallyUnifiable[i] = false;
@@ -176,10 +167,11 @@ public class AtomicRule extends GraphAtomConjunction {
 
 			/** extension */
 		for (int i = 0 ; i < H1.getNbAtoms() ; i++) {
+			current = H1.getVertex(i);
 			if (isLocallyUnifiable[i] == true) {
 				try {
 					Q = extension(H1, i, isLocallyUnifiable, E);
-					if (localUnification(Q,R) == true)
+					if (localUnification(Q,R,E) == true)
 						return true;
 				}
 				catch (ExtensionFailureException e) {
@@ -193,34 +185,88 @@ public class AtomicRule extends GraphAtomConjunction {
 		return false;
 	}
 
-	public static GraphAtomConjunction extension(GraphAtomConjunction H1, int atomRootID, boolean isLocallyUnifiable[], int E[]) {
+	public static GraphAtomConjunction extension(GraphAtomConjunction H1, int atomRootID, boolean isLocallyUnifiable[], int E[]) throws ExtensionFailureException {
 		GraphAtomConjunction result = new GraphAtomConjunction();
-		boolean isColored = new boolean[H1.getNbAtoms()];
+		boolean isColored[] = new boolean[H1.getNbAtoms()+H1.getNbTerms()];
 		Fifo<Vertex<Object> > waiting = new Fifo<Vertex<Object> >();
+		Vertex<Object> current = H1.getVertex(atomRootID);
+		Vertex<Object> neighbour = null;
 		for (int i = 0 ; i < H1.getNbAtoms() ; i++) {
-			
-
+			if (isLocallyUnifiable[i]) {
+				isColored[i] = false;
+				for (NeighbourIterator neighbourIterator = H1.vertexTermIteratorFromAtom(i) ; neighbourIterator.hasNext() ; )
+					isColored[neighbourIterator.next().getID()] = false;
+			}
 		}
-
+		isColored[atomRootID] = true;
+		
+		result.addAtom(current,H1);
+		waiting.put(current);
+		
+		while (!waiting.isEmpty()) {
+			current = waiting.pop();
+			if (H1.isAtom(current)) {
+				for (int i = 0 ; i < E.length ; i++) {
+					neighbour = H1.getVertexTermFromAtom(current.getID(),E[i]);
+					if (((Term)(neighbour.getValue())).isConstant())
+						throw new ExtensionFailureException();
+					if (!isColored[neighbour.getID()]) {
+						isColored[neighbour.getID()] = true;
+						waiting.put(neighbour);
+					}
+				}
+			}
+			else {		// current is a term
+				for (NeighbourIterator neighbourIterator = H1.vertexAtomIteratorFromTerm(current.getID()) ; neighbourIterator.hasNext() ;) {
+					neighbour = neighbourIterator.next();
+					if (!isLocallyUnifiable[neighbour.getID()])
+						throw new ExtensionFailureException();
+					if (!isColored[neighbour.getID()]) {
+						isColored[neighbour.getID()] = true;
+						waiting.put(neighbour);
+						result.addAtom(neighbour,H1);	
+					}
+				}
+			}
+		}
+		return result;
 	}
 
 	public static boolean localUnification(GraphAtomConjunction H1, AtomicRule R, int[] existentialIndex) {
 		
 			/** predicate check */
-		for (Iterator<Vertex<Object> > iterator = H1._graph.firstVertexIterator() ; iterator.hasNext() ;)
-			if ((((Predicate)(iterator.next().getValue())).compareTo((Predicate)(R.getHead().getValue()))) != 0)
+		for (Iterator<Vertex<Object> > iterator = H1._graph.firstVertexIterator() ; iterator.hasNext() ;) 
+			if ((((Predicate)(iterator.next().getValue())).compareTo((Predicate)(R.getHead().getValue()))) != 0) 
 				return false;
 	
 
 			/** graph generation */
 		GraphAtomConjunction unification = H1;//.clone();	// TODO not necessary if method subgraph
 		unification._graph.addInFirstSet(((Predicate)(R.getHead().getValue())).clone());	
+		int termID = -1;
+		int firstHeadTermID = -1;
 		for (Iterator<NeighbourEdge<Integer> > iterator = R._graph.neighbourIterator(R.getHead().getID()) ; iterator.hasNext() ;) {
 			NeighbourEdge<Integer> edge = iterator.next();
 			Term t = (Term)(R.get(edge.getIDV()));
-			unification._graph.addInSecondSet(t);
+			if (t.isConstant())
+				termID = unification.addTerm(t);
+			else {
+				termID = -1;
+				if (firstHeadTermID > 0) {
+					for (int i = firstHeadTermID ; i < unification._graph.getNbVertices() ; i++) {
+						if (unification.getTerm(i-unification.getNbAtoms()).getLabel().compareTo(t.getLabel()) == 0)
+							termID = i;
+					}
+				}
+				if (termID < 0) {
+					unification._graph.addInSecondSet(t);
+					termID = unification._graph.getNbVertices()-1;
+				}
+				if (firstHeadTermID < 0) 
+					firstHeadTermID = termID;
+			}
 			try {
-				unification._graph.addEdge(unification.getNbAtoms()-1,unification._graph.getNbVertices()-1,new Integer(edge.getValue()));
+				unification._graph.addEdge(unification.getNbAtoms()-1,termID,new Integer(edge.getValue()));
 			}
 			catch (IllegalEdgeException e) { }
 		}
@@ -242,7 +288,6 @@ public class AtomicRule extends GraphAtomConjunction {
 			isexistential[unification.getVertexTermFromAtom(unification.getNbAtoms()-1,existentialIndex[i]).getID()-unification.getNbAtoms()] = true;
 
 
-				System.out.println(unification);
 			/** algorithm */
 		while (headIndex < arity) {
 			headVertex = unification.getVertexTermFromAtom(unification.getNbAtoms()-1,headIndex);
@@ -262,7 +307,6 @@ public class AtomicRule extends GraphAtomConjunction {
 						headTerm = bodyTerm;
 					}
 				}
-				System.out.println(unification);
 			}
 			headIndex++;
 		}
