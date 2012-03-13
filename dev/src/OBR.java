@@ -53,7 +53,7 @@ public class OBR {
 			AtomicRule R2 = new AtomicRule("r<x,y,z>;r<x,y,x>-->p<x,x>");
 			AtomicRule R3 = new AtomicRule("r<'a','b',x>-->r<x,x,y>");
 			AtomicRule R4 = new AtomicRule("p<x,y>;p<'a',y>-->p<'a',z>");
-			System.out.println("R1 : "+R1);
+/*			System.out.println("R1 : "+R1);
 			System.out.println("R2 : "+R2);
 			System.out.println("R3 : "+R3);
 			System.out.println("R4 : "+R4);
@@ -84,6 +84,13 @@ public class OBR {
 			System.out.println("R4 --> R2 ? "+R4.mayImply(R2));
 			System.out.println("R4 --> R3 ? "+R4.mayImply(R3));
 			System.out.println("R4 --> R4 ? "+R4.mayImply(R4));
+*/
+			GraphRuleDependencies grd = new GraphRuleDependencies();
+			grd.add(R1);
+			grd.add(R2);
+			grd.add(R3);
+			grd.add(R4);
+			System.out.println(grd);
 
 		}
 		catch (Exception e) {
