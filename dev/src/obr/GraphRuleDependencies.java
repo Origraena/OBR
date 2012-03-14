@@ -25,8 +25,7 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 
 	public GraphRuleDependencies(String filePath) throws IllegalConstructionException {
 		super();
-//		fromFile(filePath);
-//		System.out.println(this);
+		fromFile(filePath);
 	}
 
 	public GraphRuleDependencies(GraphRuleDependencies g) throws IllegalConstructionException {

@@ -1,0 +1,5 @@
+animal<x>-->drink<x,'water'>
+carnivore<x>;animal<y>;herbivore<y>-->eat<x,y>
+animal<x>-->dwell<x,y>
+p<x>-->q<x,'a'>
+p<x>-->q<y,x>
