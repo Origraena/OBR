@@ -21,3 +21,7 @@
         References
 [1] https://github.com/Origraena/moca/tree/master/common/graphs/java
 
+TODO :
+	replace Boolean type of StronglyConnectedComponentsGraph by ArrayList<Pair<Vertex<V>,Vertex<V>>>
+	(will memorise the real edges from one component to another)
+

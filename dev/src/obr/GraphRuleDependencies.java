@@ -6,6 +6,7 @@ import moca.graphs.vertices.Vertex;
 import moca.graphs.edges.IllegalEdgeException;
 import moca.graphs.edges.NeighbourEdge;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Iterator;
 import java.util.regex.Pattern;
@@ -92,17 +93,57 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 		}
 		stringBuilder.append('\n');
 		Vertex<AtomicRule> rule = null;
+		boolean newelement = false;			// TODO
 		for (Iterator<Vertex<AtomicRule> > ruleIterator = vertexIterator() ; ruleIterator.hasNext() ; ) {
+			newelement = false;
 			rule = ruleIterator.next();
-			for (Iterator<NeighbourEdge<Boolean> > neighbour = neighbourIterator(rule.getID()) ; neighbour.hasNext() ; ) {
-				stringBuilder.append("R");
-				stringBuilder.append(rule.getID());
-				stringBuilder.append("\t-->\t");
+				for (Iterator<NeighbourEdge<Boolean> > neighbour = neighbourIterator(rule.getID()) ; neighbour.hasNext() ; ) {
+				if (!newelement) {
+					stringBuilder.append("R");
+					stringBuilder.append(rule.getID());
+					stringBuilder.append("\t-->\t");
+				}	
 				stringBuilder.append("R");
 				stringBuilder.append(neighbour.next().getIDV());
+				stringBuilder.append(',');
+				newelement = true;
+			}
+			if (newelement == true)
 				stringBuilder.append('\n');
+		}
+		return stringBuilder.toString();
+	}
+
+	public String stronglyConnectedComponentsToString() {
+		DirectedSimpleGraph<ArrayList<Vertex<AtomicRule> >, Boolean> sccg = getStronglyConnectedComponentsGraph();
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0 ; i < sccg.getNbVertices() ; i++) {
+			stringBuilder.append('C');
+			stringBuilder.append(i);
+			stringBuilder.append(":\t");
+			for (int j = 0 ; j < sccg.getVertex(i).getValue().size() ; j++) {
+				stringBuilder.append(sccg.getVertex(i).getValue().get(j).getID());
+				if (j != sccg.getVertex(i).getValue().size()-1)
+					stringBuilder.append(',');
 			}
 			stringBuilder.append('\n');
+		}
+		boolean newelement = false;
+		for (int i = 0 ; i < sccg.getNbVertices() ; i++) {
+			newelement = false;
+			for (Iterator<NeighbourEdge<Boolean> > neighbour = sccg.neighbourIterator(i) ; neighbour.hasNext() ; ) {
+				if (!newelement) {
+					stringBuilder.append("C");
+					stringBuilder.append(i);
+					stringBuilder.append("\t-->\t");
+				}
+				stringBuilder.append("C");
+				stringBuilder.append(neighbour.next().getIDV());
+				stringBuilder.append(',');
+				newelement = true;
+			}
+			if (newelement)
+				stringBuilder.append('\n');
 		}
 		return stringBuilder.toString();
 	}
