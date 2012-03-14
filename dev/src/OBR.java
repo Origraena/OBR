@@ -92,6 +92,10 @@ public class OBR {
 			grd.add(R4);
 			System.out.println(grd);
 
+			GraphRuleDependencies grd2 = new GraphRuleDependencies();
+			grd2.fromFile("basetest");
+			System.out.println(grd2);
+
 		}
 		catch (Exception e) {
 			System.out.println(e);

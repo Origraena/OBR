@@ -3,6 +3,7 @@ import moca.graphs.vertices.*;
 import moca.graphs.edges.*;
 import java.lang.Exception;
 import java.util.Iterator;
+import java.util.ArrayList;
 import obr.*;
 
 public class Demo20120314 {
@@ -16,6 +17,15 @@ public class Demo20120314 {
 			grd.add(new AtomicRule("p<x,y>;p<'a',y>-->p<'a',z>"));
 
 			System.out.println(grd);
+		
+/*			for (int i = 0 ; i < grd.getNbComponents() ; i++) {
+				System.out.println("i = "+i);
+				System.out.println(grd.getComponent(i));
+			}
+*/
+
+			DirectedSimpleGraph<ArrayList<Vertex<AtomicRule> >,Boolean> grd_scc = grd.getStronglyConnectedComponentsGraph();
+			System.out.println(grd.getStronglyConnectedComponentsGraph());
 
 		}
 		catch (Exception e) {

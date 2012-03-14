@@ -8,6 +8,9 @@ import moca.graphs.edges.NeighbourEdge;
 
 import java.util.Scanner;
 import java.util.Iterator;
+import java.util.regex.Pattern;
+import java.io.File;
+
 
 /**
  * Unsecure :
@@ -57,24 +60,25 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 		}
 	}
 
-//	private DirectedSimpleGraph<StronglyConnectedComponent,Boolean> _stronglyConnectedComponents;
-
 	// TODO
 	// toString() : String (pseudo visu) 
 	// toFile(String filename) : boolean (tostring dans le fichier)
 	// methode affichage composantes fortement connexes qui retourne une String
 
-/*	public void fromFile(String filePath) throws FileNotFoundException{
-
+	public void fromFile(String filePath) {
 		try {
-			Scanner scanner=new Scanner(new File(filePath));
-			while(scanner.hasNext())
-			      addVertex(new Vertex<AtomicRule>(new AtomicRule(scanner.nextLine())));
-			} catch (FileNotFoundException e) {
-					      e.printStackTrace();
-			}
-		scanner.close();
-	}*/
+			String line = null;
+			Scanner scan = new Scanner(new File(filePath));
+			scan.useDelimiter(Pattern.compile("\n"));
+			while (scan.hasNext())
+				addVertex(new AtomicRule(scan.next()));
+			scan.close();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+	}
 	
 	public String toString(){
 		StringBuilder stringBuilder = new StringBuilder();
