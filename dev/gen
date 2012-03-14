@@ -1,4 +1,4 @@
-/home/swan/rulebasegen 150 20 30 3 3 2 3 33
+./utils/bin/rulebasegen 150 20 30 3 3 2 3 33
 # nbRules			number of rules		
 # nbPredicates		number of predicates
 # nbTerms			number of terms
