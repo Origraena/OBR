@@ -7,6 +7,7 @@ import moca.graphs.edges.IllegalEdgeException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class WeaklyAcyclicCheck implements DecidableClassCheck {
 
@@ -14,27 +15,50 @@ public class WeaklyAcyclicCheck implements DecidableClassCheck {
 
 	/**
 	 * Checks a graph of rule dependencies.
-	 * @return the decidable class label if the grd belongs to this decidable class, null otherwise
+	 * @return the decidable class label if the grd belongs to this decidable class, null otherwise.
 	 */
 	public DecidableClassLabel grdCheck(GraphRuleDependencies grd) {
-		DecidableClassLabel label = LABEL;
-		init(grd);	
+//		DecidableClassLabel label = LABEL;
+		init(grd);
+/*		ArrayList<Vertex<Predicate> > scc = null;
 		if (_graphPosDep.isCyclic()) {
-			
+			for (int i = 0 ; (i < _graphPosDep.getNbComponents()) && (label != null) ; i++) {
+				scc = _graphPosDep.getComponent(i);
+				System.out.println("scc = "+scc);
+				for (int j = 0 ; (j < scc.size()) && (label != null) ; j++) {
+					for (int k = 0 ; (k < scc.size()) && (label != null) ; k++) {
+						try {
+							if (_graphPosDep.getEdgeValue(j,k) == true)
+								label = null;
+						}
+						catch (NoSuchElementException e) {
+							// the edge does not exist, 
+							// in particular there is no special edge
+						}
+					}
+				}
+			}
 		}
-		return label;
+*/
+		if (_graphPosDep.finiteRank())
+			return LABEL;
+		return null;
 	}
 
 	/**
 	 * Checks only a strongly connected component of the graph of rule dependencies.
 	 * @param grd The graph of rule dependencies.
 	 * @param scc The strongly connected component to be checked.
-	 * @return the decidable class label if the strongly connected component belongs to this decidable class, null otherwise
+	 * @return the decidable class label if the strongly connected component belongs to this decidable class, null otherwise.
 	 */
 	public DecidableClassLabel sccCheck(GraphRuleDependencies grd, ArrayList<Vertex<AtomicRule> > scc) {
 		return null;
 	}
 
+	/**
+	 * Initializes the graph of position dependencies from the graph of rule dependencies.
+	 * @param grd The graph of rule dependencies to be checked.
+	 */
 	protected void init(GraphRuleDependencies grd) {
 		try {_graphPosDep = new GraphPositionDependencies();}
 		catch (IllegalConstructionException e) { }
@@ -100,6 +124,7 @@ public class WeaklyAcyclicCheck implements DecidableClassCheck {
 		System.out.println(_graphPosDep);
 	}
 
+	/** The graph of position dependencies generated from the graph of rule dependencies. */
 	private GraphPositionDependencies _graphPosDep; 
 
 };

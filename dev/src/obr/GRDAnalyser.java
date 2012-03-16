@@ -31,6 +31,38 @@ public class GRDAnalyser {
 			_checkFunctions.add(checkFunction);
 	}
 
+	public String diagnostic() {
+		process();
+		StringBuilder result = new StringBuilder();
+
+		// complete grd
+		result.append("Graph of Rule Dependencies labels : ");
+		result.append('\n');
+		for (DecidableClassLabel label : _grdLabels) {
+			result.append('\t');
+			result.append(label);
+			result.append('\n');
+		}
+		result.append('\n');
+
+		// scc
+		result.append("Strongly Connected Components labels : ");
+		for (int i = 0 ; i < _sccLabels.size() ; i++) {
+			if (_sccLabels.get(i).size() > 0) {
+				result.append("SCC ");
+				result.append(i);
+				for (int j = 0 ; j < _sccLabels.get(i).size() ; j++) {
+					result.append('\t');
+					result.append(_sccLabels.get(i).get(j));
+					result.append('\n');
+				}
+				result.append('\n');
+			}
+		}
+		
+		return result.toString();
+	}
+
 	/**
 	 * <p>Process all checks in a specific order :
 	 * <ul>
@@ -39,7 +71,7 @@ public class GRDAnalyser {
 	 * <li>if is is, check all functions onto each strongly connected component of the GRD.</li>
 	 * </p>
 	 */
-	public void process() {
+	protected void process() {
 		DecidableClassLabel l = null;
 		for (DecidableClassCheck function : _checkFunctions) {
 			try {
