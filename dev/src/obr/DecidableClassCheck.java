@@ -1,5 +1,9 @@
 package obr;
 
+import moca.graphs.vertices.Vertex;
+
+import java.util.ArrayList;
+
 public interface DecidableClassCheck {
 
 	/**

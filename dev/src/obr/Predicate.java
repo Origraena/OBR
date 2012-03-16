@@ -59,6 +59,17 @@ public class Predicate implements Comparable<Predicate> {
 			return _label.compareTo(p.getLabel());
 	}
 
+
+	public boolean equals(Object o) {
+		if (!(o instanceof Predicate))
+			return false;
+		return compareTo((Predicate)o) == 0;
+	}
+	
+	public int hashCode() {
+		return _label.hashCode()+_arity;
+	}
+
 	private String _label;
 	private int _arity = 1;
 

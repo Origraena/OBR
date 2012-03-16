@@ -81,6 +81,12 @@ public class AtomicRule extends GraphAtomConjunction {
 		return !((((Term)(v.getValue())).isConstant()) || isBody(v));
 	}
 
+	public boolean isUniversal(Vertex<Object> v) {
+		if ((v == null) || (v.getID() < getNbAtoms()))
+			return false;
+		return (!(((Term)(v.getValue())).isConstant()) && isBody(v));
+	}
+
 	public int[] existentialIndex() {
 		int cpt = 0;
 		int arity = ((Predicate)(_head.getValue())).getArity(); 
@@ -299,12 +305,25 @@ public class AtomicRule extends GraphAtomConjunction {
 					if ((headTerm.isConstant() || isexistential[headVertex.getID()-unification.getNbAtoms()])
 					&&  (bodyTerm.isConstant() || isexistential[bodyVertex.getID()-unification.getNbAtoms()]))
 						return false;
-					else if ((bodyTerm.isVariable()) && (!isexistential[bodyVertex.getID()-unification.getNbAtoms()]))
-						unification._graph.contract(bodyVertex.getID(),headVertex.getID());
+					else if ((bodyTerm.isVariable()) && (!isexistential[bodyVertex.getID()-unification.getNbAtoms()])) {
+						try {
+							unification._graph.contract(bodyVertex.getID(),headVertex.getID());
+						}
+						catch (Exception e) {
+							//e.printStackTrace();
+							// TODO ConcurrentModificationException ???
+						}
+					}
 					else {
-						unification._graph.contract(headVertex.getID(),bodyVertex.getID());
-						headVertex = bodyVertex;
-						headTerm = bodyTerm;
+						try {
+							unification._graph.contract(headVertex.getID(),bodyVertex.getID());
+							headVertex = bodyVertex;
+							headTerm = bodyTerm;
+						}
+						catch (Exception e) {
+							//e.printStackTrace();
+							// TODO ConcurrentModificationException ???
+						}
 					}
 				}
 			}

@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 import obr.*;
 
-public class Demo20120314 {
+public class Main {
 	public static void main(String args[]) {
 		try {
 			System.out.println("Reading file : "+args[0]);
@@ -14,6 +14,11 @@ public class Demo20120314 {
 
 			System.out.println(grd);
 			System.out.println(grd.stronglyConnectedComponentsToString());
+
+			GRDAnalyser analyser = new GRDAnalyser(grd);
+			analyser.addDecidableClassCheck(new WeaklyAcyclicCheck());
+
+			analyser.process();
 
 		}
 		catch (Exception e) {

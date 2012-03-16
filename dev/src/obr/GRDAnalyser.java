@@ -43,7 +43,7 @@ public class GRDAnalyser {
 		DecidableClassLabel l = null;
 		for (DecidableClassCheck function : _checkFunctions) {
 			try {
-				l = _checkFunctions.check(_grd);
+				l = function.grdCheck(_grd);
 				if (l != null)
 					_grdLabels.add(l);
 			}
@@ -53,9 +53,9 @@ public class GRDAnalyser {
 			for (int i = 0 ; i < _grd.getNbComponents() ; i++) {
 				for (DecidableClassCheck function : _checkFunctions) {
 					try {
-						l = _checkFunctions.check(_grd,_grd.getComponent(i));
+						l = function.sccCheck(_grd,_grd.getComponent(i));
 						if (l != null)
-							_sccLabels[i].add(l);
+							_sccLabels.get(i).add(l);
 					}
 					catch (UnsupportedOperationException e) { /* ... against a single scc */ }
 				}

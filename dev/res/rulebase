@@ -1,5 +1,2 @@
-animal<x>-->drink<x,'water'>
-carnivore<x>;animal<y>;herbivore<y>-->eat<x,y>
-animal<x>-->dwell<x,y>
-p<x>-->q<x,'a'>
-p<x>-->q<y,x>
+p<x,y>;q<y>-->r<x,y,z>
+r<x,x,x>;r<'a',x,y>-->p<x,y>
