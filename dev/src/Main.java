@@ -17,7 +17,8 @@ public class Main {
 
 			GRDAnalyser analyser = new GRDAnalyser(grd);
 			analyser.addDecidableClassCheck(new WeaklyAcyclicCheck());
-
+			
+			System.out.println("\nDIAGNOSTIC");
 			System.out.println(analyser.diagnostic());
 		}
 		catch (Exception e) {

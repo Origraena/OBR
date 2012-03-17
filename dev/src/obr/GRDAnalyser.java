@@ -36,8 +36,7 @@ public class GRDAnalyser {
 		StringBuilder result = new StringBuilder();
 
 		// complete grd
-		result.append("Graph of Rule Dependencies labels : ");
-		result.append('\n');
+		result.append("Graph of Rule Dependencies labels :\n");
 		for (DecidableClassLabel label : _grdLabels) {
 			result.append('\t');
 			result.append(label);
@@ -46,7 +45,7 @@ public class GRDAnalyser {
 		result.append('\n');
 
 		// scc
-		result.append("Strongly Connected Components labels : ");
+		result.append("Strongly Connected Components labels :\n");
 		for (int i = 0 ; i < _sccLabels.size() ; i++) {
 			if (_sccLabels.get(i).size() > 0) {
 				result.append("SCC ");
@@ -83,13 +82,15 @@ public class GRDAnalyser {
 		}
 		if (_grd.isCyclic()) {
 			for (int i = 0 ; i < _grd.getNbComponents() ; i++) {
-				for (DecidableClassCheck function : _checkFunctions) {
-					try {
-						l = function.sccCheck(_grd,_grd.getComponent(i));
-						if (l != null)
-							_sccLabels.get(i).add(l);
+				if (_grd.getComponent(i).size() > 1) {
+					for (DecidableClassCheck function : _checkFunctions) {
+						try {
+							l = function.sccCheck(_grd,i);
+							if (l != null)
+								_sccLabels.get(i).add(l);
+						}
+						catch (UnsupportedOperationException e) { /* ... against a single scc */ }
 					}
-					catch (UnsupportedOperationException e) { /* ... against a single scc */ }
 				}
 			}
 		}
