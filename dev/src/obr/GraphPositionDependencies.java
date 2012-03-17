@@ -44,22 +44,17 @@ public class GraphPositionDependencies extends DirectedSimpleGraph<Predicate,Boo
 	}
 
 	public boolean finiteRank() {
-		if (isAcyclic()) {
-//			System.out.println("acyclic");
+		if (isAcyclic())
 			return true;
-		}
 		ArrayList<Vertex<Predicate> > scc = null;
 		boolean success = true;
 		for (int i = 0 ; (i < getNbComponents()) && success ; i++) {
 			scc = getComponent(i);
-			System.out.println("scc = "+scc);
 			for (int j = 0 ; (j < scc.size()) && success ; j++) {
 				for (int k = 0 ; (k < scc.size()) && success ; k++) {
 					try {
-						if (getEdgeValue(scc.get(j).getID(),scc.get(k).getID()) == true) {
-//							System.out.println("success = false");
+						if (getEdgeValue(scc.get(j).getID(),scc.get(k).getID()) == true)
 							success = false;
-						}
 					}
 					catch (NoSuchElementException e) {
 						// the edge does not exist, 
