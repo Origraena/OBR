@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 public class DisconnectedCheck implements DecidableClassCheck {
 
-	public static final DecidableClassLabel LABEL = new DecidableClassLabel("disconnected",true,true,false);
+	public static final DecidableClassLabel LABEL = new DecidableClassLabel("disconnected",true,true,true);
 
 	/**
 	 * Checks a graph of rule dependencies.

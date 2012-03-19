@@ -82,7 +82,7 @@ public class GRDAnalyser {
 		}
 		if (_grd.isCyclic()) {
 			for (int i = 0 ; i < _grd.getNbComponents() ; i++) {
-				if ((_grd.getComponent(i).size() > 1) || (_grd.getStronglyConnectedComponentsGraph().isEdge(i,i))) {
+			//	if ((_grd.getComponent(i).size() > 1) || (_grd.getStronglyConnectedComponentsGraph().isEdge(i,i))) {
 					for (DecidableClassCheck function : _checkFunctions) {
 						try {
 							l = function.sccCheck(_grd,i);
@@ -91,7 +91,7 @@ public class GRDAnalyser {
 						}
 						catch (UnsupportedOperationException e) { /* ... against a single scc */ }
 					}
-				}
+			//	}
 			}
 		}
 	}
