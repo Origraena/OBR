@@ -9,18 +9,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class WeaklyAcyclicCheck implements DecidableClassCheck {
+public class AtomicHypothesisCheck implements DecidableClassCheck {
 
-	public static final DecidableClassLabel LABEL = new DecidableClassLabel("weakly-acyclic",false,true,false);
+	public static final DecidableClassLabel LABEL = new DecidableClassLabel("atomic-hypothesis",true,false,true);
 
 	/**
 	 * Checks a graph of rule dependencies.
 	 * @return the decidable class label if the grd belongs to this decidable class, null otherwise.
 	 */
 	public DecidableClassLabel grdCheck(GraphRuleDependencies grd) {
-		try { _graphPosDep = new GraphPositionDependencies(grd.getVertexCollection()); }
-		catch (IllegalConstructionException e) { return null; }
-		if (_graphPosDep.finiteRank())
+		if (check(grd.getVertexCollection()))
 			return LABEL;
 		return null;
 	}
@@ -32,15 +30,18 @@ public class WeaklyAcyclicCheck implements DecidableClassCheck {
 	 * @return the decidable class label if the strongly connected component belongs to this decidable class, null otherwise.
 	 */
 	public DecidableClassLabel sccCheck(GraphRuleDependencies grd, int sccID) {
-		try { _graphPosDep = new GraphPositionDependencies(grd.getComponent(sccID)); }
-		catch (IllegalConstructionException e) { return null; }
-		if (_graphPosDep.finiteRank())
+		if (check(grd.getComponent(sccID)))
 			return LABEL;
 		return null;
 	}
 
-	/** The graph of position dependencies generated from the graph of rule dependencies. */
-	private GraphPositionDependencies _graphPosDep; 
+	protected boolean check(Iterable<Vertex<AtomicRule> > rules) {
+		for (Vertex<AtomicRule> vrule : rules) {
+			if (vrule.getValue().getNbAtoms() > 2)	// one for the head, the other for the body
+				return false;
+		}
+		return true;
+	}
 
 };
 

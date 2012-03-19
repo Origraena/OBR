@@ -18,10 +18,22 @@
 |   gantt.xls                                         Gantt |
 +-----------------------------------------------------------+
 
++-------ToDo------------------------------------------------+
+| Task (priority)                 state{OK,(user) PROGRESS} |
+| weakly-acyclic check (0)                             {OK} |
+| sticky check (0)                                     {OK} |
+| weakly-sticky (0)                                    {OK} |
+| guarded check (0)                                         |
+| weakly-guarded (0)                                        |
+| frontier-1 check (0)                                      |
+| range-restricted (0)                                      |
+| disconnected (0)                                          |
+| frontier-guarded (0)                                      |
+| weakly-frontier-guarded (1)                               |
+| atomic-hypothesis (0)                                {OK} |
+| domain-restricted (0)                                     |
++-----------------------------------------------------------+
+
         References
 [1] https://github.com/Origraena/moca/tree/master/common/graphs/java
-
-TODO :
-	replace Boolean type of StronglyConnectedComponentsGraph by ArrayList<Pair<Vertex<V>,Vertex<V>>>
-	(will memorise the real edges from one component to another)
 

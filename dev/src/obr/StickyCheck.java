@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 public class StickyCheck implements DecidableClassCheck {
 
-	public static final DecidableClassLabel LABEL = new DecidableClassLabel("sticky");
+	public static final DecidableClassLabel LABEL = new DecidableClassLabel("sticky",true,false,false);
 
 	/**
 	 * Checks a graph of rule dependencies.

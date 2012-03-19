@@ -38,7 +38,7 @@ public class GRDAnalyser {
 		// complete grd
 		result.append("Graph of Rule Dependencies labels :\n");
 		for (DecidableClassLabel label : _grdLabels) {
-			result.append('\t');
+			result.append("\t");
 			result.append(label);
 			result.append('\n');
 		}
@@ -50,9 +50,10 @@ public class GRDAnalyser {
 			if (_sccLabels.get(i).size() > 0) {
 				result.append("SCC ");
 				result.append(i);
+				result.append('\t');
 				for (int j = 0 ; j < _sccLabels.get(i).size() ; j++) {
-					result.append('\t');
 					result.append(_sccLabels.get(i).get(j));
+					result.append(" ; ");
 				}
 				result.append('\n');
 			}

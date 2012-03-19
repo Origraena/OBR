@@ -6,38 +6,34 @@ public class DecidableClassLabel {
 		_label = label;
 	}
 
-/*	public DecidableClassLabel(String label, boolean allowFC, boolean allowBC) {
+	public DecidableClassLabel(String label, boolean fus, boolean fes, boolean gbts) {
 		_label = label;
-		_allowFC = allowFC;
-		_allowBC = allowBC;
-	}*/
+		_fus = fus;
+		_fes = fes;
+		_gbts = gbts;
+	}
 
 	public String getLabel() {
 		return _label;
 	}
 
-//	public boolean allowFC() {
-//		return _allowFC;
-//	}
-
-//	public boolean allowBC() {
-//		return _allowBC;
-//	}
-
 	public String toString() {
-//		String result = _label + " ( ";
-//		if (_allowFC)
-//			result += "FC ";
-//		if (_allowBC)
-//			result += "BC ";
-//		result+=")";
-//		return result;
-		return _label;
+		String result = _label;
+		result += "(";
+		if (_fus)
+			result+=" fus";
+		if (_fes)
+			result+=" fes";
+		if (_gbts)
+			result+=" gbts";
+		result += " )";
+		return result;
 	}
 
 	private String _label;
-//	private boolean _allowFC = false;
-//	§§private boolean _allowBC = false;
+	private boolean _fus = false;
+	private boolean _fes = false;
+	private boolean _gbts = false;
 	
 };
 

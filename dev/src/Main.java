@@ -19,6 +19,7 @@ public class Main {
 			analyser.addDecidableClassCheck(new WeaklyAcyclicCheck());
 			analyser.addDecidableClassCheck(new StickyCheck());
 			analyser.addDecidableClassCheck(new WeaklyStickyCheck());
+			analyser.addDecidableClassCheck(new AtomicHypothesisCheck());
 			
 			System.out.println("\nDIAGNOSTIC");
 			System.out.println(analyser.diagnostic());
