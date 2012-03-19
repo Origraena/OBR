@@ -50,7 +50,7 @@ public class AtomicRule extends GraphAtomConjunction {
 		if (v.getID() < getNbAtoms())
 			return true;
 		for (Iterator<NeighbourEdge<Integer> > iterator = _graph.neighbourIterator(v.getID()) ; iterator.hasNext() ;)
-			if (!(_graph.getVertex(iterator.next().getIDV()) == _head))
+			if (_graph.getVertex(iterator.next().getIDV()) != _head)
 				return true;
 		return false;
 	}
@@ -72,6 +72,17 @@ public class AtomicRule extends GraphAtomConjunction {
 
 	public boolean isHead(int vertexID) throws NoSuchElementException {
 		return isHead(getVertex(vertexID));
+	}
+
+	public ArrayList<Vertex<Object> > frontier() {
+		NeighbourEdge<Integer> edge = null;
+		ArrayList<Vertex<Object> > result = new ArrayList<Vertex<Object> >();
+		for (Iterator<NeighbourEdge<Integer> > iterator = neighbourIterator(_head.getID()) ; iterator.hasNext() ; ) {
+			edge = iterator.next();
+			if ((isBody(edge.getIDV())) && (!result.contains(getVertex(edge.getIDV()))))
+				result.add(getVertex(edge.getIDV()));
+		}
+		return result;
 	}
 
 	/**

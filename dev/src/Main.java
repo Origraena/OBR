@@ -20,6 +20,8 @@ public class Main {
 			analyser.addDecidableClassCheck(new StickyCheck());
 			analyser.addDecidableClassCheck(new WeaklyStickyCheck());
 			analyser.addDecidableClassCheck(new AtomicHypothesisCheck());
+			analyser.addDecidableClassCheck(new DomainRestrictedCheck());
+			analyser.addDecidableClassCheck(new DisconnectedCheck());
 			
 			System.out.println("\nDIAGNOSTIC");
 			System.out.println(analyser.diagnostic());

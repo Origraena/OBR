@@ -31,7 +31,7 @@
 | frontier-guarded (0)                                      |
 | weakly-frontier-guarded (1)                               |
 | atomic-hypothesis (0)                                {OK} |
-| domain-restricted (0)                                     |
+| domain-restricted (0)                                {OK} |
 +-----------------------------------------------------------+
 
         References
