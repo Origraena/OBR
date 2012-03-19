@@ -22,6 +22,7 @@ public class Main {
 			analyser.addDecidableClassCheck(new AtomicHypothesisCheck());
 			analyser.addDecidableClassCheck(new DomainRestrictedCheck());
 			analyser.addDecidableClassCheck(new DisconnectedCheck());
+			analyser.addDecidableClassCheck(new RangeRestrictedCheck());
 			
 			System.out.println("\nDIAGNOSTIC");
 			System.out.println(analyser.diagnostic());
