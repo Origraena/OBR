@@ -27,7 +27,7 @@
 | weakly-guarded (0)                                        |
 | frontier-1 check (0)                                      |
 | range-restricted (0)                                      |
-| disconnected (0)                                          |
+| disconnected (0)                                     {OK} |
 | frontier-guarded (0)                                      |
 | weakly-frontier-guarded (1)                               |
 | atomic-hypothesis (0)                                {OK} |
