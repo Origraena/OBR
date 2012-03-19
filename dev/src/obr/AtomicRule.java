@@ -55,6 +55,10 @@ public class AtomicRule extends GraphAtomConjunction {
 		return false;
 	}
 
+	public boolean isBody(int vertexID) throws NoSuchElementException {
+		return isBody(getVertex(vertexID));
+	}
+
 	public boolean isHead(Vertex<Object> v) throws NoSuchElementException {
 		if (v == null)
 			throw new NoSuchElementException();
@@ -64,6 +68,10 @@ public class AtomicRule extends GraphAtomConjunction {
 			if (_graph.getVertex(iterator.next().getIDV()) == v)
 				return true;
 		return false;
+	}
+
+	public boolean isHead(int vertexID) throws NoSuchElementException {
+		return isHead(getVertex(vertexID));
 	}
 
 	/**

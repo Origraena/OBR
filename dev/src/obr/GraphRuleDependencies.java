@@ -60,11 +60,6 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 		}
 	}
 
-	// TODO
-	// toString() : String (pseudo visu) 
-	// toFile(String filename) : boolean (tostring dans le fichier)
-	// methode affichage composantes fortement connexes qui retourne une String
-
 	public void fromFile(String filePath) {
 		try {
 			String line = null;
@@ -86,7 +81,7 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 		for (AtomicRule rule : this) {
 			stringBuilder.append("R");
 			stringBuilder.append(i);
-			stringBuilder.append("\t:");
+			stringBuilder.append(":\t");
 			stringBuilder.append(rule);
 			stringBuilder.append('\n');
 			i++;

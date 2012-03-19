@@ -53,7 +53,6 @@ public class GRDAnalyser {
 				for (int j = 0 ; j < _sccLabels.get(i).size() ; j++) {
 					result.append('\t');
 					result.append(_sccLabels.get(i).get(j));
-					result.append('\n');
 				}
 				result.append('\n');
 			}

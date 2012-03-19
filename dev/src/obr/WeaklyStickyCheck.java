@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class WeaklyAcyclicCheck implements DecidableClassCheck {
+public class WeaklyStickyCheck extends StickyCheck implements DecidableClassCheck {
 
-	public static final DecidableClassLabel LABEL = new DecidableClassLabel("weakly-acyclic");
+	public static final DecidableClassLabel LABEL = new DecidableClassLabel("weakly-sticky");
 
 	/**
 	 * Checks a graph of rule dependencies.
@@ -19,8 +19,8 @@ public class WeaklyAcyclicCheck implements DecidableClassCheck {
 	 */
 	public DecidableClassLabel grdCheck(GraphRuleDependencies grd) {
 		try { _graphPosDep = new GraphPositionDependencies(grd.getVertexCollection()); }
-		catch (IllegalConstructionException e) { return null; }
-		if (_graphPosDep.finiteRank())
+		catch (IllegalConstructionException e) { }
+		if (check(grd.getVertexCollection()))
 			return LABEL;
 		return null;
 	}
@@ -33,14 +33,28 @@ public class WeaklyAcyclicCheck implements DecidableClassCheck {
 	 */
 	public DecidableClassLabel sccCheck(GraphRuleDependencies grd, int sccID) {
 		try { _graphPosDep = new GraphPositionDependencies(grd.getComponent(sccID)); }
-		catch (IllegalConstructionException e) { return null; }
-		if (_graphPosDep.finiteRank())
+		catch (IllegalConstructionException e) { }
+		if (check(grd.getComponent(sccID)))
 			return LABEL;
 		return null;
 	}
 
-	/** The graph of position dependencies generated from the graph of rule dependencies. */
-	private GraphPositionDependencies _graphPosDep; 
+	protected void mark(Vertex<Object> term, AtomicRule rule) throws MarkFailureException {
+		NeighbourEdge<Integer> edge = null;
+		int cpt = 0;
+		for (Iterator<NeighbourEdge<Integer> > iterator = rule.neighbourIterator(term.getID()) ; iterator.hasNext() ; ) {
+			edge = iterator.next();
+			if (rule.isBody(edge.getIDV())) {
+				cpt++;
+				if ((cpt >= 2) && (!_graphPosDep.finiteRank(rule.getPredicate(edge.getIDV()),edge.getValue())))
+					throw new MarkFailureException();
+				if (!_positions.contains(edge.getValue()))
+					_positions.add(edge.getValue());
+			}
+		}
+	}
+
+	private GraphPositionDependencies _graphPosDep;
 
 };
 
