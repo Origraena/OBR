@@ -23,6 +23,7 @@ public class Main {
 			analyser.addDecidableClassCheck(new DomainRestrictedCheck());
 			analyser.addDecidableClassCheck(new DisconnectedCheck());
 			analyser.addDecidableClassCheck(new RangeRestrictedCheck());
+			analyser.addDecidableClassCheck(new FrontierOneCheck());
 			
 			System.out.println("\nDIAGNOSTIC");
 			System.out.println(analyser.diagnostic());

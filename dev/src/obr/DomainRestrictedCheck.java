@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Checks if a set of rules satisfies the domain-restricted property.
+ */
 public class DomainRestrictedCheck implements DecidableClassCheck {
 
+	/** Associated label. */
 	public static final DecidableClassLabel LABEL = new DecidableClassLabel("domain-restricted",true,false,false);
 
 	/**
@@ -26,7 +30,7 @@ public class DomainRestrictedCheck implements DecidableClassCheck {
 	/**
 	 * Checks only a strongly connected component of the graph of rule dependencies.
 	 * @param grd The graph of rule dependencies.
-	 * @param scc The strongly connected component to be checked.
+	 * @param sccID The id of the strongly connected component to be checked.
 	 * @return the decidable class label if the strongly connected component belongs to this decidable class, null otherwise.
 	 */
 	public DecidableClassLabel sccCheck(GraphRuleDependencies grd, int sccID) {

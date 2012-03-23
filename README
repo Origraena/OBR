@@ -9,11 +9,19 @@
 | /                                                    root |
 |    dev/                                  development root |
 |       src/                                  sources files |
+|       res/                                resources files |
 |       lib/                                  library files |
 |          graphs.jar                     graph library [1] |
+|       utils/                              rule base utils |
+|       target/                                 target root |
+|          obr.jar                                 jar file |
+|          class/                                  binaries |
+|          doc/                               documentation |
 |       build.sh                      compile sources files |
 |       clean.sh                          clean class files |
-|       obr.sh                               execute binary |
+|       release.sh                          create jar file |
+|       doc.sh                        compile documentation |
+|       launch.sh                            execute binary |
 |   rapport/                                     latex root |
 |   gantt.xls                                         Gantt |
 +-----------------------------------------------------------+
@@ -25,8 +33,8 @@
 | weakly-sticky (0)                                    {OK} |
 | guarded check (0)                                         |
 | weakly-guarded (0)                                        |
-| frontier-1 check (0)                                      |
-| range-restricted (0)                                      |
+| frontier-1 check (0)                                 {OK} |
+| range-restricted (0)                                 {OK} |
 | disconnected (0)                                     {OK} |
 | frontier-guarded (0)                                      |
 | weakly-frontier-guarded (1)                               |

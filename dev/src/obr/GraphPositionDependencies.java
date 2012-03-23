@@ -13,16 +13,23 @@ import java.util.NoSuchElementException;
 
 
 /**
- * Represents the graph of position dependencies corresponding to a GRD or to one of its strongly connected components.
+ * Represents the graph of position dependencies corresponding to a GRD or to one of its strongly connected components.<br />
  * The graph maintains a hash map to find quickly the vertex corresponding to a predicate and its position.
  * It is used to check the weakly-acyclic and the weakly-sticky properties.
  */
 public class GraphPositionDependencies extends DirectedSimpleGraph<Predicate,Boolean> {
 
+	/**
+	 * Default constructor.
+	 */
 	public GraphPositionDependencies() throws IllegalConstructionException {
 		super();
 	}
 
+	/**
+	 * Constructor from a set of rules.
+	 * @param rules The set of rule to convert.
+	 */
 	public GraphPositionDependencies(Iterable<Vertex<AtomicRule> > rules) throws IllegalConstructionException {
 		super();
 		init(rules);
@@ -136,7 +143,7 @@ public void addEdge(Predicate p, int positionP, Predicate q, int positionQ) {
 
 	/**
 	 * Convenient method for finiteRank(vertexID).
-	 * @see .finiteRank(int vertexID)
+	 * @see #finiteRank(int)
 	 */
 	public boolean finiteRank(Predicate p, int position) {
 		return finiteRank(getComponentID(getVertex(p,position).getID()));
@@ -185,9 +192,10 @@ public void addEdge(Predicate p, int positionP, Predicate q, int positionQ) {
 	}
 
 	/**
-	 * Converts the full graph into a string.
+	 * Converts the full graph into a string.<br />
 	 * It will first contain the vertices values, and then the edges.
 	 */
+	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		NeighbourEdge<Boolean> edge = null;
@@ -232,6 +240,10 @@ public void addEdge(Predicate p, int positionP, Predicate q, int positionQ) {
 		return result.toString();
 	}
 
+	/**
+	 * Fullfills the graph from the set of rules.
+	 * @param rules The set of rule.
+	 */
 	protected void init(Iterable<Vertex<AtomicRule> > rules) {
 
 		// vertices

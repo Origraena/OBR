@@ -3,10 +3,12 @@ package obr;
 import java.util.ArrayList;
 
 /**
- * Analyse a graph of rule dependencies to determine if it belongs to decidable class.
+ * Analyse a graph of rule dependencies to determine if it belongs to decidable class.<br />
  * Furthermore, the GRDAnalyser will check the strongly connected components of the GRD.
  */
 public class GRDAnalyser {
+
+	public static final DecidableClassLabel AGRD_LABEL = new DecidableClassLabel("acyclic-grd",true,true,false);
 
 	/**
 	 * Constructor.
@@ -65,22 +67,22 @@ public class GRDAnalyser {
 	/**
 	 * <p>Process all checks in a specific order :
 	 * <ul>
-	 * <li>check all functions onto the complete graph of rule dependencies ;</li>
 	 * <li>check if the graph is cyclic ;</li>
-	 * <li>if is is, check all functions onto each strongly connected component of the GRD.</li>
+	 * <li>if it is check all functions onto the complete graph of rule dependencies ;</li>
+	 * <li>and check all functions onto each strongly connected component of the GRD.</li>
 	 * </p>
 	 */
 	protected void process() {
-		DecidableClassLabel l = null;
-		for (DecidableClassCheck function : _checkFunctions) {
-			try {
-				l = function.grdCheck(_grd);
-				if (l != null)
-					_grdLabels.add(l);
-			}
-			catch (UnsupportedOperationException e) { /* this check function cannot be used against the full grd */ }
-		}
 		if (_grd.isCyclic()) {
+			DecidableClassLabel l = null;
+			for (DecidableClassCheck function : _checkFunctions) {
+				try {
+					l = function.grdCheck(_grd);
+					if (l != null)
+						_grdLabels.add(l);
+				}
+				catch (UnsupportedOperationException e) { /* this check function cannot be used against the full grd */ }
+			}
 			for (int i = 0 ; i < _grd.getNbComponents() ; i++) {
 			//	if ((_grd.getComponent(i).size() > 1) || (_grd.getStronglyConnectedComponentsGraph().isEdge(i,i))) {
 					for (DecidableClassCheck function : _checkFunctions) {
@@ -94,6 +96,8 @@ public class GRDAnalyser {
 			//	}
 			}
 		}
+		else
+			_grdLabels.add(AGRD_LABEL);
 	}
 
 	/** The graph of rule dependencies to be analysed. */
