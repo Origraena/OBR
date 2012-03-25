@@ -85,6 +85,20 @@ public class AtomicRule extends GraphAtomConjunction {
 		return result;
 	}
 
+
+	public ArrayList<Term> domain(){
+		ArrayList<Term> result = new ArrayList<Term>();
+		for(Iterator<Object> it = _graph.secondIterator(); it.hasNext();){
+			Term current = 	(Term) it.next();
+			if(current.isVariable() )
+				result.add(current);
+
+		}
+			
+			
+		return result;
+	}
+	
 	/**
 	 * @throws NoSuchElementException whenever an atom vertex is passed as parameter (only a term can be in the frontier)
 	 */
@@ -351,6 +365,8 @@ public class AtomicRule extends GraphAtomConjunction {
 		return true;
 
 	}
+
+
 
 };
 
