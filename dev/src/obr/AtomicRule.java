@@ -1,6 +1,7 @@
 package obr;
 
 import moca.graphs.BipartedGraph;
+import moca.graphs.vertices.VertexCollection;
 import moca.graphs.vertices.Vertex;
 import moca.graphs.vertices.VertexArrayList;
 import moca.graphs.edges.NeighbourEdge;
@@ -140,18 +141,8 @@ public class AtomicRule extends AtomConjunction {
 	}
 
 
-	public ArrayList<Term> domain(){
-		ArrayList<Term> result = new ArrayList<Term>();
-		for(Iterator<Object> it = _graph.secondIterator(); it.hasNext();){
-			Term current = 	(Term) it.next();
-			if(current.isVariable() )
-				result.add(current);
-
-		}
-		// TODO => replace ArrayList by vertex collection
-		// return _graph.getSecond......();
-			
-		return result;
+	public VertexCollection<Object> domain(){
+		return _graph.getSecondSet();
 	}
 	
 	/**

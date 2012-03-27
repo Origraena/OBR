@@ -32,7 +32,7 @@ public class GuardedCheck implements DecidableClassCheck{
 	}
 
 	protected boolean check(Iterable<Vertex<AtomicRule> > rules) {
-		ArrayList<Term> domain = null;
+/*		VertexCollection<Object> domain = null;
 		boolean guarded;
 		for (Vertex<AtomicRule> vrule : rules) {
 			domain = vrule.getValue().domain();
@@ -48,7 +48,10 @@ public class GuardedCheck implements DecidableClassCheck{
 				if(guarded)
 					return true;
 			}
-		}
+		}*/
+
+		// TODO cette methode ne peut pas marcher, regarde bien, meme le cast ne peut pas
+		// renvoyer autre chose que null !!!!!!!!!
 		return false;
 	}
 }
