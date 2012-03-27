@@ -79,7 +79,7 @@ public void addEdge(Predicate p, int positionP, Predicate q, int positionQ) {
 	}
 
 	/**
-	 * Returns the vertex associated to a predicate position.
+	 * Returns the vertex associated to a predicate position.<br />
 	 * Uses an internal hash map to provide fast access.
 	 * @param p The predicate to be found.
 	 * @param position The position inside the predicate.
