@@ -139,6 +139,21 @@ public class AtomicRule extends AtomConjunction {
 		return result;
 	}
 
+
+	public ArrayList<Term> domain(){
+		ArrayList<Term> result = new ArrayList<Term>();
+		for(Iterator<Object> it = _graph.secondIterator(); it.hasNext();){
+			Term current = 	(Term) it.next();
+			if(current.isVariable() )
+				result.add(current);
+
+		}
+		// TODO => replace ArrayList by vertex collection
+		// return _graph.getSecond......();
+			
+		return result;
+	}
+	
 	/**
 	 * Allows to know if a vertex belongs to the frontier of a rule.
 	 * A term is said to be in the frontier iff it belongs to the body <b>and</b> to the head of the rule.
@@ -394,7 +409,7 @@ public class AtomicRule extends AtomConjunction {
 	
 
 			/** graph generation */
-		AtomConjunction unification = H1;//.clone();	// TODO not necessary if method subgraph
+		AtomConjunction unification = H1;
 		unification._graph.addInFirstSet(((Predicate)(R.getHead().getValue())).clone());	
 		int termID = -1;
 		int firstHeadTermID = -1;
@@ -479,6 +494,8 @@ public class AtomicRule extends AtomConjunction {
 		return true;
 
 	}
+
+
 
 };
 

@@ -1,23 +1,14 @@
 package obr;
 
-import moca.graphs.IllegalConstructionException;
-import moca.graphs.vertices.Vertex;
-import moca.graphs.edges.NeighbourEdge;
-import moca.graphs.edges.IllegalEdgeException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
-/**
- * Checks if a set of rules satisfies the frontier-1 property.<br />
- * I.e., if all rules have a frontier of size 1.
- */
-public class FrontierOneCheck implements DecidableClassCheck {
+import moca.graphs.vertices.Vertex;
 
-	/** Associated label. */
-	public static final DecidableClassLabel LABEL = new DecidableClassLabel("frontier-1",false,false,true);
+public class GuardedCheck implements DecidableClassCheck{
 
+	public static final DecidableClassLabel LABEL = new DecidableClassLabel("guarded",false,false,true);
+	
 	/**
 	 * Checks a graph of rule dependencies.
 	 * @return the decidable class label if the grd belongs to this decidable class, null otherwise.
@@ -31,7 +22,7 @@ public class FrontierOneCheck implements DecidableClassCheck {
 	/**
 	 * Checks only a strongly connected component of the graph of rule dependencies.
 	 * @param grd The graph of rule dependencies.
-	 * @param sccID The id of the strongly connected component to be checked.
+	 * @param scc The strongly connected component to be checked.
 	 * @return the decidable class label if the strongly connected component belongs to this decidable class, null otherwise.
 	 */
 	public DecidableClassLabel sccCheck(GraphRuleDependencies grd, int sccID) {
@@ -41,13 +32,23 @@ public class FrontierOneCheck implements DecidableClassCheck {
 	}
 
 	protected boolean check(Iterable<Vertex<AtomicRule> > rules) {
+		ArrayList<Term> domain = null;
+		boolean guarded;
 		for (Vertex<AtomicRule> vrule : rules) {
-			if (vrule.getValue().frontier().size() != 1){
-				return false;
+			domain = vrule.getValue().domain();
+			for(Iterator<Vertex<Object>> it = vrule.getValue().vertexAtomIterator();it.hasNext();){
+				Atom current = (Atom) it.next().getValue();
+				guarded = true;
+				for(Term t : current){
+					if(!domain.contains(t)){
+						guarded = false;
+						break;
+					}
+				}
+				if(guarded)
+					return true;
 			}
 		}
-		return true;
+		return false;
 	}
-
-};
-
+}
