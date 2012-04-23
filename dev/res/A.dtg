@@ -1,0 +1,186 @@
+/// Created by: OWL 2 Datalog +- Converter ///
+/// Author: Giorgio Orsi <orsi@elet.polimi.it> - Politecnico di Milano ///
+/// Created on: 2010/01/28 12:21:38 ///
+/// Include Storage Axioms: false///
+
+/// Converted TBOX ///
+Communication_Device(?X) :- WritingDevice(?X).
+TactileReading(?X) :- BrailleWatch(?X).
+aux_0(?X,?Y) :- ReadingDevice(?X).
+aux_1(?X,?Y) :- Quadriplegia(?X).
+!HearingDisability(?X) :- PhysicalDisability(?X).
+HearingDisability(?X) :- Hard_of_hearing(?X).
+!PhysicalDisability(?X) :- SpeechDisability(?X).
+aux_2(?X,?Y) :- Wheelchair(?X).
+aux_3(?X,?Y) :- Paraplegia(?X).
+!MentalDisability(?X) :- VisualDisability(?X).
+aux_4(?X,?Y) :- Ability(?X).
+SpeechDisability(?X) :- Stuttering(?X).
+!PhysicalAbility(?X) :- SensoryAbility(?X).
+SpeechDevice(?X) :- TelephoneAid(?X).
+!PhysicalAbility(?X) :- SpeechAbility(?X).
+aux_5(?X,?Y) :- Deaf(?X).
+LimbMobility(?X) :- UpperLimbMobility(?X).
+aux_6(?X,?Y) :- Ability(?X).
+!Device(?X) :- Disability(?X).
+ReadingDevice(?X) :- TalkingReading(?X).
+Disability(?X) :- VisualDisability(?X).
+MovementAbility(?X) :- Reach(?X).
+PhysicalDisability(?X) :- Quadriplegia(?X).
+PhysicalAbility(?X) :- MovementAbility(?X).
+!SensoryAbility(?X) :- SpeechAbility(?X).
+aux_7(?X,?Y) :- MobilityDevice(?X).
+Ability(?X) :- PhysicalAbility(?X).
+aux_8(?X,?Y) :- HearingDisability(?X).
+!LowerLimbMobility(?X) :- UpperLimbMobility(?X).
+aux_9(?X,?Y) :- Motorised_Wheelchair(?X).
+Communication_Device(?X) :- ReadingDevice(?X).
+Manual_Wheelchair(?X) :- Lightweight_Wheelchair(?X).
+!HearingDisability(?X) :- SpeechDisability(?X).
+Communication_Device(?X) :- ListenDevice(?X).
+!MentalDisability(?X) :- SpeechDisability(?X).
+!HearingDisability(?X) :- MentalDisability(?X).
+Communication_Device(?X) :- SpeechDevice(?X).
+aux_10(?X,?Y) :- Manual_Wheelchair(?X).
+aux_11(?X,?Y) :- Quadriplegia(?X).
+aux_12(?X,?Y) :- BrailleWritingDevice(?X).
+SightAbility(?X) :- See_partially(?X).
+SensoryAbility(?X) :- HearingAbility(?X).
+VisualDisability(?X) :- LowVision(?X).
+!Ability(?X) :- Device(?X).
+aux_13(?X,?Y) :- PhysicalDisability(?X).
+AssistiveDevice(?X) :- Communication_Device(?X).
+PhysicalDisability(?X) :- Kyphosis(?X).
+SightAbility(?X) :- See(?X).
+FaceToFaceCommunicationDevice(?X) :- SymbolBoard(?X).
+PhysicalDisability(?X) :- Guillaume_Barre(?X).
+aux_14(?X,?Y) :- TalkingReading(?X).
+TalkingReading(?X) :- Talking_Thermometer(?X).
+Motorised_Wheelchair(?X) :- BatteryPowered_Wheelchair(?X).
+Communication_Device(?X) :- FaceToFaceCommunicationDevice(?X).
+affects(?X, ?Y) :- isAffectedBy(?Y, ?X).
+isAffectedBy(?Y, ?X) :- affects(?X, ?Y).
+aux_15(?X,?Y) :- FaceToFaceCommunicationDevice(?X).
+aux_16(?X,?Y) :- AssistiveDevice(?X).
+!HearingDisability(?X) :- VisualDisability(?X).
+PhysicalDisability(?X) :- Osteogensis_Imperfecta(?X).
+Ability(?X) :- SpeechAbility(?X).
+aux_17(?X,?Y) :- ListenDevice(?X).
+HearingAbility(?X) :- Hear_partially(?X).
+Foldable_Wheelchair(?X) :- LightweightFoldable_Wheelchair(?X).
+LimbMobility(?X) :- LowerLimbMobility(?X).
+TactileReading(?X) :- BraillePillOrganiser(?X).
+aux_18(?X,?Y) :- TactileReading(?X).
+!SpeechDisability(?X) :- VisualDisability(?X).
+aux_19(?X,?Y) :- Motorised_Wheelchair(?X).
+PhysicalDisability(?X) :- Hemiplegia(?X).
+SensoryAbility(?X) :- TactileAbility(?X).
+!Manual_Wheelchair(?X) :- Motorised_Wheelchair(?X).
+PhysicalDisability(?X) :- Paraplegia(?X).
+aux_20(?X,?Y) :- SpeechDevice(?X).
+FaceToFaceCommunicationDevice(?X) :- FaceToFaceCommunicationSoftware(?X).
+MentalDisability(?X) :- IntellectualDisability(?X).
+ReadingDevice(?X) :- TactileReading(?X).
+AssistiveDevice(?X) :- MobilityDevice(?X).
+SensoryAbility(?X) :- SightAbility(?X).
+Lightweight_Wheelchair(?X) :- LightweightFoldable_Wheelchair(?X).
+PhysicalDisability(?X) :- Multiple_sclerosis(?X).
+Wheelchair(?X) :- Motorised_Wheelchair(?X).
+Device(?X) :- AssistiveDevice(?X).
+!MentalDisability(?X) :- PhysicalDisability(?X).
+PhysicalDisability(?X) :- Spina_Bifida(?X).
+MentalDisability(?X) :- Epilepsy(?X).
+MobilityDevice(?X) :- Wheelchair(?X).
+Disability(?X) :- SpeechDisability(?X).
+MovementAbility(?X) :- LimbMobility(?X).
+HearingDisability(?X) :- Deaf(?X).
+HearingAbility(?X) :- Hear(?X).
+Disability(?X) :- PhysicalDisability(?X).
+PhysicalDisability(?X) :- Scoliosis(?X).
+SpeechDisability(?X) :- Little_or_No_Speech(?X).
+aux_21(?X,?Y) :- Manual_Wheelchair(?X).
+HearingDisability(?X) :- Deafened(?X).
+!PhysicalDisability(?X) :- VisualDisability(?X).
+!Ability(?X) :- Disability(?X).
+Manual_Wheelchair(?X) :- Foldable_Wheelchair(?X).
+aux_22(?X,?Y) :- TactileReading(?X).
+PhysicalDisability(?X) :- Poliomyelitis(?X).
+Wheelchair(?X) :- Manual_Wheelchair(?X).
+!Communication_Device(?X) :- MobilityDevice(?X).
+PhysicalDisability(?X) :- Amputation(?X).
+PhysicalDisability(?X) :- Muscular_dystrophy(?X).
+WritingDevice(?X) :- BrailleWritingDevice(?X).
+PhysicalDisability(?X) :- Achondroplasia(?X).
+VisualDisability(?X) :- Blind(?X).
+Disability(?X) :- MentalDisability(?X).
+MentalDisability(?X) :- Autism(?X).
+TactileReading(?X) :- BrailleAlarmClock(?X).
+PhysicalDisability(?X) :- Dystonia(?X).
+aux_23(?X,?Y) :- TalkingReading(?X).
+aux_24(?X,?Y) :- Disability(?X).
+aux_25(?X,?Y) :- Little_or_No_Speech(?X).
+isAssistedBy(?X, ?Y) :- assistsWith(?Y, ?X).
+assistsWith(?Y, ?X) :- isAssistedBy(?X, ?Y).
+Ability(?X) :- SensoryAbility(?X).
+PhysicalDisability(?X) :- Cerebral_palsy(?X).
+Disability(?X) :- HearingDisability(?X).
+ListenDevice(?X) :- TelephoneAid(?X).
+affects(?X,?Y) :- aux_11(?X,?Y).
+LowerLimbMobility(?Y) :- aux_11(?X,?Y).
+requiresAbility(?X,?Y) :- aux_10(?X,?Y).
+UpperLimbMobility(?Y) :- aux_10(?X,?Y).
+affects(?X,?Y) :- aux_13(?X,?Y).
+PhysicalAbility(?Y) :- aux_13(?X,?Y).
+assistsWith(?X,?Y) :- aux_12(?X,?Y).
+SightAbility(?Y) :- aux_12(?X,?Y).
+assistsWith(?X,?Y) :- aux_15(?X,?Y).
+SpeechAbility(?Y) :- aux_15(?X,?Y).
+assistsWith(?X,?Y) :- aux_14(?X,?Y).
+SightAbility(?Y) :- aux_14(?X,?Y).
+affects(?X,?Y) :- aux_1(?X,?Y).
+UpperLimbMobility(?Y) :- aux_1(?X,?Y).
+assistsWith(?X,?Y) :- aux_2(?X,?Y).
+LimbMobility(?Y) :- aux_2(?X,?Y).
+assistsWith(?X,?Y) :- aux_0(?X,?Y).
+SightAbility(?Y) :- aux_0(?X,?Y).
+affects(?X,?Y) :- aux_5(?X,?Y).
+SpeechAbility(?Y) :- aux_5(?X,?Y).
+isAffectedBy(?X,?Y) :- aux_6(?X,?Y).
+Disability(?Y) :- aux_6(?X,?Y).
+affects(?X,?Y) :- aux_3(?X,?Y).
+LowerLimbMobility(?Y) :- aux_3(?X,?Y).
+isAssistedBy(?X,?Y) :- aux_4(?X,?Y).
+Device(?Y) :- aux_4(?X,?Y).
+assistsWith(?X,?Y) :- aux_9(?X,?Y).
+UpperLimbMobility(?Y) :- aux_9(?X,?Y).
+assistsWith(?X,?Y) :- aux_7(?X,?Y).
+MovementAbility(?Y) :- aux_7(?X,?Y).
+affects(?X,?Y) :- aux_8(?X,?Y).
+HearingAbility(?Y) :- aux_8(?X,?Y).
+affects(?X,?Y) :- aux_25(?X,?Y).
+SpeechAbility(?Y) :- aux_25(?X,?Y).
+requiresAbility(?X,?Y) :- aux_23(?X,?Y).
+HearingAbility(?Y) :- aux_23(?X,?Y).
+affects(?X,?Y) :- aux_24(?X,?Y).
+Ability(?Y) :- aux_24(?X,?Y).
+assistsWith(?X,?Y) :- aux_21(?X,?Y).
+LowerLimbMobility(?Y) :- aux_21(?X,?Y).
+requiresAbility(?X,?Y) :- aux_22(?X,?Y).
+TactileAbility(?Y) :- aux_22(?X,?Y).
+assistsWith(?X,?Y) :- aux_20(?X,?Y).
+SpeechAbility(?Y) :- aux_20(?X,?Y).
+assistsWith(?X,?Y) :- aux_19(?X,?Y).
+LowerLimbMobility(?Y) :- aux_19(?X,?Y).
+assistsWith(?X,?Y) :- aux_18(?X,?Y).
+SightAbility(?Y) :- aux_18(?X,?Y).
+assistsWith(?X,?Y) :- aux_17(?X,?Y).
+HearingAbility(?Y) :- aux_17(?X,?Y).
+assistsWith(?X,?Y) :- aux_16(?X,?Y).
+Ability(?Y) :- aux_16(?X,?Y).
+
+/// Total TBox Axioms: 121 ///
+
+/// Converted ABOX ///
+
+/// Total ABox Axioms: 0 ///
+

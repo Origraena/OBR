@@ -1,0 +1,235 @@
+/// Created by: OWL 2 Datalog +- Converter ///
+/// Author: Giorgio Orsi <orsi@elet.polimi.it> - Politecnico di Milano ///
+/// Created on: 2010/01/27 18:25:47 ///
+/// Include Storage Axioms: false///
+
+/// Converted TBOX ///
+Minister(?X) :- Foreign-Minister(?X).
+Abstract-Notion(?X) :- Idea(?X).
+Natural-Object(?X) :- Commodity(?X).
+Artist(?X) :- Composer(?X).
+VicodiOI(?Y) :- related(?X, ?Y).
+Flavour(?X) :- hasRole(?X, ?Y).
+Role(?X) :- Symbol(?X).
+Writing(?X) :- Journal(?X).
+Movement(?X) :- Intellectual-Movement(?X).
+Leader(?X) :- Religious-Leader(?X).
+Abstract-Notion(?X) :- Artistic-Style(?X).
+Event(?X) :- Election(?X).
+Object(?X) :- Conceptual-Object(?X).
+related(?X, ?Y) :- hasCategory(?X, ?Y).
+Organisation(?X) :- Military-Organisation(?X).
+Social-Group(?X) :- Dynasty(?X).
+Leader(?X) :- Clerical-Leader(?X).
+Event(?X) :- Treaty(?X).
+Geographical-Feature(?X) :- Water(?X).
+Event(?X) :- Cultural-Agreement(?X).
+Event(?X) :- Technical-Scientific-Advance(?X).
+Role(?Y) :- hasRole(?X, ?Y).
+Person-Role(?X) :- Saint(?X).
+Artefact(?X) :- Pollution(?X).
+Artefact(?X) :- Armament(?X).
+Event(?X) :- Public-Oration(?X).
+Person-Role(?X) :- Professor(?X).
+Political-Organisation(?X) :- International-Alliance(?X).
+Conceptual-Object(?X) :- Ritual(?X).
+Conceptual-Object(?X) :- Pastime(?X).
+Cultural-Organisation(?X) :- Religious-Organisation(?X).
+Person-Role(?X) :- Criminal(?X).
+VicodiOI(?X) :- Category(?X).
+Vehicle(?X) :- Ship(?X).
+Object(?X) :- Artefact(?X).
+Event(?X) :- War(?X).
+Creator(?X) :- Author(?X).
+Flavour(?X) :- Individual(?X).
+Settlement(?X) :- Village(?X).
+Individual(?X) :- Person(?X).
+Artefact(?X) :- Clothing(?X).
+isRelationMemberOf(?X, ?Y) :- isLocationContainerMemberOf(?X, ?Y).
+Person-Role(?X) :- Leader(?X).
+Abstract-Notion(?X) :- Ideology(?X).
+Natural-Object(?X) :- Disease(?X).
+VicodiOI(?X) :- related(?X, ?Y).
+Ideology(?X) :- Secular-Ideology(?X).
+Political-Organisation(?X) :- Governmental-Organisation(?X).
+related(?X, ?Y) :- hasRole(?X, ?Y).
+Entertainer(?X) :- Dancer(?X).
+Artist(?X) :- Painter(?X).
+Artefact(?X) :- Building(?X).
+Natural-Object(?X) :- Animal(?X).
+Creator(?X) :- Artist(?X).
+Creator(?X) :- Publisher(?X).
+Symbol(?X) :- National-Symbol(?X).
+Creator(?X) :- Journalist(?X).
+hasRelationMember(?X, ?Y) :- hasLocationPartMember(?X, ?Y).
+Location(?Y) :- hasLocationContainerMember(?X, ?Y).
+Functionary(?X) :- Minister(?X).
+Time-Dependent(?X) :- isRelationMemberOf(?X, ?Y).
+Head-of-State(?X) :- Sultan(?X).
+Location(?X) :- Country(?X).
+Religious-Leader(?X) :- Pope(?X).
+Person-Role(?X) :- Sportsman(?X).
+Individual(?X) :- Fictional-Person(?X).
+VicodiOI(?X) :- Time-Dependent(?X).
+Artefact(?X) :- Liturgical-Object(?X).
+Artefact(?X) :- Writing(?X).
+Scientist(?X) :- Geographer(?X).
+Work-of-Art(?X) :- Piece-of-Music(?X).
+Social-Group(?X) :- Movement(?X).
+Location-Part-Relation(?Y) :- isLocationContainerMemberOf(?X, ?Y).
+Functionary(?X) :- Jurist(?X).
+Organisation(?X) :- Cultural-Organisation(?X).
+Person-Role(?X) :- Discoverer(?X).
+Head-of-State(?X) :- Prince(?X).
+Intellectual-Construct(?X) :- Field-of-Knowledge(?X).
+Location(?X) :- isLocationContainerMemberOf(?X, ?Y).
+Symbol(?X) :- Political-Symbol(?X).
+Category(?Y) :- hasCategory(?X, ?Y).
+Head-of-State(?X) :- Emperor(?X).
+Organisation(?X) :- International-Organisation(?X).
+Scientist(?X) :- Psychologist(?X).
+Vehicle(?X) :- Train(?X).
+Entertainer(?X) :- Conductor(?X).
+Movement(?X) :- Artistic-Movement(?X).
+Religious-Leader(?X) :- Other-Religious-Leader(?X).
+Event(?X) :- Economic-Process(?X).
+Economic-Organisation(?X) :- Trade-Association(?X).
+Magnate(?X) :- Business-Leader(?X).
+Event(?X) :- Period(?X).
+Writing(?X) :- Newspaper(?X).
+Ideology(?X) :- Religious-Ideology(?X).
+Person-Role(?X) :- Cleric(?X).
+Secular-Leader(?X) :- Head-of-Government(?X).
+related(?X, ?Y) :- hasRelationMember(?X, ?Y).
+Flavour(?X) :- Social-Group(?X).
+Event(?X) :- Trial(?X).
+Functionary(?X) :- Politician(?X).
+Time(?X) :- TemporalInterval(?X).
+Symbol(?X) :- Religious-Symbol(?X).
+Object(?X) :- Natural-Object(?X).
+Religious-Organisation(?X) :- Religious-Community(?X).
+Geographical-Feature(?X) :- Geographical-Region(?X).
+Location(?X) :- Geographical-Feature(?X).
+Building(?X) :- Abbey(?X).
+Conceptual-Object(?X) :- Religious-Practice(?X).
+Abstract-Notion(?X) :- Intellectual-Construct(?X).
+related(?X, ?Y) :- isRelationMemberOf(?X, ?Y).
+Event(?X) :- Meeting(?X).
+Abstract-Notion(?X) :- Art-Form(?X).
+Abstract-Notion(?X) :- Language(?X).
+Event(?X) :- Non-Military-Conflict(?X).
+Artefact(?X) :- Scientific-Instrument(?X).
+Creator(?X) :- Engineer(?X).
+Location(?X) :- Settlement(?X).
+Work-of-Art(?X) :- Painting(?X).
+Time-Dependent(?X) :- exists(?X, ?Y).
+Social-Group(?X) :- Stereotype-Group(?X).
+Religious-Organisation(?X) :- Religious-Order(?X).
+Life-Event(?X) :- Illness(?X).
+Time-Dependent(?Y) :- hasRelationMember(?X, ?Y).
+Building(?X) :- Cathedral(?X).
+Organisation(?X) :- Economic-Organisation(?X).
+Political-Organisation(?X) :- League(?X).
+Movement(?X) :- Religious-Movement(?X).
+Person-Role(?X) :- Inventor(?X).
+Event(?X) :- Crime(?X).
+Political-Organisation(?X) :- Representative-Institution(?X).
+Flavour(?X) :- Event(?X).
+Natural-Object(?X) :- Environment(?X).
+Time-Dependent-Relation(?X) :- Location-Part-Relation(?X).
+Religious-Leader(?X) :- Ecclesiarch(?X).
+Flavour(?X) :- Object(?X).
+Secular-Leader(?X) :- Head-of-State(?X).
+Settlement(?X) :- City(?X).
+Symbol(?X) :- Economic-Symbol(?X).
+Event(?X) :- Legislation(?X).
+Time-Dependent-Relation(?X) :- hasRelationMember(?X, ?Y).
+Secular-Leader(?X) :- Magnate(?X).
+Person-Role(?X) :- Philanthropist(?X).
+Location-Part-Relation(?X) :- hasLocationPartMember(?X, ?Y).
+Person-Role(?X) :- Entertainer(?X).
+Discoverer(?X) :- Astronaut(?X).
+Flavour(?X) :- Location(?X).
+Work-of-Art(?X) :- Sculpture(?X).
+Time(?Y) :- exists(?X, ?Y).
+Person-Role(?X) :- Scientist(?X).
+Conceptual-Object(?X) :- Badge(?X).
+VicodiOI(?X) :- Time(?X).
+Political-Organisation(?X) :- Party(?X).
+Location(?X) :- Political-Region(?X).
+Time-Dependent(?X) :- hasCategory(?X, ?Y).
+Person-Role(?X) :- Military-Person(?X).
+Location(?X) :- isLocationPartMemberOf(?X, ?Y).
+Economic-Organisation(?X) :- Economic-Enterprise(?X).
+Educational-Organisation(?X) :- University(?X).
+Event(?X) :- Fictional-Event(?X).
+Organisation(?X) :- Management-Organisation(?X).
+Social-Group(?X) :- Ethnic-Group(?X).
+Location-Part-Relation(?Y) :- isLocationPartMemberOf(?X, ?Y).
+Event(?X) :- Life-Event(?X).
+Flavour(?X) :- Abstract-Notion(?X).
+Event(?X) :- Battle(?X).
+Location(?Y) :- hasLocationPartMember(?X, ?Y).
+Creator(?X) :- Film-Maker(?X).
+Artefact(?X) :- Structure(?X).
+Location-Part-Relation(?X) :- hasLocationContainerMember(?X, ?Y).
+Event(?X) :- Uprising(?X).
+Abstract-Notion(?X) :- Measurable-Trend(?X).
+Time-Dependent(?X) :- Time-Dependent-Relation(?X).
+Person-Role(?X) :- Functionary(?X).
+Artefact(?X) :- Work-of-Art(?X).
+isRelationMemberOf(?X, ?Y) :- isLocationPartMemberOf(?X, ?Y).
+Building(?X) :- Monastery(?X).
+Religious-Leader(?X) :- Church-Reformer(?X).
+Organisation(?X) :- Educational-Organisation(?X).
+Head-of-State(?X) :- King(?X).
+Time-Dependent(?X) :- Flavour(?X).
+Scientist(?X) :- Philosopher(?X).
+Creator(?X) :- Dramaturge(?X).
+Military-Organisation(?X) :- Military-Unit(?X).
+Event(?X) :- Disaster(?X).
+Management-Organisation(?X) :- Board(?X).
+Artefact(?X) :- Relic(?X).
+Event(?X) :- Geographical-Discovery(?X).
+Event(?X) :- Population-Movement(?X).
+Person-Role(?X) :- Physician(?X).
+hasRelationMember(?X, ?Y) :- hasLocationContainerMember(?X, ?Y).
+Functionary(?X) :- Diplomat(?X).
+Writing(?X) :- Book(?X).
+Economic-Organisation(?X) :- Trades-Union(?X).
+Head-of-State(?X) :- Queen(?X).
+Cultural-Organisation(?X) :- Masonic-Lodge(?X).
+Scientist(?X) :- Economist(?X).
+Person-Role(?X) :- Creator(?X).
+Time-Dependent-Relation(?Y) :- isRelationMemberOf(?X, ?Y).
+Organisation(?X) :- Political-Organisation(?X).
+Secular-Leader(?X) :- Trades-Unionist(?X).
+Time-Dependent(?X) :- Role(?X).
+Person-Role(?X) :- Theologian(?X).
+Natural-Object(?X) :- Food(?X).
+Entertainer(?X) :- Actor(?X).
+Artist(?X) :- Sculptor(?X).
+Writing(?X) :- Pamphlet(?X).
+Person-Role(?X) :- Other-Religious-Person(?X).
+Time(?X) :- FuzzyTemporalInterval(?X).
+Movement(?X) :- Secular-Movement(?X).
+Leader(?X) :- Secular-Leader(?X).
+Role(?X) :- Person-Role(?X).
+related(?X, ?Y) :- exists(?X, ?Y).
+Entertainer(?X) :- Musician(?X).
+Artefact(?X) :- Vehicle(?X).
+Event(?X) :- Scandal(?X).
+Social-Group(?X) :- Social-Stratum(?X).
+Creator(?X) :- Architect(?X).
+Event(?X) :- Period-in-Office(?X).
+Flavour(?X) :- Organisation(?X).
+Building(?X) :- Church(?X).
+Location(?X) :- Intra-State-Group(?X).
+Geographical-Feature(?X) :- Landmark(?X).
+
+/// Total TBox Axioms: 222 ///
+
+/// Converted ABOX ///
+
+/// Total ABox Axioms: 0 ///
+

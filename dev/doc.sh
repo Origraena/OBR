@@ -1,4 +1,4 @@
-SRC_PATH='./src:/home/swan/prog/git/moca/common/graphs/java/src'
+SRC_PATH='./src:/media/usb2/git/moca/common/graphs/java/src'
 #PACKAGES='obr moca.graphs moca.operators moca.comparators moca.lists moca.graphs.edges moca.graphs.vertices'
 PACKAGES='obr'
 javadoc \

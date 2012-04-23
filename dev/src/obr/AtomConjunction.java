@@ -261,6 +261,25 @@ public class AtomConjunction implements Iterable<Atom> {
 		return _graph.getNbVerticesInFirstSet() - 1;
 	}
 
+	public void removeCleanlyAtom(int atomID) throws NoSuchElementException {
+		final Vertex<Object> atom = getVertexAtom(atomID);
+		int neighbourAtomID;
+		int currentTerm;
+		final int nbTerms = _graph.getNbNeighbours(atomID);
+		for (currentTerm = 0 ; currentTerm < nbTerms ; currentTerm++) {
+			neighbourAtomID = getVertexTermFromAtom(atomID,currentTerm).getID();
+			if (_graph.getNbNeighbours(neighbourAtomID) == 1) {
+				_graph.removeVertex(neighbourAtomID);
+				currentTerm--;
+			}
+		}
+		removeAtom(atomID);
+	}
+
+	protected void removeAtom(int atomID) throws NoSuchElementException {
+		_graph.removeVertex(atomID);
+	}
+
 	/**
 	 * Adds a term into the atom conjunction.<br />
 	 * Note that the term will not be connected to any atom. Use addEdge method to make these connections.<br />

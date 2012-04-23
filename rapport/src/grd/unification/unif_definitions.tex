@@ -1,0 +1,49 @@
+% unification.tex
+
+\subsubsection{Substitution}\label{def_unification}
+Une substitution de taille $n$ d'un ensemble de symboles $X$ dans un ensemble de symboles $Y$ est une fonction de $X$ 
+vers $Y$ repr\'esent\'ee par l'ensemble de couples suivants (avec $n \leq |X|$) :
+\begin{itemize}
+	\item $s = \{(x_{i},y_{i})\ :\ \forall i \in [1,n]\ x_{i} \in X,\ y_{i} \in Y, \forall j \neq i\ x_{i} \neq x_{j}\}$
+	\item $s(x_{i}) = y_{i}\ \forall i \in [1,n]$
+	\item $s(x_{i}) = x_{i}\ \forall i \in [n+1,|X|]\ x_{i} \in X$
+\end{itemize}
+
+\subsubsection{Unificateur logique}\label{def_unificateur}
+Un unificateur logique entre deux atomes $a_{1}$ et $a_{2}$ est une substitution $\mu$ telle que :
+\begin{itemize}
+	\item $\mu : var(a_{1}) \cup var(a_{2}) \rightarrow dom(a_{1}) \cup dom(a_{2})$
+	\item $\mu(a_{1}) = \mu(a_{2})$
+\end{itemize}
+Cette d\'efinition s'\'etend aux conjonctions d'atomes.
+
+\subsubsection{Unificateur de conclusion atomique}\label{def_unificateuratomique}
+Un unificateur de conclusion atomique est un unificateur logique $\mu = \{(x_{i},t_{i}) : \forall i \in [1,n]\}$
+entre l'hypoth\`ese d'une r\`egle $R_{1} = (H_{1},C_{1})$ et la conclusion atomique d'une r\`egle $R_{2} = (H_{2},C_{2})$ et est d\'efini de la mani\`ere suivante :
+\begin{itemize}
+	\item $\mu : fr(R_{2}) \cup var(H_{1}) \rightarrow dom(C_{2}) \cup cst(H_{1})$
+	\item $\forall (x_{i},t_{i}) \in \mu\ si\ x_{i} \in fr(R_{2})\ alors\ t_{i} \in cutp(R_{2}) \cup cst(H_{1})$
+\end{itemize}
+    
+\subsubsection{Bonne unification atomique}\label{def_bonneunification}
+Un bon unificateur de conclusion atomique est un unificateur de conclusion atomique $\mu = \{x_{i},t_{i}) : \forall i \in [1,n]\}$
+entre un sous ensemble $Q$ de l'hypoth\`ese d'une r\`egle $R_{1} = (H_{1},C_{1})$ et la conclusion d'une r\`egle atomique
+$R_{2} = (H_{2},C_{2})$ tel que :\\
+$\forall (x_{i},t_{i}) \in \mu : si\ x_{i} \in H_{1} \setminus Q\ alors\ t_{i}\ n'est\ pas\ une\ \exists-var$
+
+Un tel ensemble $Q$ est appel\'e un {\em bon ensemble d'unification atomique} de l'hypoth\`ese de $R_{1}$ par la conclusion de $R_{2}$.
+On note que $Q$ est donc d\'efini comme suit :
+\begin{itemize}
+	\item $Q \subseteq H_{1}$
+	\item $\forall\ position\ i\ de\ \exists-var\ dans\ C_{2}, \forall\ atome\ a\ \in Q, si\ a_i \in var(H_{1})\ alors\ \forall\ atome\ b \in H_{1} : si\ \exists\ b_j \in b : a_i = b_j, alors\ b \in Q$
+\end{itemize}
+
+\subsubsection{Bon ensemble d'unification atomique minimal}\label{def_bonensemble}
+Un {\em bon ensemble d'unification atomique minimal} $Q$ de $H_{1}$ par $C_{2}$ enracin\'e en $a$ est d\'efini tel que :
+\begin{itemize}
+	\item $Q$ est un bon ensemble d'unification atomique de $H_{1}$ par $C_{2}$
+	\item $a \in Q$
+	\item $|Q| = min(|Q_i| : Q_i\ est\ un\ bon\ ensemble\ d'unification\ atomique\ de\ H_1\ par\ C_2\ et\ a \in Q_i)$
+\end{itemize}
+
+

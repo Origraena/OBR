@@ -1,0 +1,71 @@
+Reading file : res/acyclic_rulebase
+
+[1] GRAPH OF RULE DEPENDENCIES
+
+R0:	r<x,x,t>();r<'a',x,y>()-->p<x,y>()
+R1:	b<x,x,x>()-->a<'a','a','a'>()
+
+
+
+[2] STRONGLY CONNECTED COMPONENTS
+
+C0:	1
+C1:	0
+
+
+[3] DIAGNOSTIC
+
+DECIDABLE CLASS CHECKS
+Graph of Rule Dependencies labels :
+	acyclic-grd( fus fes )
+
+Strongly Connected Components labels :
+C 0	none
+C 1	none
+
+ABSTRACT CLASS TO USE
+All the GRD rules belongs to the Finite Expansion Set abstract class.
+Reading file : res/rulebase
+
+[1] GRAPH OF RULE DEPENDENCIES
+
+R0:	b('a',w,'a');p(x,y);q(y)-->r(x,y,z)
+R1:	r(x,x,t);r('a',x,y)-->p(x,y)
+R2:	p(x,y)-->b(x,x,x)
+R3:	a(x,x,x)-->b(x,y,x)
+R4:	b(x,x,x)-->c('a','a','a')
+R5:	c(x,y,z)-->c(z,y,x)
+
+R0	-->	R1,
+R1	-->	R0,R2,
+R2	-->	R0,R4,
+R3	-->	R0,R4,
+R4	-->	R5,
+R5	-->	R5,
+
+
+[2] STRONGLY CONNECTED COMPONENTS
+
+C0:	3
+C1:	0,1,2
+C2:	4
+C3:	5
+C0	-->	C1,C2,
+C1	-->	C1,C2,
+C2	-->	C3,
+C3	-->	C3,
+
+
+[3] DIAGNOSTIC
+
+DECIDABLE CLASS CHECKS
+Graph of Rule Dependencies labels :
+
+Strongly Connected Components labels :
+C 0	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; frontier-1( gbts ) ; 
+C 1	none
+C 2	weakly-acyclic( fes ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; disconnected( fus fes gbts ) ; range-restricted( fus gbts ) ; 
+C 3	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; 
+
+ABSTRACT CLASS TO USE
+This set of rule cannot be used to make a query.

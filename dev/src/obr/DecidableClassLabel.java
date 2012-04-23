@@ -6,6 +6,42 @@ package obr;
  */
 public class DecidableClassLabel {
 
+	static final int FES = 1;
+	static final int GBTS = 2;
+	static final int FUS = 3;
+	static final String FES_STR = "fes";
+	static final String GBTS_STR = "gbts";
+	static final String FUS_STR = "fus";
+	static final String FES_STRING = "Finite Expansion Set";
+	static final String GBTS_STRING = "Greedy Bounded Treewidth Set";
+	static final String FUS_STRING = "Finite Unification Set";
+
+	static final String shortName(int abstractClassID) {
+		switch (abstractClassID) {
+			case FUS :
+				return FUS_STR;
+			case FES :
+				return FES_STR;
+			case GBTS :
+				return GBTS_STR;
+			default :
+				return "";
+		}
+	}
+
+	static final String longName(int abstractClassID) {
+		switch (abstractClassID) {
+			case FUS :
+				return FUS_STRING;
+			case FES :
+				return FES_STRING;
+			case GBTS :
+				return GBTS_STRING;
+			default :
+				return "";
+		}
+	}
+
 	/**
 	 * Constructor which let all boolean attributes to false.
 	 * @param label The label of the decidable class.
@@ -36,6 +72,18 @@ public class DecidableClassLabel {
 		return _label;
 	}
 
+	public boolean isFUS() {
+		return _fus;
+	}
+
+	public boolean isFES() {
+		return _fes;
+	}
+
+	public boolean isGBTS() {
+		return _gbts;
+	}
+
 	/**
 	 * Converts the label into a string.
 	 * @return A string representation of the concrete class label.
@@ -43,14 +91,14 @@ public class DecidableClassLabel {
 	@Override
 	public String toString() {
 		String result = _label;
-		result += "(";
+		result += "( ";
 		if (_fus)
-			result+=" fus";
+			result+=FUS_STR+" ";
 		if (_fes)
-			result+=" fes";
+			result+=FES_STR + " ";
 		if (_gbts)
-			result+=" gbts";
-		result += " )";
+			result+=GBTS_STR + " ";
+		result += ")";
 		return result;
 	}
 
@@ -65,6 +113,6 @@ public class DecidableClassLabel {
 	
 	/** True if the concrete class belongs to gbts abstract class. */
 	private boolean _gbts = false;
-	
+
 };
 

@@ -1,0 +1,131 @@
+%!PS-Adobe-3.0
+%%BoundingBox: 0 0 2000 2000
+
+%%BeginProlog 
+/arrowhead {% stack: s x1 y1, current point: x0 y0
+gsave
+currentpoint % s x1 y1 x0 y0
+4 2 roll exch % s x0 y0 y1 x1
+4 -1 roll exch % s y0 y1 x0 x1
+sub 3 1 roll % s x1-x2 y0 y1
+sub exch % s y0-y1 x1-x2
+atan rotate % rotate over arctan((y0-y1)/(x1-x2))
+dup scale % scale by factor s
+-7 2 rlineto 1 -2 rlineto -1 -2 rlineto
+closepath fill % fill arrowhead
+grestore
+newpath
+} def
+%%EndProlog 
+341 473 5 0 360 arc
+0 setgray
+fill
+stroke
+
+/Times-Roman findfont
+15 scalefont
+setfont
+331 483 moveto
+(R0) show
+
+502 379 5 0 360 arc
+0 setgray
+fill
+stroke
+
+/Times-Roman findfont
+15 scalefont
+setfont
+492 389 moveto
+(R1) show
+
+502 192 5 0 360 arc
+0 setgray
+fill
+stroke
+
+/Times-Roman findfont
+15 scalefont
+setfont
+492 202 moveto
+(R2) show
+
+340 98 5 0 360 arc
+0 setgray
+fill
+stroke
+
+/Times-Roman findfont
+15 scalefont
+setfont
+330 108 moveto
+(R3) show
+
+178 191 5 0 360 arc
+0 setgray
+fill
+stroke
+
+/Times-Roman findfont
+15 scalefont
+setfont
+168 201 moveto
+(R4) show
+
+177 377 5 0 360 arc
+0 setgray
+fill
+stroke
+
+/Times-Roman findfont
+15 scalefont
+setfont
+167 387 moveto
+(R5) show
+
+341 473 moveto
+502 379 lineto
+stroke
+newpath 502 379 moveto 2 341 473 arrowhead
+
+502 379 moveto
+341 473 lineto
+stroke
+newpath 341 473 moveto 2 502 379 arrowhead
+
+502 379 moveto
+502 192 lineto
+stroke
+newpath 502 192 moveto 2 502 379 arrowhead
+
+502 192 moveto
+341 473 lineto
+stroke
+newpath 341 473 moveto 2 502 192 arrowhead
+
+502 192 moveto
+178 191 lineto
+stroke
+newpath 178 191 moveto 2 502 192 arrowhead
+
+340 98 moveto
+341 473 lineto
+stroke
+newpath 341 473 moveto 2 340 98 arrowhead
+
+340 98 moveto
+178 191 lineto
+stroke
+newpath 178 191 moveto 2 340 98 arrowhead
+
+178 191 moveto
+177 377 lineto
+stroke
+newpath 177 377 moveto 2 178 191 arrowhead
+
+/Times-Roman findfont
+18 scalefont
+setfont
+30 30 moveto
+(Graph of Rule Dependencies) show
+

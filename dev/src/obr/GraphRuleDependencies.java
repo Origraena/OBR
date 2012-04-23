@@ -4,13 +4,21 @@ import moca.graphs.DirectedSimpleGraph;
 import moca.graphs.IllegalConstructionException;
 import moca.graphs.vertices.Vertex;
 import moca.graphs.edges.IllegalEdgeException;
+import moca.graphs.edges.Edge;
 import moca.graphs.edges.NeighbourEdge;
+import moca.graphs.visu.AcyclicGraphLocalizer;
+import moca.graphs.visu.PolygonLocalizer;
+import moca.graphs.visu.PostScriptConverter;
+import moca.graphs.visu.SCCIdentityFunction;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 import java.io.File;
+//import java.io.OutputStreamWriter;
+//import java.io.BufferedOutputStream;
+//import java.io.FileOutputStream;
 
 
 /**
@@ -143,6 +151,25 @@ public class GraphRuleDependencies extends DirectedSimpleGraph<AtomicRule,Boolea
 		return stringBuilder.toString();
 	}
 
+	public void sccToPostScript(String filePath) {
+		PostScriptConverter psOutput = new PostScriptConverter(
+			getStronglyConnectedComponentsGraph(),
+			480,640,
+			new AcyclicGraphLocalizer(480,640),
+			SCCIdentityFunction.instance(),
+			"Strongly Connected Components");
+		psOutput.writeToFile(filePath);
+	}
+
+	public void toPostScript(String filePath) {
+		PostScriptConverter psOutput = new PostScriptConverter(
+			this,
+			480,640,
+			new PolygonLocalizer(480,640),
+			RuleIdentityFunction.instance(),
+			"Graph of Rule Dependencies");
+		psOutput.writeToFile(filePath);
+	}
 };
 
 

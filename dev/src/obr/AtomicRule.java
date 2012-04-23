@@ -58,6 +58,10 @@ public class AtomicRule extends AtomConjunction {
 		return _head;
 	}
 
+	public void setHead(int atomID) {
+		_head = getVertex(atomID);
+	}
+
 	/**
 	 * Converts the head into an atom instance.
 	 * @see AtomConjunction#getAtom(int)
@@ -127,7 +131,7 @@ public class AtomicRule extends AtomConjunction {
 	/**
 	 * Creates a new array list containing all vertices which belong to the frontier of the rule.
 	 * A term is said to be in the frontier iff it belongs to the body <b>and</b> to the head of the rule.
-	 * @return An array list of Vertex<Object> which contains all terms in the frontier.
+	 * @return An array list of Vertex&lt;Object&gt; which contains all terms in the frontier.
 	 */
 	public ArrayList<Vertex<Object> > frontier() {
 		NeighbourEdge<Integer> edge = null;
@@ -235,7 +239,9 @@ public class AtomicRule extends AtomConjunction {
 	 * @return The atom conjunction of the body.
 	 */
 	public AtomConjunction getBody() {
-		return subAtomConjunction(0, getNbAtoms()-1);
+		AtomConjunction body = clone();
+		body.removeCleanlyAtom(_head.getID());
+		return body;
 	}
 
 	/**

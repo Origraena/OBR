@@ -1,0 +1,25 @@
+% atomes.tex
+
+\section{Pr\'edicat}\label{def_predicat}
+\begin{itemize}
+	\item Un pr\'edicat not\'e $p \backslash n$ est un symbole relationnel d'arit\'e $n$.
+	\item On suppose que tout nom de pr\'edicat est unique.
+	\item On note $p_{i}$ la $i^{eme}$ position de $p$.
+	\item On note $P_{K}$ l'ensemble des pr\'edicats de $K$.
+\end{itemize}
+
+\section{Atome}\label{def_atome}
+Un atome $a = p(a_{1},a_{2},...,a_{n})$ associe un terme \`a chaque position d'un pr\'edicat $p \backslash n$.
+On note :
+\begin{itemize}
+	\item $a_{i}$ le terme en position $i$ dans $a$. Un terme peut \^etre une {\em constante} 
+	ou une {\em variable}.
+	Une variable peut \^etre universelle (not\'ee $\forall-var$) ou existentielle (not\'ee 
+	$\exists-var$).
+	\item $dom(a) = \{a_{i} : \forall i \in [1,n]\}$, l'ensemble des termes de $a$
+	\item $var(a)$ l'ensemble des variables de $a$
+	\item $cst(a)$ l'ensemble des constantes de $a$
+\end{itemize}
+Ces notations s'\'etendent aux {\em conjonctions d'atomes}.
+
+

@@ -1,0 +1,282 @@
+Reading file : res/U.dtg
+Invoking DTG parser...
+
+[1] GRAPH OF RULE DEPENDENCIES
+
+R0:	Professor(?X)-->Professor(?X)
+R1:	FacultyStaff(?X)-->FacultyStaff(?X)
+R2:	Professor(?X)-->Professor(?X)
+R3:	aux_0(?X,?Y)-->aux_0(?X,?Y)
+R4:	Organization(?X)-->Organization(?X)
+R5:	Course(?Y)-->Course(?Y)
+R6:	ExamRecord(?Y)-->ExamRecord(?Y)
+R7:	Person(?X)-->Person(?X)
+R8:	Person(?X)-->Person(?X)
+R9:	Work(?X)-->Work(?X)
+R10:	Organization(?X)-->Organization(?X)
+R11:	University(?X)-->University(?X)
+R12:	Person(?X)-->Person(?X)
+R13:	Organization(?X)-->Organization(?X)
+R14:	Professor(?Y)-->Professor(?Y)
+R15:	degreeFrom(?X,?Y)-->degreeFrom(?X,?Y)
+R16:	worksFor(?X,?Y)-->worksFor(?X,?Y)
+R17:	Employee(?X)-->Employee(?X)
+R18:	Work(?X)-->Work(?X)
+R19:	memberOf(?X,?Y)-->memberOf(?X,?Y)
+R20:	Professor(?X)-->Professor(?X)
+R21:	aux_1(?X,?Y)-->aux_1(?X,?Y)
+R22:	degreeFrom(?X,?Y)-->degreeFrom(?X,?Y)
+R23:	Person(?Y)-->Person(?Y)
+R24:	Professor(?X)-->Professor(?X)
+R25:	Person(?Y)-->Person(?Y)
+R26:	hasFaculty(?X,?Y)-->hasFaculty(?X,?Y)
+R27:	Course(?Y)-->Course(?Y)
+R28:	Exam(?X)-->Exam(?X)
+R29:	AdministrativeStaff(?X)-->AdministrativeStaff(?X)
+R30:	Faculty(?X)-->Faculty(?X)
+R31:	Person(?X)-->Person(?X)
+R32:	Person(?X)-->Person(?X)
+R33:	Organization(?X)-->Organization(?X)
+R34:	University(?X)-->University(?X)
+R35:	Professor(?X)-->Professor(?X)
+R36:	Student(?X)-->Student(?X)
+R37:	Professor(?X)-->Professor(?X)
+R38:	aux_2(?X,?Y)-->aux_2(?X,?Y)
+R39:	aux_3(?X,?Y)-->aux_3(?X,?Y)
+R40:	member(?X,?Y)-->member(?X,?Y)
+R41:	degreeFrom(?X,?Y)-->degreeFrom(?X,?Y)
+R42:	Organization(?X)-->Organization(?X)
+R43:	Work(?X)-->Work(?X)
+R44:	AdministrativeStaff(?X)-->AdministrativeStaff(?X)
+R45:	Organization(?X)-->Organization(?X)
+R46:	Person(?X)-->Person(?X)
+R47:	Course(?X)-->Course(?X)
+R48:	degreeFrom(?X,?Y)-->degreeFrom(?X,?Y)
+R49:	Person(?X)-->Person(?X)
+R50:	aux_4(?X,?Y)-->aux_4(?X,?Y)
+R51:	Student(?X)-->Student(?X)
+R52:	University(?Y)-->University(?Y)
+R53:	Organization(?X)-->Organization(?X)
+R54:	Person(?X)-->Person(?X)
+R55:	FacultyStaff(?X)-->FacultyStaff(?X)
+R56:	University(?Y)-->University(?Y)
+R57:	Work(?X)-->Work(?X)
+R58:	Employee(?X)-->Employee(?X)
+R59:	FacultyStaff(?X)-->FacultyStaff(?X)
+R60:	Student(?X)-->Student(?X)
+R61:	Person(?X)-->Person(?X)
+R62:	FacultyStaff(?X)-->FacultyStaff(?X)
+R63:	Professor(?X)-->Professor(?X)
+R64:	Work(?X)-->Work(?X)
+R65:	Faculty(?Y)-->Faculty(?Y)
+R66:	Person(?Y)-->Person(?Y)
+R67:	Person(?Y)-->Person(?Y)
+R68:	University(?Y)-->University(?Y)
+R69:	University(?Y)-->University(?Y)
+R70:	Organization(?Y)-->Organization(?Y)
+R71:	University(?Y)-->University(?Y)
+R72:	Organization(?X)-->Organization(?X)
+R73:	Professor(?X)-->Professor(?X)
+R74:	headOf(?X,?Y)-->headOf(?X,?Y)
+R75:	College(?Y)-->College(?Y)
+R76:	worksFor(?X,?Y)-->worksFor(?X,?Y)
+R77:	Organization(?Y)-->Organization(?Y)
+R78:	takesCourse(?X,?Y)-->takesCourse(?X,?Y)
+R79:	Course(?Y)-->Course(?Y)
+R80:	takesCourse(?X,?Y)-->takesCourse(?X,?Y)
+R81:	GraduateCourse(?Y)-->GraduateCourse(?Y)
+R82:	headOf(?X,?Y)-->headOf(?X,?Y)
+R83:	Program(?Y)-->Program(?Y)
+
+R0	-->	R0,R2,R14,R20,R24,R35,R37,R63,R73,
+R1	-->	R1,R55,R59,R62,
+R2	-->	R0,R2,R14,R20,R24,R35,R37,R63,R73,
+R3	-->	R3,
+R4	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R5	-->	R5,R27,R47,R79,
+R6	-->	R6,
+R7	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R8	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R9	-->	R9,R18,R43,R57,R64,
+R10	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R11	-->	R11,R34,R52,R56,R68,R69,R71,
+R12	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R13	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R14	-->	R0,R2,R14,R20,R24,R35,R37,R63,R73,
+R15	-->	R15,R22,R41,R48,
+R16	-->	R16,
+R17	-->	R17,R58,
+R18	-->	R9,R18,R43,R57,R64,
+R19	-->	R19,
+R20	-->	R0,R2,R14,R20,R24,R35,R37,R63,R73,
+R21	-->	R21,
+R22	-->	R15,R22,R41,R48,
+R23	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R24	-->	R0,R2,R14,R20,R24,R35,R37,R63,R73,
+R25	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R26	-->	R26,
+R27	-->	R5,R27,R47,R79,
+R28	-->	R28,
+R29	-->	R29,R44,
+R30	-->	R30,R65,
+R31	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R32	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R33	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R34	-->	R11,R34,R52,R56,R68,R69,R71,
+R35	-->	R0,R2,R14,R20,R24,R35,R37,R63,R73,
+R36	-->	R36,R51,R60,
+R37	-->	R0,R2,R14,R20,R24,R35,R37,R63,R73,
+R38	-->	R38,
+R39	-->	R39,
+R40	-->	R40,
+R41	-->	R15,R22,R41,R48,
+R42	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R43	-->	R9,R18,R43,R57,R64,
+R44	-->	R29,R44,
+R45	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R46	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R47	-->	R5,R27,R47,R79,
+R48	-->	R15,R22,R41,R48,
+R49	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R50	-->	R50,
+R51	-->	R36,R51,R60,
+R52	-->	R11,R34,R52,R56,R68,R69,R71,
+R53	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R54	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R55	-->	R1,R55,R59,R62,
+R56	-->	R11,R34,R52,R56,R68,R69,R71,
+R57	-->	R9,R18,R43,R57,R64,
+R58	-->	R17,R58,
+R59	-->	R1,R55,R59,R62,
+R60	-->	R36,R51,R60,
+R61	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R62	-->	R1,R55,R59,R62,
+R63	-->	R0,R2,R14,R20,R24,R35,R37,R63,R73,
+R64	-->	R9,R18,R43,R57,R64,
+R65	-->	R30,R65,
+R66	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R67	-->	R7,R8,R12,R23,R25,R31,R32,R46,R49,R54,R61,R66,R67,
+R68	-->	R11,R34,R52,R56,R68,R69,R71,
+R69	-->	R11,R34,R52,R56,R68,R69,R71,
+R70	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R71	-->	R11,R34,R52,R56,R68,R69,R71,
+R72	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R73	-->	R0,R2,R14,R20,R24,R35,R37,R63,R73,
+R74	-->	R74,R82,
+R75	-->	R75,
+R76	-->	R76,
+R77	-->	R4,R10,R13,R33,R42,R45,R53,R70,R72,R77,
+R78	-->	R78,R80,
+R79	-->	R5,R27,R47,R79,
+R80	-->	R78,R80,
+R81	-->	R81,
+R82	-->	R74,R82,
+R83	-->	R83,
+
+
+[2] STRONGLY CONNECTED COMPONENTS
+
+C0:	83
+C1:	81
+C2:	78,80
+C3:	76
+C4:	75
+C5:	74,82
+C6:	50
+C7:	40
+C8:	39
+C9:	38
+C10:	36,51,60
+C11:	30,65
+C12:	29,44
+C13:	28
+C14:	26
+C15:	21
+C16:	19
+C17:	17,58
+C18:	16
+C19:	15,22,41,48
+C20:	11,34,52,56,68,69,71
+C21:	9,18,43,57,64
+C22:	7,8,12,23,25,31,32,46,49,54,61,66,67
+C23:	6
+C24:	5,27,47,79
+C25:	4,10,13,33,42,45,53,70,72,77
+C26:	3
+C27:	1,55,59,62
+C28:	0,2,14,20,24,35,37,63,73
+C0	-->	C0,
+C1	-->	C1,
+C2	-->	C2,
+C3	-->	C3,
+C4	-->	C4,
+C5	-->	C5,
+C6	-->	C6,
+C7	-->	C7,
+C8	-->	C8,
+C9	-->	C9,
+C10	-->	C10,
+C11	-->	C11,
+C12	-->	C12,
+C13	-->	C13,
+C14	-->	C14,
+C15	-->	C15,
+C16	-->	C16,
+C17	-->	C17,
+C18	-->	C18,
+C19	-->	C19,
+C20	-->	C20,
+C21	-->	C21,
+C22	-->	C22,
+C23	-->	C23,
+C24	-->	C24,
+C25	-->	C25,
+C26	-->	C26,
+C27	-->	C27,
+C28	-->	C28,
+
+
+[3] DIAGNOSTIC
+
+DECIDABLE CLASS CHECKS
+Graph of Rule Dependencies labels :
+	weakly-acyclic( fes )
+	sticky( fus )
+	weakly-sticky( )
+	atomic-hypothesis( fus gbts )
+	domain-restricted( fus )
+	range-restricted( fus gbts )
+
+Strongly Connected Components labels :
+C 0	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 1	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 2	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 3	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 4	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 5	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 6	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 7	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; 
+C 8	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 9	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 10	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 11	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 12	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 13	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 14	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; 
+C 15	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 16	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; 
+C 17	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 18	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; 
+C 19	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; 
+C 20	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 21	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 22	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 23	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 24	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 25	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 26	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 27	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+C 28	weakly-acyclic( fes ) ; sticky( fus ) ; weakly-sticky( ) ; atomic-hypothesis( fus gbts ) ; domain-restricted( fus ) ; range-restricted( fus gbts ) ; frontier-1( gbts ) ; 
+
+ABSTRACT CLASS TO USE
+All the GRD rules belongs to the Finite Expansion Set abstract class.

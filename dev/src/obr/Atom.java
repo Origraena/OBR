@@ -14,9 +14,11 @@ import java.util.ArrayList;
 public class Atom implements Iterable<Term> {
 
 	/** Represents the begin of a term list when the atom is under a String format. */
-	public static final String BEGIN_TERM_LIST = "<";
+	public static final String BEGIN_TERM_LIST = "\\(";
+	public static final String BEGIN_TERM_LIST_W = "(";
 	/** Represents the end of a term list when the atom is under a String format. */
-	public static final String END_TERM_LIST = ">";
+	public static final String END_TERM_LIST = "\\)";
+	public static final String END_TERM_LIST_W = ")";
 	/** Represents the term separator when the atom is under a String format. */
 	public static final String TERM_SEPARATOR = ",";
 
@@ -90,14 +92,14 @@ public class Atom implements Iterable<Term> {
 	@Override
 	public String toString() {
 		StringBuilder string = new StringBuilder(getPredicate().getLabel());
-		string.append(BEGIN_TERM_LIST);
+		string.append(BEGIN_TERM_LIST_W);
 		for (int i = 0 ; i < getArity()-1 ; i++) {
 			string.append(get(i));
 			string.append(TERM_SEPARATOR);
 		}
 		if (getArity() >= 1)
 			string.append(get(getArity()-1));
-		string.append(END_TERM_LIST);
+		string.append(END_TERM_LIST_W);
 		return string.toString();
 	}
 

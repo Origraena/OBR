@@ -1,0 +1,75 @@
+\documentclass[a4paper]{report}
+
+\usepackage[french]{babel}       
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{lscape}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+
+\pagestyle{headings}
+\thispagestyle{empty}
+\geometry{a4paper,twoside,left=2.5cm,right=2.5cm,marginparwidth=1.2cm,marginparsep=3mm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+\large
+\setlength{\parskip}{5mm plus2mm minus2mm}
+\lstset{language=Java, showstringspaces=false, numbers=left, numberstyle=\tiny, tabsize=4}
+
+
+\input{src/guardpage.tex}
+
+\chapter{Pr\'eambule}
+
+\section{Introduction}\label{introduction}
+\input{src/introduction/introduction.tex}
+
+\section{Probl\'ematique}\label{problematique}
+\input{src/problematique/problematique.tex}
+
+\section{Etat de l'art}\label{etatart}
+\input{src/etat_art/etat_art.tex}
+
+
+\chapter{Th\'eorie}
+
+\section{D\'efinitions}\label{definitions}
+\input{src/definitions/definitions.tex}
+
+\section{Graphe de d\'ependances des r\`egles}\label{grd}
+\input{src/grd/grd.tex}
+
+\section{Classes de r\`egles}\label{classes_regles}
+\input{src/classes_regles/classes_regles.tex}
+
+
+\chapter{Pratique}
+
+\section{Outils utilis\'es}\label{outils_utilises}
+\input{src/outils_utilises/outils_utilises.tex}
+
+\section{Manuel}\label{manuel}
+\input{src/manuel/manuel.tex}
+
+
+\chapter{Conclusion}
+\section{Conclusion}\label{conclusion}
+\input{src/conclusion/conclusion.tex}
+
+\end{document}
+
+\vfill
+{\raggedleft R\'ealis\'e avec \LaTeX{} \par}
+
+\end{document}
