@@ -1,0 +1,18 @@
+% base.tex
+
+\section{Base de connaissance}\label{def_base}
+Une base de connaissance $K = (F,R)$ 
+est constituée d'un ensemble de {\em faits} représenté
+par une conjonction d'atomes $F$, ainsi que d'une {\em ontologie} représentée 
+par un ensemble de règles $R$.
+
+Les faits sont souvent considérés comme complètement instanciés, c'est à dire ne
+contenant que des constantes, mais ici, les règles contenant des variables existentielles
+peuvent générer de nouveaux individus. Donc nous définissons $F$ comme une conjonction
+d'atomes existentiellement fermés.
+
+%Prenons l'exemple suivant :\\
+%$R = \{\forall x \exists y (homme(x) \rightarrow homme(y) \wedge parent(y,x))\}$\\
+%$F = \{homme('A')\}$\\
+
+

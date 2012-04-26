@@ -60,6 +60,33 @@ public class GRDAnalyser {
 					return true;
 			return false;
 		}
+		public boolean isFES() {
+			if (_grdLabels.size() > 0) {
+				for (int i = 0 ; (i < _grdLabels.size()) ; i++) {
+					if (_grdLabels.get(i).isFES())
+						return true;
+				}
+			}
+			return false;
+		}
+		public boolean isGBTS() {
+			if (_grdLabels.size() > 0) {
+				for (int i = 0 ; (i < _grdLabels.size()) ; i++) {
+					if (_grdLabels.get(i).isGBTS())
+						return true;
+				}
+			}
+			return false;
+		}
+		public boolean isFUS() {
+			if (_grdLabels.size() > 0) {
+				for (int i = 0 ; (i < _grdLabels.size()) ; i++) {
+					if (_grdLabels.get(i).isFUS())
+						return true;
+				}
+			}
+			return false;
+		}
 
 		/**
 		 * <p>Process all checks in a specific order :
@@ -77,8 +104,6 @@ public class GRDAnalyser {
 			// init
 			_grdLabels = new ArrayList<DecidableClassLabel>();
 			_sccLabels = new ArrayList<ArrayList<DecidableClassLabel> >(_grd.getNbComponents());
-			for (int i = 0 ; i < _grd.getNbComponents() ; i++)
-				_sccLabels.add(new ArrayList<DecidableClassLabel>());
 				// starts checking
 			if (_grd.isCyclic()) {
 				DecidableClassLabel l = null;
@@ -91,6 +116,7 @@ public class GRDAnalyser {
 					catch (UnsupportedOperationException e) { /* this check function cannot be used against the full grd */ }
 				}
 				for (int i = 0 ; i < _grd.getNbComponents() ; i++) {
+					_sccLabels.add(new ArrayList<DecidableClassLabel>());
 					for (DecidableClassCheck function : _checkFunctions) {
 						try {
 							l = function.sccCheck(_grd,i);
@@ -130,7 +156,8 @@ public class GRDAnalyser {
 			result.append('\n');
 
 			// scc
-			result.append("Strongly Connected Components labels :\n");
+			if (_sccLabels.size() > 0)
+				result.append("Strongly Connected Components labels :\n");
 			for (int i = 0 ; i < _sccLabels.size() ; i++) {
 				result.append("C ");
 				result.append(i);
@@ -148,7 +175,7 @@ public class GRDAnalyser {
 			
 			return result.toString();
 		}
-	
+
 		/** Contains all determined decidable class labels for the GRD. */
 		private ArrayList<DecidableClassLabel> _grdLabels;
 		/** Contains all determined decidable class labels for each strongly connected component of the GRD. */
@@ -175,24 +202,19 @@ public class GRDAnalyser {
 		public void process() { 
 			if (_processed)
 				unprocess();
-			if (_grd.isAcyclic()) {
+			_decidable = true;
+			if (isFES())
 				_grdAbstractClass = DecidableClassLabel.FES;
-				_decidable = true;
-			}
-			else {
+			else if (isGBTS())
+				_grdAbstractClass = DecidableClassLabel.GBTS;
+			else if (isFUS())
+				_grdAbstractClass = DecidableClassLabel.FUS;
+			else
+				_decidable = false;
+			//if (!_decidable) {
 				_sccAbstractClass = new int[_grd.getNbComponents()];
 				processCombine();
-				int label = _sccAbstractClass[0];
-				int i = 1;
-				for (i = 1 ; i < _sccAbstractClass.length ; i++) {
-					if (label != _sccAbstractClass[i]) {
-						_decidable = false;
-						break;
-					}
-				}
-				if (i == _sccAbstractClass.length)
-					_grdAbstractClass = label;
-			}
+			//}
 			_processed = true;
 		}
 
@@ -233,17 +255,23 @@ public class GRDAnalyser {
 			if (_grdAbstractClass > 0) {
 				result.append("All the GRD rules belongs to the ");
 				result.append(DecidableClassLabel.longName(_grdAbstractClass));
-				result.append(" abstract class.");
+				result.append(" abstract class.\n");
+				result.append("But you can also use specific algorithms :\n\n");
+				result.append("GRD   \t");
+				result.append(DecidableClassLabel.longName(_grdAbstractClass));
+				result.append('\n');
 			}
-			else {
-				result.append("Strongly Connected Components Abstract Classes :\n");
-				for (int i = 0 ; i < _sccAbstractClass.length ; i++) {
-					result.append("SCC[");
-					result.append(i);
-					result.append("]\t");
-					result.append(DecidableClassLabel.longName(_sccAbstractClass[i]));
-					result.append('\n');
-				}
+			else 
+				result.append("You must use different algorithms depending on the stongly connected component.\n\n");
+//			else {
+//				result.append("Strongly Connected Components Abstract Classes :\n");
+			for (int i = 0 ; i < _sccAbstractClass.length ; i++) {
+				result.append("SCC[");
+				result.append(i);
+				result.append("]\t");
+				result.append(DecidableClassLabel.longName(_sccAbstractClass[i]));
+				result.append('\n');
+//				}
 			}
 			return result.toString();
 		}
@@ -287,6 +315,7 @@ public class GRDAnalyser {
 					return;
 				}
 			}
+			_decidable = false;
 			_sccAbstractClass[sccNextID] = 0;
 		}
 
@@ -312,9 +341,9 @@ public class GRDAnalyser {
 
 	public String diagnostic() {
 		StringBuilder result = new StringBuilder();
-		result.append("DECIDABLE CLASS CHECKS\n");
+		result.append("[a] DECIDABLE CLASS CHECKS\n\n");
 		result.append(_decidableChecker.diagnostic());
-		result.append("\nABSTRACT CLASS TO USE\n");
+		result.append("\n\n[b] ABSTRACT CLASS TO USE\n\n");
 		result.append(_abstractChecker.diagnostic());
 		return result.toString();
 	}
@@ -334,6 +363,18 @@ public class GRDAnalyser {
 
 	public void processAbstractClass() {
 		_abstractChecker.process();
+	}
+
+	public boolean isFUS() {
+		return _decidableChecker.isFUS();
+	}
+
+	public boolean isFES() {
+		return _decidableChecker.isFES();
+	}
+	
+	public boolean isGBTS() {
+		return _decidableChecker.isGBTS();
 	}
 
 	public boolean isFUS(int sccID) {

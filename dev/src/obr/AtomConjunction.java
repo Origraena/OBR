@@ -1,6 +1,7 @@
 package obr;
 
 import moca.graphs.BipartedGraph;
+import moca.graphs.vertices.VertexCollection;
 import moca.graphs.vertices.Vertex;
 import moca.graphs.vertices.VertexArrayList;
 import moca.graphs.edges.Edge;
@@ -280,6 +281,75 @@ public class AtomConjunction implements Iterable<Atom> {
 		_graph.removeVertex(atomID);
 	}
 
+	public int getNbConstants() {
+		int result = 0;
+		final int nbTerms = getNbTerms();
+		for (int i = 0 ; i < nbTerms ; i++)
+			if (getTerm(i).isConstant())
+				result++;
+		return result;
+	}
+
+	public int getNbVariables() {
+		int result = 0;
+		final int nbTerms = getNbTerms();
+		for (int i = 0 ; i < nbTerms ; i++)
+			if (getTerm(i).isVariable())
+				result++;
+		return result;
+	}
+
+	public VertexCollection<Object> constants() {
+		VertexArrayList<Object> result = new VertexArrayList<Object>();
+		final int nbTerms = getNbTerms();
+		for (int i = 0 ; i < nbTerms ; i++)
+			if (getTerm(i).isConstant())
+				result.add(getVertexTerm(i));
+		return result;
+	}
+
+	public VertexCollection<Object> variables() {
+		VertexArrayList<Object> result = new VertexArrayList<Object>();
+		final int nbTerms = getNbTerms();
+		for (int i = 0 ; i < nbTerms ; i++)
+			if (getTerm(i).isVariable())
+				result.add(getVertexTerm(i));
+		return result;
+	}
+
+	public VertexCollection<Object> domain(){
+		return _graph.getSecondSet();
+	}
+
+	public VertexCollection<Object> constants(int atomID) {
+		if ((atomID > getNbAtoms()) || (atomID < 0))
+			return null;
+		VertexArrayList<Object> result = new VertexArrayList<Object>();
+		Vertex<Object> term;
+		for (NeighbourIterator iterator = vertexTermIteratorFromAtom(atomID) ; iterator.hasNext() ; ) {
+			term = iterator.next();
+			if ((((Term)(term.getValue())).isConstant())
+			&& (!result.contains(term)))
+				result.add(term);
+		}
+		return result;
+	}
+
+	public VertexCollection<Object> variables(int atomID) {
+		if ((atomID > getNbAtoms()) || (atomID < 0))
+			return null;
+		VertexArrayList<Object> result = new VertexArrayList<Object>();
+		Vertex<Object> term;
+		for (NeighbourIterator iterator = vertexTermIteratorFromAtom(atomID) ; iterator.hasNext() ; ) {
+			term = iterator.next();
+			if ((((Term)(term.getValue())).isVariable())
+			&& (!result.contains(term)))
+				result.add(term);
+		}
+		return result;
+	}
+
+	
 	/**
 	 * Adds a term into the atom conjunction.<br />
 	 * Note that the term will not be connected to any atom. Use addEdge method to make these connections.<br />

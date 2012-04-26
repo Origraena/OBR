@@ -45,7 +45,7 @@ public class DomainRestrictedCheck implements DecidableClassCheck {
 		for (Vertex<AtomicRule> vrule : rules) {
 			rule = vrule.getValue();
 			frontierSize = rule.frontier().size();
-			if ((frontierSize > 0) && (frontierSize < rule.getNbTerms()))
+			if ((frontierSize > 0) && (frontierSize < rule.getNbUniversalVariables()))
 				return false;
 		}
 		return true;

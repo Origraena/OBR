@@ -1,12 +1,12 @@
 % grd.tex
 
 Le graphe de dépendances de règles est une représentation d'une base de règles très
-intéressante. En effet il permet de regarder rapidement quelles règles pourront
+intéressante. En effet il permet de vérifier rapidement quelles règles pourront
 éventuellement être déclenchées après l'application d'une règle donnée.
 
 De plus il permet de déterminer l'appartenance à certaines classes de règles, et le
-calcul de ses composantes permet de "découper" la base de manière à effectuer
-les requêtes de manières différentes selon celles-ci. 
+calcul de ses composantes fortement connexes permet de "découper" la base de manière à 
+effectuer les requêtes de manières différentes selon celles-ci. 
 
 
 \section{Définition}\label{grd_def}
@@ -20,7 +20,6 @@ graphe orienté $GRD = (V_{GRD},E_{GRD})$ avec :
 Intuitivement, on crée un sommet par règle et on relie $R_i$ à $R_j$ si $R_i$ "peut
 amener à déclencher" $R_j$ ($R_j$ dépend de $R_i$).
 La notion d'unificateur est abordée dans la section suivante.
-
 
 
 \section{Unification de règles}\label{grd_unif}
@@ -40,7 +39,7 @@ si un tel unificateur existe, puis la correction de celui-ci ainsi que ses compl
 	permettant de répondre à ce problème est détaillé.
 
 	Dans la suite, les règles sont supposées représentées par des graphes (tels que
-	définis en \ref{def_representation}) et à conclusion atomique.
+	définis en \ref{def_representation_regle}) et à conclusion atomique.
 
 	% TODO changer les couleurLogique en estLocalementUnifiable, et les couleur en
 	% estTraite
@@ -53,8 +52,10 @@ si un tel unificateur existe, puis la correction de celui-ci ainsi que ses compl
 	\input{./src/grd/unification/algorithme_unification.tex}
 
 	Le deuxième algorithme est utilisé pour le calcul des bons ensembles d'unification à
-	partir d'un atome racine. Tant qu'aucune erreur n'est détectée il "avale" les atomes
-	voisins aux termes en position "existentielles".
+	partir d'un atome racine. Tant qu'aucune erreur n'est détectée il {\em avale} les atomes
+	voisins aux termes en positions existentielles.
+	Les positions existentielles sont les indices des variables existentielles dans
+	l'atome de conclusion.
 	\input{./src/grd/unification/algorithme_extension.tex}
 
 	Remarque : \\
@@ -88,5 +89,41 @@ si un tel unificateur existe, puis la correction de celui-ci ainsi que ses compl
 	\input{./src/grd/unification/complexites.tex}
 
 \section{Composantes fortement connexes}\label{grd_scc}
+
+Les composantes fortement connexes du graphe de dépendances sont utilisées pour le 
+{\em découper} de façon à attribuer des étiquettes différentes à celles-ci en fonction
+des classes concrètes auxquelles son ensemble de règles appartient.
+
+De plus une fois chaque sous ensemble étiqueté, il faut encore vérifier que celles-ci
+sont compatibles entre elles.
+
+Pour cela, nous définissons le graphe orienté des composantes fortement connexes associé
+tel que son ensemble de sommets est l'ensemble des composantes du graphe, et
+qu'il existe un arc entre deux composantes $C_i$ et $C_j$ si et seulement s'il existe un
+arc d'un sommet de $C_i$ vers un sommet de $C_j$.
+Par définition des composantes fortement connexes, ce graphe est évidemment sans
+circuit, et les arcs de celui-ci influent directement sur la décidabilité de l'ensemble
+de règles.
+
+On dit que $C_i$ {\em précède} $C_j$ s'il n'existe aucun arc de $C_j$ vers $C_i$, et on
+note cette relation $C_i \triangleright C_j$.
+
+De plus,
+on associe à chaque $C_i$ une étiquette qui déterminera la classe abstraite considérée pour
+cette composante.
+Une condition (suffisante)%TODO
+pour que l'ensemble de règles soit décidable est la suivante :\\
+$\{C_i : etiquette(C_i) = FES\} \triangleright \{C_i : etiquette(C_i) = GBTS\} \triangleright
+\{C_i : etiquette(C_i) = FUS\}$
+C'est à dire qu'aucune règle \fes ne doit dépendre d'une règle \fus ou \gbts, et
+qu'aucune règle \gbts ne doit dépendre d'une règle \fus.
+
+En effet les algorithmes de chaînage arrière par exemple réécrivent la requête jusqu'à ce
+qu'elle corresponde à la base, tandis que ceux avant ajoutent des faits jusqu'à obtenir
+la requête. Il est donc évident que si une composante n'accepte que le chaînage arrière,
+il ne doit exister aucune règle de celle-ci de laquelle dépende une règle de la
+composante acceptant uniquement le chaînage avant (si tel était le cas, cette règle ne
+serait jamais déclenchée).
+
 
 

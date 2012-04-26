@@ -1,18 +1,46 @@
 % requetes.tex
 
 \section{Chaînage avant}\label{def_forward}
+% TODO
+%%%%	\subsection{Dérivation d'une règle}\label{def_derivation}
+%%%%	Une règle $R_i = (H_i,C_i)$ est dérivable sur un fait $F$ si et seulement s'il existe un
+%%%%	homomorphisme $\pi$ de l'hypothèse $H_i$ de $R_i$ dans $F$.
+%%%%	Le résultat d'une telle dérivation est un nouveau fait $F' = F \cup \pi^{safe}(C_i)$ 
+%%%%	% avec $\pi^{safe} \in \PI$ l'ensemble des homomorphismes de $H$ dans $F$.
+%%%%	où $\pi^{safe}$ est une substitution qui remplace chacune des variables $x$ de la
+%%%%	frontière de $R_i$ par $\pi(x)$,
+%%%%	et chacune des variables restantes (donc existentielles dans $R_i$) par une nouvelle
+%%%%	variable générée.
 
-\subsection{Dérivation d'une règle}\label{def_derivation}
-Une règle $R = (H,C)$ est dérivable sur un fait $F$ si et seulement s'il existe un
-homomorphisme $\pi$ de l'hypothèse $H$ de $R$ dans $F$.
-Le résultat d'une telle dérivation est un nouveau fait $F' = F \cup \pi_i(C)$
+%\subsection{Principe}\label{principe_forward}
+Afin de déterminer si une requête bouléenne $Q$ peut être déduite d'une base de connaissance 
+$B = (R,F)$, 
+le chaînage avant {\em dérive} de manière itérative la base de faits $F$ (qui peut être 
+vue comme un fait unique) par l'ensemble de  règles R de manière à générer (en cherchant
+de nouveaux homomorphismes) de nouveaux faits qui devront à leur tour être étudiés.
+Avant chaque dérivation, l'algorithme vérifie si $F^i$ contient $Q$ auquel cas la réponse 
+est positive, et si $F^{i} = F^{i-1}$ afin de savoir si la chaîne de dérivation est finie et 
+dans ce cas donner une réponse négative.
 
-Le chaînage avant consiste à {\em appliquer} une règle sur une base de faits (qui peut
-être vue comme un fait unique) de manière à générer de nouveaux faits qui devront à leur
-tour être étudiés.
+%%%%	\begin{center}
+%%%%	\begin{algorithm}
+%%%%	\caption{Chaînage avant}\label{algo_forward}
+%%%%	\algsetup{indent=2em,linenodelimiter= }
+%%%%	\begin{algorithmic}[1]
+%%%%	\REQUIRE	$Q$ : conjonction d'atomes correspondant à une requête conjonctive bouléenne,
+%%%%				$R$ : un ensemble de règles,
+%%%%				$F$ : un fait
+%%%%	\ENSURE Succès si $Q$ peut être déduit de $R$ et $F$, échec sinon
+%%%%		\IF {$F 
+
+%%%%	\end{algorithmic}
+%%%%	\end{algorithm}
+%%%%	\end{center}
 
 % On part des faits et on essaie d'arriver à Q
 
 \section{Chaînage arrière}\label{def_backward}
+Le chaînage arrière quant à lui consiste à réécrire la requête $Q$ juqu'à ce qu'elle soit
+dans $F$.
 % On part de Q et on réécrit jusqu'à ce que Q soit dans K
 

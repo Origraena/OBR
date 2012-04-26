@@ -1,4 +1,4 @@
 java -cp target/class/:lib/graphs.jar Main \
-res/S.dtg \
-res/S.ps \
-res/S_scc.ps
+res/galen-lite.dtg \
+res/galen-lite.ps \
+res/galen-lite_scc.ps

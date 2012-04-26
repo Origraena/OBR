@@ -1,4 +1,4 @@
-import mocrulebrulebrulebasesese.graphs.*;
+import moca.graphs.*;
 import moca.graphs.vertices.*;
 import moca.graphs.edges.*;
 import java.lang.Exception;
@@ -20,20 +20,22 @@ public class Main {
 			}
 
 			System.out.println("\n[1] GRAPH OF RULE DEPENDENCIES\n\n"+grd);
-			System.out.println("\n[2] STRONGLY CONNECTED COMPONENTS\n");
+			System.out.println("\n\n[2] STRONGLY CONNECTED COMPONENTS\n");
 			System.out.println(grd.stronglyConnectedComponentsToString());
 
 			GRDAnalyser analyser = new GRDAnalyser(grd);
-			analyser.addDecidableClassCheck(new WeaklyAcyclicCheck());
-			analyser.addDecidableClassCheck(new StickyCheck());
-			analyser.addDecidableClassCheck(new WeaklyStickyCheck());
-			analyser.addDecidableClassCheck(new AtomicHypothesisCheck());
-			analyser.addDecidableClassCheck(new DomainRestrictedCheck());
 			analyser.addDecidableClassCheck(new DisconnectedCheck());
 			analyser.addDecidableClassCheck(new RangeRestrictedCheck());
+			analyser.addDecidableClassCheck(new AtomicHypothesisCheck());
+			analyser.addDecidableClassCheck(new WeaklyAcyclicCheck());
 			analyser.addDecidableClassCheck(new FrontierOneCheck());
-			
-			System.out.println("\n[3] DIAGNOSTIC\n");
+			analyser.addDecidableClassCheck(new GuardedCheck());
+			analyser.addDecidableClassCheck(new FrontierGuardedCheck());
+			analyser.addDecidableClassCheck(new DomainRestrictedCheck());
+			analyser.addDecidableClassCheck(new StickyCheck());
+			analyser.addDecidableClassCheck(new WeaklyStickyCheck());
+
+			System.out.println("\n\n[3] DIAGNOSTIC\n");
 			analyser.process();
 			System.out.println(analyser.diagnostic());
 

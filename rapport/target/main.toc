@@ -1,29 +1,39 @@
 \select@language {french}
-\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
-\contentsline {chapter}{\numberline {2}Probl\'ematique}{3}{chapter.2}
-\contentsline {chapter}{\numberline {3}Etat de l'art}{4}{chapter.3}
-\contentsline {chapter}{\numberline {4}D\'efinitions}{5}{chapter.4}
-\contentsline {section}{\numberline {4.1}Pr\'edicat}{5}{section.4.1}
-\contentsline {section}{\numberline {4.2}Atome}{5}{section.4.2}
-\contentsline {section}{\numberline {4.3}R\`egle}{5}{section.4.3}
-\contentsline {section}{\numberline {4.4}Repr\'esentation des Conjonctions d'Atomes}{6}{section.4.4}
-\contentsline {section}{\numberline {4.5}Impl\'ementation du Graphe}{6}{section.4.5}
-\contentsline {chapter}{\numberline {5}Graphe de d\'ependances des r\`egles}{7}{chapter.5}
-\contentsline {section}{\numberline {5.1}D\IeC {\'e}finition}{7}{section.5.1}
-\contentsline {section}{\numberline {5.2}Unification de r\IeC {\`e}gles}{7}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}D\IeC {\'e}finitions}{8}{subsection.5.2.1}
+\contentsline {chapter}{\numberline {1}Contexte}{2}{chapter.1}
+\contentsline {chapter}{\numberline {2}Notions de base}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Pr\'edicat}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Atome}{3}{section.2.2}
+\contentsline {section}{\numberline {2.3}Conjonction d'atomes}{3}{section.2.3}
+\contentsline {section}{\numberline {2.4}Repr\IeC {\'e}sentation graphique d'une conjonction d'atomes}{3}{section.2.4}
+\contentsline {section}{\numberline {2.5}R\`egle}{4}{section.2.5}
+\contentsline {section}{\numberline {2.6}Repr\IeC {\'e}sentation graphique d'une r\IeC {\`e}gle}{4}{section.2.6}
+\contentsline {section}{\numberline {2.7}R\IeC {\`e}gle \IeC {\`a} conclusion atomique}{5}{section.2.7}
+\contentsline {section}{\numberline {2.8}Base de connaissance}{6}{section.2.8}
+\contentsline {section}{\numberline {2.9}Cha\IeC {\^\i }nage avant}{6}{section.2.9}
+\contentsline {section}{\numberline {2.10}Cha\IeC {\^\i }nage arri\IeC {\`e}re}{6}{section.2.10}
+\contentsline {chapter}{\numberline {3}Graphe de d\IeC {\'e}pendances des r\IeC {\`e}gles}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}D\IeC {\'e}finition}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}Unification de r\IeC {\`e}gles}{7}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}D\IeC {\'e}finitions}{8}{subsection.3.2.1}
 \contentsline {subsubsection}{Substitution}{8}{section*.2}
 \contentsline {subsubsection}{Unificateur logique}{8}{section*.3}
 \contentsline {subsubsection}{Unificateur de conclusion atomique}{8}{section*.4}
 \contentsline {subsubsection}{Bonne unification atomique}{8}{section*.5}
 \contentsline {subsubsection}{Bon ensemble d'unification atomique minimal}{8}{section*.6}
-\contentsline {subsection}{\numberline {5.2.2}Algorithmes}{9}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Correction}{11}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}Complexites}{11}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {3.2.2}Algorithmes}{9}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Correction}{11}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Complexites}{11}{subsection.3.2.4}
 \contentsline {subsubsection}{Temps}{12}{section*.7}
 \contentsline {subsubsection}{Espace}{12}{section*.8}
-\contentsline {section}{\numberline {5.3}Composantes fortement connexes}{12}{section.5.3}
-\contentsline {chapter}{\numberline {6}Classes de r\`egles}{13}{chapter.6}
-\contentsline {chapter}{\numberline {7}Outils utilis\'es}{14}{chapter.7}
-\contentsline {chapter}{\numberline {8}Manuel}{15}{chapter.8}
-\contentsline {chapter}{\numberline {9}Conclusion}{16}{chapter.9}
+\contentsline {section}{\numberline {3.3}Composantes fortement connexes}{12}{section.3.3}
+\contentsline {chapter}{\numberline {4}Classes de r\IeC {\`e}gles}{14}{chapter.4}
+\contentsline {section}{\numberline {4.1}Classes abstraites}{14}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Finite Expansion Set}{14}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Finite Unification Set}{14}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Bounded Treewidth Set}{14}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}Classes concr\IeC {\`e}tes}{15}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Acyclicit\IeC {\'e} du graphe de d\IeC {\'e}pendance des r\IeC {\`e}gles}{15}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Domaine restreint}{15}{subsection.4.2.2}
+\contentsline {chapter}{\numberline {5}Impl\IeC {\'e}mentation}{16}{chapter.5}
+\contentsline {section}{\numberline {5.1}Conjonction d'atomes}{16}{section.5.1}
+\contentsline {chapter}{\numberline {6}Perspectives}{17}{chapter.6}

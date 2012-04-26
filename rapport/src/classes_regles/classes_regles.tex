@@ -9,9 +9,46 @@ De plus elles sont incomparables entre elles, et non exclusives.
 
 \subsection{Finite Expansion Set}\label{classes_abstraites_fus}
 La première classe est définie comme assurant la finition des algorithmes de chaînage
-avant.
+avant. Ainsi tout ensemble de règles appartenant à cette classe peut être utilisé pour
+les dérivations de ces algorithmes.
+Dans le cas de certaines classes, il est par contre nécessaire d'ajouter des conditions
+d'arrêt, celles-ci sont détaillées plus loin.
 
 \subsection{Finite Unification Set}\label{classes_abstraites_fes}
+La deuxième classe abstraite quant à elle assure la finition des algorithmes de chaînage
+arrière. De la même manière que précedemment il est parfois nécessaire de modifier les
+conditions d'arrêt.
 
 \subsection{Bounded Treewidth Set}\label{classes_abstraites_bts}
+La dernière définit les ensembles de règles où la production de nouvelles règles suit la
+forme d'un arbre.
+Cette classe ne permet pas l'utilisation direct d'algorithmes, mais par contre la classe
+abstraite Greedy Bounded Treewidth qui est une spécialisation de celle-ci, s'assure que
+le chaînage avant s'exécute en temps fini, et ce dès qu'un algorithme glouton de ... est
+utilisé.
+
+
+\section{Classes concrètes}\label{classes_concretes}
+
+\subsection{Acyclicité du graphe de dépendance des règles}\label{classe_agrd}
+Le seul fait que le graphe de dépendance soit ayclique suffit à certifier que le chaînage
+avant et arrière s'exécutent en temps fini, impliquant que si cette contrainte est satisfaite,
+l'ensemble des règles appartient à \fes et à \fus.
+
+\subsection{Domaine restreint}\label{classe_dr}
+Un ensemble de règles satisfait cette contrainte si tous les atomes de leur conclusion
+contiennent soit toutes les variables de l'hypothèse, soit aucune.
+Dans le cas des règles à conclusion atomique, cela revient à s'assurer que la frontière
+de chaque règle est soit égale à 0 soit au nombre de variables universelles.
+Cette contrainte est suffisante pour que l'ensemble de règles appartienne à \fus.
+
+%%%%	\subsection{}\label{classe_}
+%%%%	\subsection{}\label{classe_}
+%%%%	\subsection{}\label{classe_}
+%%%%	\subsection{}\label{classe_}
+%%%%	\subsection{}\label{classe_}
+%%%%	\subsection{}\label{classe_}
+%%%%	\subsection{}\label{classe_}
+%%%%	\subsection{}\label{classe_}
+%%%%	\subsection{}\label{classe_}
 

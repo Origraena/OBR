@@ -32,26 +32,26 @@ public class GuardedCheck implements DecidableClassCheck{
 	}
 
 	protected boolean check(Iterable<Vertex<AtomicRule> > rules) {
-/*		VertexCollection<Object> domain = null;
+		//System.out.println("-------------GUARDED?---------------");
+		AtomicRule rule;
+		int i,nbAtoms,nbVars;
 		boolean guarded;
 		for (Vertex<AtomicRule> vrule : rules) {
-			domain = vrule.getValue().domain();
-			for(Iterator<Vertex<Object>> it = vrule.getValue().vertexAtomIterator();it.hasNext();){
-				Atom current = (Atom) it.next().getValue();
-				guarded = true;
-				for(Term t : current){
-					if(!domain.contains(t)){
-						guarded = false;
-						break;
-					}
-				}
-				if(guarded)
-					return true;
+			rule = vrule.getValue();
+			nbAtoms = rule.getNbAtoms();
+			nbVars = rule.getNbUniversalVariables();
+			guarded = false;
+			//System.out.println("rule = "+rule+"\nnbAtoms = "+nbAtoms+"\nnbVars = "+nbVars);
+			for (i = 0 ; (i < nbAtoms) && !guarded ; i++) {
+				//System.out.println("i = "+i+"\nisHead()? "+rule.isHead(i)+"\nvars = "+rule.variables(i).size());
+				if ((!rule.isHead(i))
+				&&  (nbVars == rule.variables(i).size()))
+					guarded = true;
 			}
-		}*/
-
-		// TODO cette methode ne peut pas marcher, regarde bien, meme le cast ne peut pas
-		// renvoyer autre chose que null !!!!!!!!!
-		return false;
+			if (!guarded)
+				return false;
+		}
+		return true;
 	}
+
 }

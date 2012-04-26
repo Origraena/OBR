@@ -1,5 +1,6 @@
 \documentclass[a4paper]{report}
 
+% packages
 \usepackage[french]{babel}       
 \usepackage[utf8]{inputenc}
 \usepackage{setspace}
@@ -13,9 +14,23 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{tikz}
-\usetikzlibrary{trees}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+
+% commands
+\newcommand{\N}[0]{\mathbb{N}}
+\newcommand{\fes}[0]{{\em FES} }
+\newcommand{\fus}[0]{{\em FUS} }
+\newcommand{\bts}[0]{{\em BTS} }
+\newcommand{\gbts}[0]{{\em GBTS} }
+\newcommand{\FES}[0]{Finite Expansion Set}
+\newcommand{\FUS}[0]{Finite Unification Set}
+\newcommand{\BTS}[0]{Bounded Treewidth}
+\newcommand{\GBTS}[0]{Greedy Bounded Treewidth}
+\newcommand{\problem}[0]{problème de requête dans une base de connaissance}
+
+\input{src/tikz_config.tex}
+
 
 
 \pagestyle{headings}
@@ -30,36 +45,26 @@
 
 \input{src/guardpage.tex}
 
-\chapter{Introduction}\label{introduction}
-\input{src/introduction/introduction.tex}
+\chapter{Contexte}\label{contexte}
+\input{src/contexte/contexte.tex}
 
-\chapter{Probl\'ematique}\label{problematique}
-\input{src/problematique/problematique.tex}
-
-\chapter{Etat de l'art}\label{etatart}
-\input{src/etat_art/etat_art.tex}
-
-\chapter{De la logique du premier ordre}\label{definitions}
+\chapter{Notions de base}\label{notions}
 \input{src/definitions/definitions.tex}
 
-\chapter{Graphe de d\'ependances des r\`egles}\label{grd}
+\chapter{Graphe de dépendances des règles}\label{grd}
 \input{src/grd/grd.tex}
 
-\chapter{Classes de r\`egles}\label{classes_regles}
+\chapter{Classes de règles}\label{classes_regles}
 \input{src/classes_regles/classes_regles.tex}
 
-\chapter{Outils utilis\'es}\label{outils_utilises}
-\input{src/outils_utilises/outils_utilises.tex}
+\chapter{Implémentation}\label{implementation}
+\input{src/implementation/implementation.tex}
 
-\chapter{Manuel}\label{manuel}
-\input{src/manuel/manuel.tex}
-
-\chapter{Conclusion}\label{conclusion}
+\chapter{Perspectives}\label{conclusion}
 \input{src/conclusion/conclusion.tex}
-
-\end{document}
 
 \vfill
 {\raggedleft R\'ealis\'e avec \LaTeX{} \par}
 
 \end{document}
+

@@ -1,0 +1,44 @@
+% fig_representation_regle.tex
+
+\begin{figure}[h]
+\label{fig_representation_regle}
+\begin{center}
+
+\begin{tikzpicture}[
+	auto,
+	node distance=1.5cm,
+	inner sep=1mm
+]
+	% terms
+	\node [term]		(x)			[]						{};
+	\node [term]		(y)			[below of=x]			{};
+	\node [term]		(z)			[right of=x] 			{};
+
+	% atoms
+	\node[atombody] 	(salle)		[above left of=x] 		{salle$\backslash$1}
+		edge[atomedge]	node {1} 	(x)
+	;
+	\node[atombody] 	(date)		[below of=y] 			{date$\backslash$1}
+		edge[atomedge]	node {1}	(y)
+	;
+	\node[atombody]		(reservee)	[below left of=salle]	{reservée$\backslash$2}
+		edge[atomedge]	node {1}	(x)
+		edge[atomedge]	node {2}	(y)
+	;
+	\node[atomhead] 	(cours) 	[above of=z] 			{cours$\backslash$1}
+		edge[atomedge]	node {1}	(z)
+	;
+	\node[atomhead] 	(alieu) 	[below of=z] 			{aLieu$\backslash$3}
+		edge[atomedge]	node {1}	(z)
+		edge[atomedge]	node {2}	(x)
+		edge[atomedge]	node {3}	(y)
+	;
+\end{tikzpicture}
+\end{center}
+\caption{Exemple de représentation d'une règle}
+\end{figure}
+
+% EDGE :
+%\draw[-] (z) -- (b);
+%\draw[->] (z) -- (b);
+%\draw[<->] (z) -- (b);

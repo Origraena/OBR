@@ -1,0 +1,23 @@
+% implementation.tex
+
+\section{Conjonction d'atomes}\label{def_graphe}
+%TODO
+TODO => à adapter à la section
+
+Par la suite on supposera que le graphe $G_{K}$ associé à la conjonction $K$ 
+est impl\'ement\'e par deux ensembles de sommets (les atomes et les termes), 
+ainsi que par une liste de voisinage pour chaque sommet.
+De plus, chaque sommet peut avoir connaissance de son type de contenu parmis : 
+$atome$, $terme$, $constante$, $\forall-var$, $\exists-var$
+en temps constant.
+
+On note $n$ (resp. $t$) le nombre d'atomes (resp. de termes) dans $K$. 
+
+Op\'erations (et temps d'ex\'ecution associ\'e) :
+\begin{itemize}
+	\item Parcourir les sommets $atomes$ : $n$.
+	\item Parcourir tous les sommets : $n + t$.
+	\item Acc\'eder au $i^{eme}$ voisin d'un sommet : $constant$.
+\end{itemize}
+
+

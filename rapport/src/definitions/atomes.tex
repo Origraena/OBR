@@ -5,7 +5,7 @@
 	\item Un pr\'edicat not\'e $p \backslash n$ est un symbole relationnel d'arit\'e $n$.
 	\item On suppose que tout nom de pr\'edicat est unique.
 	\item On note $p_{i}$ la $i^{eme}$ position de $p$.
-	\item On note $P_{K}$ l'ensemble des pr\'edicats de $K$.
+%	\item On note $P_{A}$ l'ensemble des pr\'edicats de $K$.
 \end{itemize}
 
 \section{Atome}\label{def_atome}
@@ -14,12 +14,45 @@ On note :
 \begin{itemize}
 	\item $a_{i}$ le terme en position $i$ dans $a$. Un terme peut \^etre une {\em constante} 
 	ou une {\em variable}.
-	Une variable peut \^etre universelle (not\'ee $\forall-var$) ou existentielle (not\'ee 
-	$\exists-var$).
-	\item $dom(a) = \{a_{i} : \forall i \in [1,n]\}$, l'ensemble des termes de $a$
+	Une variable peut \^etre {\em libre}  ou {\em quantifiée} universellement 
+	(not\'ee $\forall-var$) ou existentiellement (not\'ee $\exists-var$).
+	\item $dom(a) = \{a_{i} : \forall\ i \in [1,n]\}$, l'ensemble des termes de $a$
 	\item $var(a)$ l'ensemble des variables de $a$
 	\item $cst(a)$ l'ensemble des constantes de $a$
 \end{itemize}
-Ces notations s'\'etendent aux {\em conjonctions d'atomes}.
+
+\section{Conjonction d'atomes}\label{def_conjonction}
+Une conjonction de $n$ atomes $A$ est définie telle que :\\
+$A = \bigwedge_{i = 1}^{n}k_i$
+avec $\forall\ i \in [1,n]\ a_i = p_i(a_{i1},a_{i2},...,a_{in_i})$ un atome de prédicat 
+$p_i \backslash n_i$. 
+
+\section{Représentation graphique d'une conjonction d'atomes}
+\label{def_representation_conjonction}
+Une conjonction d'atomes 
+%$K = k_{1} \wedge k_{2} \wedge ... \wedge k_{n}$ avec $k_{i} = p_i(t_{1}, t_{2}, ..., t_{p})$
+peut \^etre repr\'esent\'ee par le graphe non orient\'e $G_{A} = (V_{A},E_{A},\omega)$
+avec $V_{A}$ son ensemble de sommets, $E_{A}$,
+son ensemble d'ar\^etes et $\omega$ une fonction de poids sur les ar\^etes construits de la mani\`ere suivante :
+\begin{itemize}
+	\item $V_{A} = P_{A} \cup T_{A}$ avec $P_{A} = \{i : a_{i} \in A\}$ et 
+	$T_{A} = \{t_{j} \in dom(A)\}$
+	\item $E_{A} = \{(i,t_{j}) : \forall a_{i} \in A, \forall t_{j} \in dom(a_{i})\}$
+	\item $\omega : E_A \rightarrow \N$ telle que
+	$\omega(i,t_{j}) = j : \forall (i,t_{j}) \in E_{A}$
+\end{itemize}
+
+Cette représentation a de nombreux avantages, elle permet notamment de parcourir
+rapidement les atomes liés à un terme (et réciproquement), ainsi que de pouvoir être
+visualisée agréablement (voir figure \ref{fig_representation_conjunct}).
+\input{./src/definitions/fig_representation_conjunct.tex}
+
+On remarque que %quelques propri\'et\'es sont directement induites par cette repr\'esentation :
+%\begin{itemize}
+	%\item 
+	$G_{A}$ admet une bipartition de ses sommets, en effet toutes les ar\^etes ont 
+	une extr\'emit\'e dans $P_{A}$ et l'autre dans $T_{A}$, or par construction $P_{A} 
+	\cap T_{A} = \emptyset$.
+%\end{itemize}
 
 

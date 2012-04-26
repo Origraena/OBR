@@ -74,6 +74,45 @@ public class Atom implements Iterable<Term> {
 		return _terms.get(i);
 	}
 
+	public boolean contains(Term term) {
+		for (Term thisterm : this) {
+			if (term.getLabel().compareTo(thisterm.getLabel()) == 0)
+				return true;
+		}
+		return false;
+	}
+
+	public int getNbConstants() {
+		int result = 0;
+		for (Term term : this)
+			if (term.isConstant())
+				result++;
+		return result;
+	}
+
+	public ArrayList<Term> constants() {
+		ArrayList<Term> result = new ArrayList<Term>();
+		for (Term term : this)
+			if (term.isConstant())
+				result.add(term);
+		return result;
+	}
+	public int getNbVariables() {
+		int result = 0;
+		for (Term term : this)
+			if (term.isVariable())
+				result++;
+		return result;
+	}
+
+	public ArrayList<Term> variables() {
+		ArrayList<Term> result = new ArrayList<Term>();
+		for (Term term : this)
+			if (term.isVariable())
+				result.add(term);
+		return result;
+	}
+
 	/**
 	 * Term setter.
 	 * @param i The term index inside the atom.

@@ -1,0 +1,62 @@
+% tikz_config.tex
+
+\tikzstyle{atom}=[
+	rectangle,
+	draw
+]
+
+\tikzstyle{atomhead}=[
+	rectangle,
+	draw,
+	fill=yellow!20
+]
+
+\tikzstyle{atombody}=[
+	rectangle,
+	draw,
+	fill=blue!20
+]
+
+\tikzstyle{term}=[
+	circle,
+	draw,
+	minimum size=5mm
+]
+
+\tikzstyle{termfr}=[
+	circle,
+	draw,
+	fill=green!20,
+	minimum size=5mm
+]
+
+\tikzstyle{termhead}=[
+	circle,
+	draw,
+	fill=yellow!20,
+	minimum size=5mm
+]
+
+\tikzstyle{termcst}=[
+	circle,
+	draw,
+	fill=red!20,
+	minimum size=5mm
+]
+
+\tikzstyle{atomedge}=[
+	-
+]
+
+\newcommand{\atomlegend}[2]{
+	\node [rectangle,draw,fill=blue!20,minimum width=0.8cm] (body) at(#1,#2) {};
+	\node [] (bodyLabel)							at(#1+1.4,#2)			{corps};
+	\node [rectangle,draw,fill=yellow!20,minimum width=0.8cm] (head) at(#1,#2-0.5) {};
+	\node [] (headLabel)							at(#1+1.4,#2-0.5)				{tête};
+	\node [rectangle,draw,fill=green!20,minimum width=0.8cm] (fr) at(#1,#2-1) {};
+	\node [] (frLabel)							at(#1+1.4,#2-1)				{frontière};
+	\node [rectangle,draw,fill=red!20,minimum width=0.8cm] (cst) at(#1,#2-1.5) {};
+	\node [] (cstLabel)							at(#1+1.4,#2-1.5)				{constantes};
+}
+
+

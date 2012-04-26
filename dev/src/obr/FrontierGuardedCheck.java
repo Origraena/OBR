@@ -32,29 +32,30 @@ public class FrontierGuardedCheck implements DecidableClassCheck{
 	}
 
 	protected boolean check(Iterable<Vertex<AtomicRule> > rules) {
-		ArrayList<Term> arrayFrontier = null;
-		boolean guarded;
-		
-		
-		
 		for (Vertex<AtomicRule> vrule : rules) {
-			arrayFrontier = new ArrayList<Term>();
-			for(Vertex<Object> v : vrule.getValue().frontier()){
-				arrayFrontier.add((Term) v.getValue());
-			}
-			for(Iterator<Vertex<Object>> it = vrule.getValue().vertexAtomIterator();it.hasNext();){
-				Atom current = (Atom) it.next().getValue();
-				guarded = true;
-				for(Term t : current){
-					if(!arrayFrontier.contains(t)){
-						guarded = false;
-						break;
-					}
+			if (!ruleCheck(vrule.getValue()))
+				return false;
+		}
+		return true;
+	}
+
+	protected boolean ruleCheck(AtomicRule rule) {
+		ArrayList<Vertex<Object>> frontier = rule.frontier();
+		boolean guarded;
+		for (Atom atom : rule) {
+			guarded = true;
+			for (Vertex<Object> vertexTerm : frontier) {
+				Term t = (Term)(vertexTerm.getValue());
+				if (!atom.contains(t)) {
+					guarded = false;
+					break;
 				}
-				if(guarded)
-					return true;
 			}
+			if (guarded)
+				return true;
 		}
 		return false;
 	}
-}
+
+};
+

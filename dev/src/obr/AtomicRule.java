@@ -129,11 +129,33 @@ public class AtomicRule extends AtomConjunction {
 	}
 
 	/**
+	 * Creates a new array list containing all vertices which belong to the frontier of the 
+	 * rule.
+	 * A variable is said to be in the frontier iff it belongs to the body <b>and</b> to the 
+	 * head of the rule.
+	 * @return An array list of Vertex&lt;Object&gt; which contains all variables in the 
+	 * frontier.
+	 */
+	public ArrayList<Vertex<Object> > frontier() {
+		NeighbourEdge<Integer> edge = null;
+		ArrayList<Vertex<Object> > result = new ArrayList<Vertex<Object> >();
+		for (Iterator<NeighbourEdge<Integer> > iterator = neighbourIterator(_head.getID()) ; iterator.hasNext() ; ) {
+			edge = iterator.next();
+			if ((getTerm(edge.getIDV()-getNbAtoms()).isVariable())
+			&& (isBody(edge.getIDV())) 
+			&& (!result.contains(getVertex(edge.getIDV())))
+			)
+				result.add(getVertex(edge.getIDV()));
+		}
+		return result;
+	}
+
+	/**
 	 * Creates a new array list containing all vertices which belong to the frontier of the rule.
 	 * A term is said to be in the frontier iff it belongs to the body <b>and</b> to the head of the rule.
 	 * @return An array list of Vertex&lt;Object&gt; which contains all terms in the frontier.
 	 */
-	public ArrayList<Vertex<Object> > frontier() {
+	public ArrayList<Vertex<Object> > frontierTerms() {
 		NeighbourEdge<Integer> edge = null;
 		ArrayList<Vertex<Object> > result = new ArrayList<Vertex<Object> >();
 		for (Iterator<NeighbourEdge<Integer> > iterator = neighbourIterator(_head.getID()) ; iterator.hasNext() ; ) {
@@ -144,11 +166,43 @@ public class AtomicRule extends AtomConjunction {
 		return result;
 	}
 
-
-	public VertexCollection<Object> domain(){
-		return _graph.getSecondSet();
+	public int getNbUniversalVariables() {
+		int result = 0;
+		final int nbTerms = getNbTerms();
+		for (int i = 0 ; i < nbTerms ; i++)
+			if (isUniversal(i))
+				result++;
+		return result;
 	}
-	
+
+	public int getNbExistentialVariables() {
+		int result = 0;
+		final int nbTerms = getNbTerms();
+		for (int i = 0 ; i < nbTerms ; i++)
+			if (isExistential(i))
+				result++;
+		return result;
+	}
+
+	public VertexCollection<Object> universalVariables() {
+		VertexArrayList<Object> result = new VertexArrayList<Object>();
+		final int nbTerms = getNbTerms();
+		for (int i = 0 ; i < nbTerms ; i++)
+			if (isUniversal(i))
+				result.add(getVertexTerm(i));
+		return result;
+	}
+
+	public VertexCollection<Object> existentialVariables() {
+		VertexArrayList<Object> result = new VertexArrayList<Object>();
+		final int nbTerms = getNbTerms();
+		for (int i = 0 ; i < nbTerms ; i++)
+			if (isExistential(i))
+				result.add(getVertexTerm(i));
+		return result;
+	}
+
+
 	/**
 	 * Allows to know if a vertex belongs to the frontier of a rule.
 	 * A term is said to be in the frontier iff it belongs to the body <b>and</b> to the head of the rule.
@@ -183,6 +237,24 @@ public class AtomicRule extends AtomConjunction {
 		if ((v == null) || (v.getID() < getNbAtoms()))
 			return false;
 		return (!(((Term)(v.getValue())).isConstant()) && isBody(v));
+	}
+
+	public boolean isExistential(int i) {
+		try {
+			return isExistential(getVertexTerm(i));
+		}
+		catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	public boolean isUniversal(int i) {
+		try {
+			return isUniversal(getVertexTerm(i));
+		}
+		catch (NoSuchElementException e) {
+			return false;
+		}
 	}
 
 	/**

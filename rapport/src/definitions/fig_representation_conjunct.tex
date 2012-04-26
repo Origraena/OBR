@@ -1,0 +1,28 @@
+% fig_representation_regle.tex
+
+\begin{figure}[h]
+\label{fig_representation_conjunct}
+\begin{center}
+
+\begin{tikzpicture}[
+	auto,
+	node distance=1.5cm,
+	inner sep=1mm
+]
+	\node [term]		(x)			at (0,0)				{};
+	\node [term]		(y)			at (3,0)				{};
+	\node[atom]		 	(salle)		[left of=x] 	{salle$\backslash$1}
+		edge[atomedge]	node {1} 	(x)
+	;
+	\node[atom]			(reservee)	[right of=x]		{reservée$\backslash$2}
+		edge[atomedge]	node {1}	(x)
+		edge[atomedge]	node {2}	(y)
+	;
+	\node[atom] 		(date)		[right of=y] 	{date$\backslash$1}
+		edge[atomedge]	node {1}	(y)
+	;
+	\end{tikzpicture}
+\end{center}
+\caption{Exemple de représentation d'une conjonction d'atomes}
+\end{figure}
+

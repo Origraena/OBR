@@ -1,0 +1,20 @@
+% algo_conversion.tex
+
+\begin{center}
+\begin{algorithm}[h]
+\caption{Conversion d'une règle à conclusion non atomique}\label{algo_conversion}
+\algsetup{indent=2em,linenodelimiter= }
+\begin{algorithmic}[1]
+\REQUIRE	$R = (H,C)$ : une règle quelconque 
+\ENSURE		$R^A$ : un ensemble de règles à conlusions atomiques équivalent à $R$
+	\STATE $H^A_0 \leftarrow H$
+	\STATE $C^A_0 \leftarrow p_R(\{x_i \in var(R)\})$
+	\STATE $R^A \leftarrow \{(H^A_0,C^A_0)\}$
+	\FORALL{atome $c_i \in C$}
+		\STATE $R^A_i \leftarrow (C^A_0,c_i)$
+		\STATE $R^A \leftarrow R^A \cup \{R^A_i\}$
+	\ENDFOR
+	\RETURN $R^A$
+\end{algorithmic}
+\end{algorithm}
+\end{center}
