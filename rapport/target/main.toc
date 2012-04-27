@@ -34,6 +34,7 @@
 \contentsline {section}{\numberline {4.2}Classes concr\IeC {\`e}tes}{15}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Acyclicit\IeC {\'e} du graphe de d\IeC {\'e}pendance des r\IeC {\`e}gles}{15}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Domaine restreint}{15}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Combinaisons}{15}{section.4.3}
 \contentsline {chapter}{\numberline {5}Impl\IeC {\'e}mentation}{16}{chapter.5}
 \contentsline {section}{\numberline {5.1}Conjonction d'atomes}{16}{section.5.1}
 \contentsline {chapter}{\numberline {6}Perspectives}{17}{chapter.6}

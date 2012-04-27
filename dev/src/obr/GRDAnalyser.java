@@ -235,12 +235,11 @@ public class GRDAnalyser {
 	
 			_decidable = true;
 			Graph.WalkIterator iterator;
-			for (i = 0 ; (i < sourceID.size()) && _decidable ; i++) {
+			for (i = 0 ; (i < sourceID.size()) && _decidable ; i++)
 				setMin(sourceID.get(i),0);
-				iterator = _grd.getStronglyConnectedComponentsGraph().BFSIterator(sourceID.get(i),this,null);
-				while ((iterator.hasNext()) && _decidable)
-					iterator.next();
-			}
+			iterator = _grd.getStronglyConnectedComponentsGraph().BFSIterator(sourceID,this,null);
+			while ((iterator.hasNext()) && _decidable)
+				iterator.next();
 		}
 
 		@Override
@@ -303,15 +302,15 @@ public class GRDAnalyser {
 					return;
 				}
 			}
-			if (label <= DecidableClassLabel.FUS) {
-				if (isFUS(sccNextID)) {
-					_sccAbstractClass[sccNextID] = DecidableClassLabel.FUS;
-					return;
-				}
-			}
 			if (label <= DecidableClassLabel.GBTS) {
 				if (isGBTS(sccNextID)) {
 					_sccAbstractClass[sccNextID] = DecidableClassLabel.GBTS;
+					return;
+				}
+			}
+			if (label <= DecidableClassLabel.FUS) {
+				if (isFUS(sccNextID)) {
+					_sccAbstractClass[sccNextID] = DecidableClassLabel.FUS;
 					return;
 				}
 			}
