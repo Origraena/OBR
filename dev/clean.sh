@@ -1,2 +1,1 @@
-rm src/*.class
-rm src/obr/*.class
+rm -r target
