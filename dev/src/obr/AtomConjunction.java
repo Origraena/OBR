@@ -251,14 +251,13 @@ public class AtomConjunction implements Iterable<Atom> {
 	public String toStringExcluding(int exclude) {
 		StringBuilder string = new StringBuilder();
 		final int nbAtoms = getNbAtoms();
-		for (int i = 0 ; i < nbAtoms - 1; i++) {
+		for (int i = 0 ; i < nbAtoms; i++) {
 			if (i != exclude) {
 				string.append(getAtom(i));
 				string.append(ATOM_SEPARATOR);
 			}
 		}
-		if (exclude != nbAtoms -1)
-			string.append(getAtom(nbAtoms-1));
+		string.deleteCharAt(string.length()-1);
 		return string.toString();
 	}
 
