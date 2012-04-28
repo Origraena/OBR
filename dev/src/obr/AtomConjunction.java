@@ -247,8 +247,22 @@ public class AtomConjunction implements Iterable<Atom> {
 		}
 		string.append(getAtom(nbAtoms-1));
 		return string.toString();
-	
 	}
+	public String toStringExcluding(int exclude) {
+		StringBuilder string = new StringBuilder();
+		final int nbAtoms = getNbAtoms();
+		for (int i = 0 ; i < nbAtoms - 1; i++) {
+			if (i != exclude) {
+				string.append(getAtom(i));
+				string.append(ATOM_SEPARATOR);
+			}
+		}
+		if (exclude != nbAtoms -1)
+			string.append(getAtom(nbAtoms-1));
+		return string.toString();
+	}
+
+
 
 	/**
 	 * Adds an atom into the atom conjunction.<br />
@@ -555,8 +569,7 @@ public Term getTermFromAtom(int atomID, int termIndex) throws NoSuchElementExcep
 		Edge<Integer> edge = null;
 		for (Iterator<Edge<Integer> > iterator = _graph.edgeIterator() ; iterator.hasNext() ; ) {
 			edge = iterator.next();
-			try {copy._graph.addEdge(edge.getIDU(),edge.getIDV(),new Integer(edge.getValue()));}
-			catch (IllegalEdgeException e) { /*no such exception can be thrown*/ }
+			copy.addEdge(edge.getIDU(),edge.getIDV(),new Integer(edge.getValue()));
 		}
 		return copy;
 	}

@@ -29,28 +29,43 @@ utilisé.
 
 
 \section{Classes concrètes}\label{classes_concretes}
-
-\subsection{Acyclicité du graphe de dépendance des règles}\label{classe_agrd}
-Le seul fait que le graphe de dépendance soit sans circuit suffit à certifier que le chaînage
-avant et arrière s'exécutent en temps fini, impliquant que si cette contrainte est satisfaite,
-l'ensemble des règles appartient à \fes et à \fus.
-
-\subsection{Domaine restreint}\label{classe_dr}
-Un ensemble de règles satisfait cette contrainte si tous les atomes de leur conclusion
-contiennent soit toutes les variables de l'hypothèse, soit aucune.
-Dans le cas des règles à conclusion atomique, cela revient à s'assurer que la frontière
-de chaque règle est soit égale à 0 soit au nombre de variables universelles.
-Cette contrainte est suffisante pour que l'ensemble de règles appartienne à \fus.
-
-%%%%	\subsection{}\label{classe_}
-%%%%	\subsection{}\label{classe_}
-%%%%	\subsection{}\label{classe_}
-%%%%	\subsection{}\label{classe_}
-%%%%	\subsection{}\label{classe_}
-%%%%	\subsection{}\label{classe_}
-%%%%	\subsection{}\label{classe_}
-%%%%	\subsection{}\label{classe_}
-%%%%	\subsection{}\label{classe_}
+\input{src/classes_regles/concretes.tex}
 
 \section{Combinaisons}\label{combine}
+Les composantes fortement connexes du graphe de dépendances sont utilisées pour le 
+{\em découper} de façon à attribuer des étiquettes différentes à celles-ci en fonction
+des classes concrètes auxquelles son ensemble de règles appartient.
+
+De plus une fois chaque sous ensemble étiqueté, il faut encore vérifier que celles-ci
+sont compatibles entre elles.
+
+Pour cela, nous définissons le graphe orienté des composantes fortement connexes associé
+tel que son ensemble de sommets est l'ensemble des composantes du graphe, et
+qu'il existe un arc entre deux composantes $C_i$ et $C_j$ si et seulement s'il existe un
+arc d'un sommet de $C_i$ vers un sommet de $C_j$.
+Par définition des composantes fortement connexes, ce graphe est évidemment sans
+circuit.
+%et les arcs de celui-ci influent directement sur la décidabilité de l'ensemble
+%de règles.
+
+On dit que $C_i$ {\em précède} $C_j$ s'il n'existe aucun arc de $C_j$ vers $C_i$, et on
+note cette relation $C_i \triangleright C_j$.
+
+De plus,
+on associe à chaque $C_i$ une étiquette qui déterminera la classe abstraite considérée pour
+cette composante.
+
+pour que l'ensemble de règles soit décidable est la suivante :\\
+$\{C_i : etiquette(C_i) = FES\} \triangleright \{C_i : etiquette(C_i) = GBTS\} \triangleright
+\{C_i : etiquette(C_i) = FUS\}$
+C'est à dire qu'aucune règle \fes ne doit dépendre d'une règle \fus ou \gbts, et
+qu'aucune règle \gbts ne doit dépendre d'une règle \fus.
+
+En effet les algorithmes de chaînage arrière par exemple réécrivent la requête jusqu'à ce
+qu'elle corresponde à la base, tandis que ceux avant ajoutent des faits jusqu'à obtenir
+la requête. Il est donc évident que si une composante n'accepte que le chaînage arrière,
+il ne doit exister aucune règle de celle-ci de laquelle dépende une règle de la
+composante acceptant uniquement le chaînage avant (si tel était le cas, cette règle ne
+serait jamais déclenchée).
+
 

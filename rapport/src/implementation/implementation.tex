@@ -1,27 +1,62 @@
 % implementation.tex
 
-\section{Conjonction d'atomes}\label{def_graphe}
-%TODO
-TODO => à adapter à la section
+\input{src/implementation/structures.tex}
 
-Par la suite on supposera que le graphe $G_{K}$ associé à la conjonction $K$ 
-est impl\'ement\'e par deux ensembles de sommets (les atomes et les termes), 
-ainsi que par une liste de voisinage pour chaque sommet.
-De plus, chaque sommet peut avoir connaissance de son type de contenu parmis : 
-$atome$, $terme$, $constante$, $\forall-var$, $\exists-var$
-en temps constant.
+\section{GRDAnalyser}\label{impl_grd_analyser}
+Les règles (les données) sont donc stockées directement dans le graphe de dépendances des
+règles dont une instance est encapsulée dans le \grdanalyser.
+De plus le \grdanalyser est en fait constitué de deux parties distinctes supplémentaires
+: la première est en charge de la détermination des classes concrètes, tandis que la
+seconde vérifie si la base est décidable et combine les classes
+abstraites de manière à savoir quels algorithmes utiliser.
 
-On note $n$ (resp. $t$) le nombre d'atomes (resp. de termes) dans $K$. 
+\section{Détermination d'une classe concrète}\label{impl_classe_concrete}
+En section \ref{classes_concretes} nous avons défini de nombreuses classes de règles
+qu'il faut donc pouvoir déterminer.
+Pour cela, nous avons déclaré une interface de fonction \code{DecidableClassCheck}
+fournissant une méthode renvoyant une étiquette à partir d'un ensemble de règles.
+L'analyseur de classes concrètes contient une liste des contraintes à tester, et lors de
+son exécution, il vérifie tout d'abord l'ensemble complet des règles sur chacune de
+celles-ci, puis ensuite sur chaque composante fortement connexe du graphe de dépendances.
 
-Op\'erations (et temps d'ex\'ecution associ\'e) :
-\begin{itemize}
-	\item Parcourir les sommets $atomes$ : $n$.
-	\item Parcourir tous les sommets : $n + t$.
-	\item Acc\'eder au $i^{eme}$ voisin d'un sommet : $constant$.
-\end{itemize}
+\section{Combinaison des classes abstraites}\label{impl_combine}
+Comme expliqué plus en détails dans la section \ref{combine} il est ensuite
+nécessaire de vérifier si l'ensemble est bel et bien décidable.
+L'analyseur de classes abstraites regarde donc tout d'abord si l'ensemble des règles est
+étiqueté par une classe concrète, si tel est le cas, une des approches pour répondre à
+une requête est donc d'exécuter l'algorithme correspondant.
+Si ce n'est pas le cas, il effectue un parcours  en largeur du graphe des 
+composantes fortement connexes à partir de l'ensemble des sources de celui-ci, attribuant à
+chaque sommet découvert (qu'il soit déjà traité ou non) la plus petite étiquette
+fournie par ses classes concrètes et supérieure à celle de son prédécesseur ou 0 si 
+ce n'est pas possible.
+Une fois cette opération effectuée, si tous les sommets sont étiquetés par des valeurs 
+strictement positives, l'ensemble de règles est décidable.
 
 
 \section{Formats de fichiers}\label{formats_fichiers}
-Format interne : p(x,y);q('a')-->r(z,'a',x)
-Format Datalog : [!]head :- body
+Le graphe de dépendances des règles est capable de charger une base à partir d'un
+fichier, celui-ci devant être écrit dans un format spécifique : chaque ligne doit être
+une règle de la forme suivante :
+$atome_1;atome_2;...;atome_n-->atome_c$ avec $n$ le nombre d'atomes dans l'hypothèse et
+$atome_c$ l'unique atome de la conclusion et
+où chaque atome $i$ est écrit : $p_i(t_{i1},t_{i2},...,t_{ik})$.
+Les termes sont considérés des constantes s'ils sont encadrés par des simple
+quotes.\\%TODO
+Par exempe la règle $\forall x ( \rightarrow (\exists z ) )$ doit être écrite : \\
+{\em }
+
+En plus du format interne ci-dessus, il est également possible de fournir un fichier
+Datalog (.dtg) qui ne contient que des règles à hypothèse atomique. Chaque ligne est soit
+une règle, soit un commentaire auquel cas elle doit débuté par //.
+Ici les règles sont sous le format suivant :
+$[!]atome_c :- atome_h.$
+Le point d'explamation est utilisé pour signaler la négation d'une conclusion, celle-ci
+sera convertie en une règle contenant ses deux atomes actuels dans son hypothèse et ayant
+une conclusion au prédicat spécial {\em ABSURD}.
+De plus, les termes sont maintenant considérés comme des variables s'ils commencent par
+un point d'interrogation et comme des constantes sinon.\\%TODO
+Ainsi la ligne du fichier correspondant à la règle $\forall x ( \rightarrow (\exists z ) )$ 
+doit être :\\
+{\em .}
 

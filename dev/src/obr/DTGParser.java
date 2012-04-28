@@ -16,6 +16,8 @@ public class DTGParser {
 	public static final String TERM_SEPARATOR = ", ";
 	/** Not marker constant. */
 	public static final char NOT_MARK = '!';
+	/** Variable marker. */
+	public static final char VARIABLE_MARK = '?';
 	/** End of line marker. */
 	public static final char END_LINE = '.';
 	/** 
@@ -39,12 +41,30 @@ public class DTGParser {
 		
 		String[] terms;
 		String[] atomSubs;
+		String term;
 		int termID, atomID;
 		boolean not = false;
 
 		if (subs[0].charAt(0) == NOT_MARK) {
 			subs[0] = subs[0].substring(1,subs[0].length());
 			not = true;
+		}
+
+		/* BODY */
+		subs[1] = subs[1].substring(0,subs[1].length()-1);	// last char is a dot
+		atomSubs = subs[1].split(BEGIN_TERM_LIST);
+		if (atomSubs.length != 2)
+			throw new UnrecognizedStringFormatException();
+		atomSubs[1] = atomSubs[1].substring(0,atomSubs[1].length()-1);
+		terms = atomSubs[1].split(TERM_SEPARATOR);
+		atomID = rule.addAtom(new Predicate(atomSubs[0],terms.length));
+		for (int i = 0 ; i < terms.length ; i++) {
+			if (terms[i].charAt(0) == VARIABLE_MARK)
+				term = terms[i].substring(1,terms[i].length());
+			else
+				term = "'" + terms[i] + "'";
+			termID = rule.addTerm(term);
+			rule.addEdge(atomID,termID,i);
 		}
 
 		/* HEAD */
@@ -55,23 +75,14 @@ public class DTGParser {
 		terms = atomSubs[1].split(TERM_SEPARATOR);
 		atomID = rule.addAtom(new Predicate(atomSubs[0],terms.length));
 		for (int i = 0 ; i < terms.length ; i++) {
-			termID = rule.addTerm(terms[i]);
+			if (terms[i].charAt(0) == VARIABLE_MARK)
+				term = terms[i].substring(1,terms[i].length());
+			else
+				term = "'" + terms[i] + "'";
+			termID = rule.addTerm(term);
 			rule.addEdge(atomID,termID,i);
 		}
 		rule.setHead(atomID);
-
-		/* BODY */
-		subs[1] = subs[1].substring(0,subs[1].length()-1);	// last char is a dot
-		atomSubs = subs[0].split(BEGIN_TERM_LIST);
-		if (atomSubs.length != 2)
-			throw new UnrecognizedStringFormatException();
-		atomSubs[1] = atomSubs[1].substring(0,atomSubs[1].length()-1);
-		terms = atomSubs[1].split(TERM_SEPARATOR);
-		atomID = rule.addAtom(new Predicate(atomSubs[0],terms.length));
-		for (int i = 0 ; i < terms.length ; i++) {
-			termID = rule.addTerm(terms[i]);
-			rule.addEdge(atomID,termID,i);
-		}
 
 		if (not) {
 			atomID = rule.addAtom(ABSURD);

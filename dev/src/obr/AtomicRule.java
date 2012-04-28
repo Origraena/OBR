@@ -303,7 +303,7 @@ public class AtomicRule extends AtomConjunction {
 	 */
 	@Override
 	public String toString() {
-		return super.toString(getNbAtoms()-1)+HEAD_SEPARATOR+getHeadAtom();
+		return super.toStringExcluding(_head.getID())+HEAD_SEPARATOR+getHeadAtom();
 	}
 
 	/**
@@ -311,7 +311,8 @@ public class AtomicRule extends AtomConjunction {
 	 * @return The atom conjunction of the body.
 	 */
 	public AtomConjunction getBody() {
-		AtomConjunction body = clone();
+		AtomConjunction body = new AtomConjunction();
+		super.cloneIn(body);
 		body.removeCleanlyAtom(_head.getID());
 		return body;
 	}

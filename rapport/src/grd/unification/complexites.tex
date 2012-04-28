@@ -1,4 +1,26 @@
+
+Soit $R$ une règle, et $G_R$ son graphe associé.
 On note :
+\begin{itemize}
+	\item $k$ : nombre d'atomes dans $R$
+	\item $p$ : arit\'e maximum des prédicats de $R$
+	\item $t \leq n \times p$ : nombre de termes de $R$
+\end{itemize}
+et :
+\begin{itemize}
+	\item $n = k + t$ : nombre de sommets dans $G_R$
+	\item $m \leq n \times p$ : nombre d'arêtes dans $G_R$
+\end{itemize}
+
+Avec notre représentation nous avons donc les complexités suivantes :
+\begin{itemize}
+	\item Parcourir les sommets prédicats : $\bigcirc(k)$.
+	\item Parcourir tous les sommets : $\bigcirc(n)$.
+	\item Acc\'eder au $i^{eme}$ voisin d'un sommet : $\bigcirc(1)$.
+\end{itemize}
+
+
+
 \begin{itemize}
 	\item $n$ = nombre d'atomes dans $H_{1}$
 	\item $p$ = arit\'e de $C_{2}$

@@ -24,8 +24,8 @@
 \contentsline {subsection}{\numberline {3.2.3}Correction}{11}{subsection.3.2.3}
 \contentsline {subsection}{\numberline {3.2.4}Complexites}{11}{subsection.3.2.4}
 \contentsline {subsubsection}{Temps}{12}{section*.7}
-\contentsline {subsubsection}{Espace}{12}{section*.8}
-\contentsline {section}{\numberline {3.3}Composantes fortement connexes}{12}{section.3.3}
+\contentsline {subsubsection}{Espace}{13}{section*.8}
+\contentsline {section}{\numberline {3.3}Composantes fortement connexes}{13}{section.3.3}
 \contentsline {chapter}{\numberline {4}Classes de r\IeC {\`e}gles}{14}{chapter.4}
 \contentsline {section}{\numberline {4.1}Classes abstraites}{14}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Finite Expansion Set}{14}{subsection.4.1.1}
@@ -33,8 +33,18 @@
 \contentsline {subsection}{\numberline {4.1.3}Bounded Treewidth Set}{14}{subsection.4.1.3}
 \contentsline {section}{\numberline {4.2}Classes concr\IeC {\`e}tes}{15}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Acyclicit\IeC {\'e} du graphe de d\IeC {\'e}pendance des r\IeC {\`e}gles}{15}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Domaine restreint}{15}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Combinaisons}{15}{section.4.3}
-\contentsline {chapter}{\numberline {5}Impl\IeC {\'e}mentation}{16}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conjonction d'atomes}{16}{section.5.1}
-\contentsline {chapter}{\numberline {6}Perspectives}{17}{chapter.6}
+\contentsline {subsection}{\numberline {4.2.2}Faiblement acyclique}{15}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Domaine restreint}{15}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Guard\IeC {\'e}e}{15}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Fronti\IeC {\`e}re gard\IeC {\'e}e}{16}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Fronti\IeC {\`e}re-1}{16}{subsection.4.2.6}
+\contentsline {subsection}{\numberline {4.2.7}Hypoth\IeC {\`e}se atomique}{16}{subsection.4.2.7}
+\contentsline {subsection}{\numberline {4.2.8}R\IeC {\`e}gle d\IeC {\'e}connect\IeC {\'e}e}{16}{subsection.4.2.8}
+\contentsline {section}{\numberline {4.3}Combinaisons}{16}{section.4.3}
+\contentsline {chapter}{\numberline {5}Impl\IeC {\'e}mentation}{18}{chapter.5}
+\contentsline {section}{\numberline {5.1}Structures de donn\IeC {\'e}e}{18}{section.5.1}
+\contentsline {section}{\numberline {5.2}GRDAnalyser}{18}{section.5.2}
+\contentsline {section}{\numberline {5.3}D\IeC {\'e}termination d'une classe concr\IeC {\`e}te}{18}{section.5.3}
+\contentsline {section}{\numberline {5.4}Combinaison des classes abstraites}{19}{section.5.4}
+\contentsline {section}{\numberline {5.5}Formats de fichiers}{19}{section.5.5}
+\contentsline {chapter}{\numberline {6}Perspectives}{20}{chapter.6}
