@@ -11,12 +11,11 @@ $R : \forall x_i (H \rightarrow \exists z_j (C))$.
 
 On note :
 \begin{itemize}
-	\item $dom(R) = dom(H) \cup dom(C)$
-	\item $var(R) = var(H) \cup var(C)$
-	\item $cst(R) = cst(H) \cup cst(C)$
-	\item $fr(R) = var(H) \cap var(C)$ l'ensemble des variables fronti\`eres de $R$
-	%, avec $a_{i}$ est une variable fronti\`ere ssi $a_{i}$ est une variable telle que $a_{i} \in var(H) \cap var(C)$.
-	\item $cutp(R) = fr(R) \cup cst(R)$ l'ensemble des points de coupure de $R$
+	\item $dom(R) = dom(H) \cup dom(C)$, le domaine de $R$
+	\item $var(R) = var(H) \cup var(C)$, les variables de $R$
+	\item $cst(R) = cst(H) \cup cst(C)$, les constantes de $R$
+	\item $fr(R) = var(H) \cap var(C)$, l'ensemble des variables fronti\`eres de $R$
+	\item $cutp(R) = fr(R) \cup cst(R)$, l'ensemble des points de coupure de $R$\\
 \end{itemize}
 
 \section{Représentation graphique d'une règle}
@@ -33,18 +32,26 @@ Ainsi le graphe associé $G_R = (V_R,E_R,\omega,\chi)$ est défini comme :
 	\item 
 		$E_{R} = \{(i,t_{j}) : \forall r_{i} \in R, \forall t_{j} \in dom(R_{i})\}$
 	\item 
-		$\omega : E_R \rightarrow [1,p]$\\
+		$\omega : E_R \rightarrow [1,p]$ telle que
 		$\omega(i,t_{j}) = j : \forall (i,t_{j}) \in E_{R}$
 	\item 
-		$\chi : P_R \rightarrow \{1,2\}\\$
-		$\chi(r_i) = 1$ si $r_i \in H$ et $\chi(r_i) = 2$ si $r_i \in C$.
+		$\chi : P_R \rightarrow \{1,2\}$ telle que 
+		$\chi(r_i) = 1$ si $r_i \in H$ et $\chi(r_i) = 2$ si $r_i \in C$.\\
 \end{itemize}
+\par{}
 
 Par exemple la règle 
 $R : \forall x \forall y\ (salle(x) \wedge date(y) \wedge reservee(x,y) 
 \rightarrow \exists z\ (cours(z) \wedge aLieu(z,x,y)))$ 
 peut être visualisée de la façon suivante :
 \input{./src/definitions/fig_representation_regle}
+
+Sur la figure suivante (\ref{fig_representation_regle_labeled})
+représentant la même règle, on peut voir les différentes parties
+de celle-ci, de plus les variables ont été étiquetées pour mieux visualiser les
+différents termes.
+
+
 \input{./src/definitions/fig_representation_regle_labeled}
 
 \section{Règle à conclusion atomique}\label{def_regle_atomique}

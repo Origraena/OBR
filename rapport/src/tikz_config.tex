@@ -48,6 +48,17 @@
 	-
 ]
 
+\tikzstyle{class}=[
+	rectangle,
+	draw,
+	fill=black!10,
+	minimum size=5mm
+]
+
+\tikzstyle{classedge}=[
+	->
+]
+
 \newcommand{\atomlegend}[2]{
 	\node [rectangle,draw,fill=blue!20,minimum width=0.8cm] (body) at(#1,#2) {};
 	\node [] (bodyLabel)							at(#1+1.4,#2)			{corps};

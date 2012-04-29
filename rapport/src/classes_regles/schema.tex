@@ -1,0 +1,49 @@
+% schema.tex
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[
+	auto,
+	node distance=1.5cm,
+	inner sep=1mm
+]
+%	\draw [draw=red]
+%			(-3.8,-5.5) rectangle (3.2,-2.5);
+	\draw [draw=green]
+			;
+	\draw [blue] (-3.8,-5.5) -- (3.2,-5.5) -- (3.2,-2.5) -- (-3.8,-2.5) -- (-3.8,-5.5);
+	\draw [red] (0.3,1) -- (3.7,1) -- (3.7,-5.7) -- (0.3,-5.7) -- (0.3,1);
+	\draw [green] (4,1) -- (9,1) -- (9,-4.5) -- (-2.2,-4.5) -- (-2.2,-3.5) --
+	(0.5,-3.5) -- (0.5,-2) -- (4,-2) -- (4,1);
+
+	\node [blue] (fes) at (-3,-5) {FES};
+	\node [red] (fus) at (1,0.5) {FUS};
+	\node [green] (gbts) at (8,0.5) {GBTS};
+
+	% terms
+	\node [class]	(ws)		at (-2,0)	{faiblement sticky};
+	\node [class]	(dr)		at (2,-1)	{domaine restreint};
+	\node [class]	(agrd)		at (2,-5)	{grd acyclique};
+	\node [class]	(fg)		at (6,0)	{frontière guardée};
+	\node [class]	(sticky)	at (2,0)	{sticky}
+		edge[classedge]	(ws);
+	\node [class]	(wa)		at (-2,-3)	{faiblement acyclique}
+		edge[classedge]	(ws);
+	\node [class]	(disc)		at (2,-3)	{déconnectée}
+		edge[classedge] (wa)
+		edge[classedge] (dr)
+		edge[classedge] (fg);
+	\node [class]	(guarded)	at (6,-2)	{guardée}
+		edge[classedge]	(fg);
+	\node [class]	(fr1)		at (8,-2)	{frontière 1}
+		edge[classedge] (fg);
+	\node [class]	(ah)		at (6,-4)	{hypothèse atomique}
+		edge[classedge] (guarded);
+	\node [class]	(rr)		at (-1,-4)	{universelles}
+		edge[classedge] (wa);
+\end{tikzpicture}
+\end{center}
+\caption{Schéma récapitulatif des classes de règles}
+\label{fig_recap_classes}
+\end{figure}
+

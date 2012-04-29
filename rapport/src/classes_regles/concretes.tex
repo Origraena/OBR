@@ -1,0 +1,109 @@
+% concretes.tex
+
+%TODO REFS
+
+\subsection{Acyclicité du graphe de dépendance des règles}\label{classe_agrd}
+Le seul fait que le graphe de dépendance soit sans circuit suffit à certifier que le chaînage
+avant et arrière s'exécutent en temps fini, impliquant que si cette contrainte est satisfaite,
+l'ensemble des règles appartient à \fes et à \fus.
+
+\subsection{Faiblement acyclique}\label{classe_wa}
+Cette classe est quant à elle un peu particulière puisqu'elle demande la génération d'une autre
+structure de graphes et qu'elle s'applique directement sur un ensemble de règles et pas
+uniquement sur chacune des règles indépendamment des autres.
+
+On crée donc un graphe de dépendances des positions dont les sommets sont les positions
+des prédicats et dont la construction des arcs est la suivante : pour chaque variable
+$x$ d'une règle $R$ apparaissant dans l'hypothèse en position $p_i$, 
+si $x$ appartient à la frontière de $R$ alors il existe un arc de $p_i$ vers chacune des
+positions $r_j$ de la conclusion de $R$ dans laquelle apparaît $x$, de plus pour chacune
+des variables existentielles apparaîssant en position $q_k$ il existe un arc {\em
+spécial} de $p_i$ vers $q_k$.
+
+Si le graphe de dépendances des positions associés à un ensemble de règle ne contient
+aucun circuit passant par un arc {\em spécial} alors il est dit {\em faiblement
+acyclique} et appartient à \fes.
+
+Voir \cite{nonguarded} pour les détails et les preuves. 
+
+\subsection{Sticky}\label{classe_sticky}
+Un ensemble de règles satisfait cette contrainte si certaines de ses variables (marquées)
+n'apparaissent pas plusieurs fois dans l'hypothèse d'une de ses règles.
+
+Plus précisemment, on marque tout d'abord les variables en deux étapes :\\
+\begin{itemize}
+\item premièrement, pour chaque règle $R$, et pour chacune des variables $x$ de l'hypothèse 
+$H$ de $R$, si $x$ n'apparait pas dans la conclusion de $R$ alors on marque chaque 
+occurence de $x$ dans $H$.
+\item Deuxièmement, pour chaque règle $R$ si une variable marquée apparaît en position $p_i$
+alors pour chaque règle $R'$ (incluant $R = R'$), et pour chacune des variables $x$
+apparaîssant en position $p_i$ dans la conclusion de $R'$, on marque chaque occurence de
+$x$ dans l'hypothèse de $R'$.\\
+\end{itemize}
+
+Ensuite si aucune règle ne contient plusieurs occurence d'une variable marquée dans son
+hypothèse, l'ensemble est dit {\em sticky}, et assure la finition des algorithmes basés
+sur le chaînage arrière, cette classe appartient donc à la classe abstraite \fus (voir
+\cite{nonguarded}).
+
+\subsection{Faiblement sticky}\label{classe_ws}
+Cette classe est une généralisation des deux précédentes qui malheureusement n'appartient
+à aucune des classes abstraites citées dans la section précédente (cf \cite{nonguarded}).
+
+Tout comme la vérification de l'appartenance à la classe {\em faiblement acyclique
+(\ref{classe_wa})}, il est nécessaire de construire le graphe de dépendances des
+positions. De plus, on dit qu'une position (un sommet de ce graphe) est {\em sûre} si
+elle n'apparait dans aucun circuit contenant un arc {\em spécial}, et on marque chacune
+des variables en suivant le même algorithme que pour la classe {\em sticky
+(\ref{classe_sticky})}.
+
+On peut maintenant définir un ensemble de règles {\em faiblement sticky} comme ne
+contenant que des variables sûres ou non marquées.
+
+\subsection{Guardée}\label{classe_guarded}
+Une règle gardée est définie comme étant une règle 
+dont un atome de son hypothèse (nommé {\em garde}) contient toutes les variables de celle-ci.
+Si toutes les règles de l'ensemble contiennent un garde, alors l'ensemble appartient à
+\gbts.
+
+\subsection{Frontière gardée}\label{classe_frg}
+On dit qu'une règle a une {\em frontière gardée} si un atome de son hypothèse possède toutes
+les variables de la frontière.
+On peut remarquer que cette classe est une généralisation de la précédente.
+Et dans le cas où toutes les règles de l'ensemble possède cette propriété, celui-ci
+appartient également à \gbts.
+
+\subsection{Frontière-1}\label{classe_fr1}
+Cette classe contient les règles dont la frontière est de taille 1,
+elle est donc une spécialisation des règles à frontière gardée, 
+Ainsi un ensemble de règles satisfaisant cette propriété appartient à \gbts.
+
+\subsection{Hypothèse atomique}\label{classe_ah}
+Les règles ne contenant que des hypothèses atomiques s'assurent que la règle est {\em
+gardée (\ref{classe_guarded})}, et de plus assurent que les algorithmes basés sur le 
+chaînage arrière se terminent en temps fini.
+Donc si toutes les règles d'un ensemble sont à hypothèse atomique alors celui-ci est \gbts et
+\fus.
+
+\subsection{Domaine restreint}\label{classe_dr}
+Une règle satisfait cette contrainte si tous les atomes de sa conclusion
+contiennent soit toutes les variables de l'hypothèse, soit aucune.
+Dans le cas des règles à conclusion atomique, cela revient à s'assurer que la frontière
+de chaque règle est soit égale à 0 soit au nombre de variables universelles.
+Cette contrainte est suffisante pour que l'ensemble de règles appartienne à \fus.
+
+
+\subsection{Règle déconnectée}\label{classe_disc}
+Une règle est dite déconnectée si sa frontière est vide, cette classe est donc une
+spécialisation des règles à {\em domaine restreint (\ref{classe_dr})}, à {\em frontière
+gardée (\ref{classe_frg})} et {\em faiblement acyclique (\ref{classe_wa})}.
+Ce type de règle n'est pas très utilisé étant donné que seules des constantes sont
+partagées entre l'hypothèse et la conclusion ce qui limite leur usage, mais elles ont
+l'avantage d'être à la fois \fes, \gbts et \fus.
+
+\subsection{Règles universelles}\label{classe_rr}
+Les règles ne contenant aucune variable existentielle ($vars(C) \subseteq vars(H)$) forment bien entendu
+un ensemble décidable. Celles-ci sont à la fois \fes et \gbts. On peut également
+remarquer que toute ensemble de règles universelles est également {\em faiblement
+acyclique (\ref{classe_wa})}.
+

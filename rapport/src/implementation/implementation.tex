@@ -25,7 +25,9 @@ nécessaire de vérifier si l'ensemble est bel et bien décidable.
 L'analyseur de classes abstraites regarde donc tout d'abord si l'ensemble des règles est
 étiqueté par une classe concrète, si tel est le cas, une des approches pour répondre à
 une requête est donc d'exécuter l'algorithme correspondant.
-Si ce n'est pas le cas, il effectue un parcours  en largeur du graphe des 
+Si ce n'est pas le cas, il associe la valeur 1 à l'étiquette $FES$, 
+2 à $GBTS$ et 3 à $FUS$ de manière à avoir un ordre sur celles-ci, 
+puis il effectue un parcours  en largeur du graphe des 
 composantes fortement connexes à partir de l'ensemble des sources de celui-ci, attribuant à
 chaque sommet découvert (qu'il soit déjà traité ou non) la plus petite étiquette
 fournie par ses classes concrètes et supérieure à celle de son prédécesseur ou 0 si 
@@ -37,20 +39,21 @@ strictement positives, l'ensemble de règles est décidable.
 \section{Formats de fichiers}\label{formats_fichiers}
 Le graphe de dépendances des règles est capable de charger une base à partir d'un
 fichier, celui-ci devant être écrit dans un format spécifique : chaque ligne doit être
-une règle de la forme suivante :
-$atome_1;atome_2;...;atome_n-->atome_c$ avec $n$ le nombre d'atomes dans l'hypothèse et
-$atome_c$ l'unique atome de la conclusion et
-où chaque atome $i$ est écrit : $p_i(t_{i1},t_{i2},...,t_{ik})$.
-Les termes sont considérés des constantes s'ils sont encadrés par des simple
-quotes.\\%TODO
+une règle de la forme suivante :\\
+$atome_1;atome_2;...;atome_n-->atome_c$\\
+avec $n$ le nombre d'atomes dans l'hypothèse et $atome_c$ l'unique atome de la conclusion et
+où chaque atome $i$ est écrit :
+$p_i(t_{i1},t_{i2},...,t_{ik})$\\
+Les termes sont interprêtés comme des constantes s'ils sont encadrés par des simple
+guillemets.\\%TODO
 Par exempe la règle $\forall x ( \rightarrow (\exists z ) )$ doit être écrite : \\
 {\em }
 
 En plus du format interne ci-dessus, il est également possible de fournir un fichier
 Datalog (.dtg) qui ne contient que des règles à hypothèse atomique. Chaque ligne est soit
-une règle, soit un commentaire auquel cas elle doit débuté par //.
-Ici les règles sont sous le format suivant :
-$[!]atome_c :- atome_h.$
+une règle, soit un commentaire auquel cas elle doit débuter par //.
+Ici les règles sont sous le format suivant :\\
+$[!]atome_c$ :- $atome_h$.\\
 Le point d'explamation est utilisé pour signaler la négation d'une conclusion, celle-ci
 sera convertie en une règle contenant ses deux atomes actuels dans son hypothèse et ayant
 une conclusion au prédicat spécial {\em ABSURD}.

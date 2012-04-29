@@ -11,35 +11,56 @@ De plus elles sont incomparables entre elles, et non exclusives.
 La première classe est définie comme assurant la finition des algorithmes de chaînage
 avant. Ainsi tout ensemble de règles appartenant à cette classe peut être utilisé pour
 les dérivations de ces algorithmes.
-Dans le cas de certaines classes, il est par contre nécessaire d'ajouter des conditions
-d'arrêt, celles-ci sont détaillées plus loin.
-
-\subsection{Finite Unification Set}\label{classes_abstraites_fes}
-La deuxième classe abstraite quant à elle assure la finition des algorithmes de chaînage
-arrière. De la même manière que précedemment il est parfois nécessaire de modifier les
-conditions d'arrêt.
 
 \subsection{Bounded Treewidth Set}\label{classes_abstraites_bts}
-La dernière définit les ensembles de règles où la production de nouvelles règles suit la
-forme d'un arbre.
+La deuxième définit quant à elle 
+les ensembles de règles où la production de nouveaux faits suit la
+forme d'un arbre de largeur bornée.
 Cette classe ne permet pas l'utilisation direct d'algorithmes, mais par contre la classe
 abstraite Greedy Bounded Treewidth qui est une spécialisation de celle-ci, s'assure que
-le chaînage avant s'exécute en temps fini, et ce dès qu'un algorithme glouton de ... est
-utilisé.
+le chaînage avant s'exécute en temps fini, et ce via un algorithme glouton permettant de
+construire la décomposition de l'arbre et en utilisant un algorithme d'arrêt spécifique.
+
+\subsection{Finite Unification Set}\label{classes_abstraites_fes}
+Enfin la dernière classe abstraite assure la finition des algorithmes de chaînage
+arrière utilisant les méthodes en {\em largeur} qui ne garderait que les faits {\em le plus
+généraux} lors de leur génération.
 
 
 \section{Classes concrètes}\label{classes_concretes}
+Comme expliqué dans la section précédente, il est impossible de déterminer à coup sûr 
+si un ensemble
+de règles appartient à l'une de ces classes, par contre de nombreuses classes dites
+{\em concrètes }
+ont été définies. Chacune d'entre elle, en ajoutant des contraintes sur la forme des
+règles voir sur l'ensemble des règles, 
+permet de s'assurer que celui-ci appartient à certaines des classes
+abstraites.
+
 \input{src/classes_regles/concretes.tex}
 
+\section{Schéma d'inclusion des classes de règles}
+Sur la figure \ref{fig_recap_classes}, les flèches représentent la spécialisation tandis
+que les couleurs l'appartenance aux classes abstraites. De plus, seules les classes cités
+ci-dessus apparaissent sur celle-ci.
+\input{src/classes_regles/schema.tex}
+
 \section{Combinaisons}\label{combine}
-Les composantes fortement connexes du graphe de dépendances sont utilisées pour le 
-{\em découper} de façon à attribuer des étiquettes différentes à celles-ci en fonction
-des classes concrètes auxquelles son ensemble de règles appartient.
+Si l'ensemble des règles appartient à une des classes concrètes, alors il suffit
+d'appliquer les algorithmes correspondant pour répondre aux requêtes. Toutefois, il est
+possible que ce ne soit pas le cas, et il faut donc pouvoir {\em découper} l'ensemble des
+règles de manière à appliquer des méthodes de réponse différentes en fonction du
+sous-ensemble.
 
-De plus une fois chaque sous ensemble étiqueté, il faut encore vérifier que celles-ci
+Dans cette optique nous utilisons les composantes fortement connexes du graphe de
+dépendances
+de façon à attribuer des étiquettes différentes à celles-ci en fonction
+des classes concrètes auxquelles leurs ensembles de règles appartiennent.
+
+Puis une fois chaque sous ensemble étiqueté, il faut encore vérifier que celles-ci
 sont compatibles entre elles.
-
 Pour cela, nous définissons le graphe orienté des composantes fortement connexes associé
+$G_{C} = (V_C,E_C)$
 tel que son ensemble de sommets est l'ensemble des composantes du graphe, et
 qu'il existe un arc entre deux composantes $C_i$ et $C_j$ si et seulement s'il existe un
 arc d'un sommet de $C_i$ vers un sommet de $C_j$.
@@ -51,11 +72,11 @@ circuit.
 On dit que $C_i$ {\em précède} $C_j$ s'il n'existe aucun arc de $C_j$ vers $C_i$, et on
 note cette relation $C_i \triangleright C_j$.
 
-De plus,
-on associe à chaque $C_i$ une étiquette qui déterminera la classe abstraite considérée pour
+De plus, on définit une fonction $etiquette : V_C \rightarrow \{FES,GBTS,FUS\}$ qui
+associe à chaque $C_i$ une étiquette qui déterminera la classe abstraite considérée pour
 cette composante.
 
-pour que l'ensemble de règles soit décidable est la suivante :\\
+La propriété suivante s'assure que l'ensemble des règles est décidable :
 $\{C_i : etiquette(C_i) = FES\} \triangleright \{C_i : etiquette(C_i) = GBTS\} \triangleright
 \{C_i : etiquette(C_i) = FUS\}$
 C'est à dire qu'aucune règle \fes ne doit dépendre d'une règle \fus ou \gbts, et

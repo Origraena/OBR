@@ -1,0 +1,50 @@
+% structures.tex
+
+\section{Structures de donnée}\label{structures}
+Nous utilisons de nombreux graphes différents que ce soit pour stocker des informations
+ou même pour vérifier les contraintes de certaines classes de règles. Ainsi nous avons
+mis en place une structure générique, permettant de choisir le type de sommets et d'arcs,
+ainsi que de coder différemment les ensembles d'arêtes (ou d'arcs) et de sommets de
+manière différentes selon la situation, tout en fournissant les algorithmes de graphes
+classiques.
+
+\subsection{Règle}
+Nous avons donc choisi d'utiliser la représentation graphique des règles 
+telle que définie dans la section \ref{def_representation_regle}.
+Ainsi une structure de graphe biparti non orienté a été mise en place, l'ensemble des
+arêtes est codé par une liste de voisinage pour chaque sommet.
+En effet l'opération de parcours des voisins doit être la plus efficace possible, étant
+donné qu'elle nécessaire pour grand nombre d'algorithmes ainsi pour la création des
+atomes.
+Le graphe étant biparti, l'ensemble de sommets est divisé en deux parties permettant des
+accès rapides à l'une comme à l'autre, mais perdant de l'efficacité sur certaines
+opérations peu fréquentes telles que la suppression d'un sommet.
+Les arêtes sont quant à elle typées par un entier, permettant de connaître la position
+d'un terme dans un atome, les termes devraient être de préférence ajoutés dans l'ordre
+(et après les prédicats) de manière à faciliter leur parcours (et à optimiser le temps
+nécessaire à la création de la règle).
+
+Notons tout de même qu'une règle est une spécialisation d'une conjonction d'atomes, et
+que c'est cette-dernière qui est en charge de la gestion du graphe hormis la séparation
+entre l'hypothèse et la conclusion.
+
+\subsection{Graphe de dépendances des règles}
+Ensuite, le graphe de dépendances des règles est quant à lui un graphe orienté dont les
+arcs sont également codés par listes de voisinage et ne possèdent pas de poids.
+Il est évident que les arcs d'un graphe de
+dépendances ont plus intérêt à être implémentés de cette manière puisque l'objectif de
+construire un tel graphe est de connaître rapidement de quel sommet dépend quel autre.
+
+\subsection{Graphe de dépendances des positions}
+Enfin le graphe de dépendances des positions utilisés pour vérifier l'appartenance à
+certaines classes de règles (faiblement acyclique (\ref{classe_wa}) et faiblement sticky
+(\ref{classe_ws})) est aussi un graphe orienté, mais ici la fonction de poids sur les
+arcs permet de savoir si un arc est {\em spécial} ou non.
+Les sommets représentent
+les positions des prédicats et sont stockées à la suite. De plus, une table de hachage gère
+l'accès à la première position d'un prédicat en fonction de son nom, 
+ainsi les opérations d'accès sont
+aussi légères que possible, et ce type de graphe n'étant conservé en mémoire que le
+temps de la vérification des contraintes, l'espace supplémentaire utilisé par la table est
+négligeable.
+

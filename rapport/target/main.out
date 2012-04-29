@@ -13,11 +13,11 @@
 \BOOKMARK [0][-]{chapter.3}{Graphe de d\351pendances des r\350gles}{}
 \BOOKMARK [1][-]{section.3.1}{D\351finition}{chapter.3}
 \BOOKMARK [1][-]{section.3.2}{Unification de r\350gles}{chapter.3}
-\BOOKMARK [1][-]{section.3.3}{Composantes fortement connexes}{chapter.3}
 \BOOKMARK [0][-]{chapter.4}{Classes de r\350gles}{}
 \BOOKMARK [1][-]{section.4.1}{Classes abstraites}{chapter.4}
 \BOOKMARK [1][-]{section.4.2}{Classes concr\350tes}{chapter.4}
-\BOOKMARK [1][-]{section.4.3}{Combinaisons}{chapter.4}
+\BOOKMARK [1][-]{section.4.3}{Sch\351ma d'inclusion des classes de r\350gles}{chapter.4}
+\BOOKMARK [1][-]{section.4.4}{Combinaisons}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Impl\351mentation}{}
 \BOOKMARK [1][-]{section.5.1}{Structures de donn\351e}{chapter.5}
 \BOOKMARK [1][-]{section.5.2}{GRDAnalyser}{chapter.5}

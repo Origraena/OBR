@@ -38,14 +38,51 @@
 \pagestyle{headings}
 \thispagestyle{empty}
 \geometry{a4paper,twoside,left=2.5cm,right=2.5cm,marginparwidth=1.2cm,marginparsep=3mm,top=2.5cm,bottom=2.5cm}
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
 
 \begin{document}
 \large
 \setlength{\parskip}{5mm plus2mm minus2mm}
-\lstset{language=Java, showstringspaces=false, numbers=left, numberstyle=\tiny, tabsize=4}
+%\lstset{language=Java, showstringspaces=false, numbers=left, numberstyle=\tiny, tabsize=4}
+
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,
+	rulecolor=,
+	language=Java,
+		basicstyle=\scriptsize,
+		numbers=left,
+		numberstyle=\tiny,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{1,0,0},
+        commentstyle=\color[rgb]{0,0,1},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+
 
 
 \input{src/guardpage.tex}
+\input{src/remerciements.tex}
+\newpage
+
+% TOC
+\setcounter{tocdepth}{1}
+\tableofcontents
+\thispagestyle{empty}
+\pagenumbering{arabic}
+\newpage
 
 \chapter{Contexte}\label{contexte}
 \input{src/contexte/contexte.tex}
@@ -67,6 +104,9 @@
 
 \vfill
 {\raggedleft R\'ealis\'e avec \LaTeX{} \par}
+
+\appendix
+\input{src/annexes/annexes.tex}
 
 \end{document}
 

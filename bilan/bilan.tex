@@ -1,0 +1,72 @@
+\documentclass[a4paper]{article}
+
+% packages
+\usepackage[french]{babel}       
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{lscape}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+
+\pagestyle{headings}
+\thispagestyle{empty}
+\geometry{a4paper,twoside,left=2.5cm,right=2.5cm,marginparwidth=1.2cm,marginparsep=3mm,top=2.5cm,bottom=2.5cm}
+\title{Outils d'Analyse d'une Base de Règles\\Bilan pré-soutenance}
+
+\begin{document}
+\setlength{\parskip}{5mm plus2mm minus2mm}
+\begin{center}
+	\Huge 
+	Outils d'Analyse d'une Base de Règles\\
+	\huge
+	Bilan pré-soutenance\\
+	\Large
+	27 Avril 2012
+\end{center}
+
+\large
+
+\section{Articles}\label{articles}
+\begin{itemize}
+	\item 
+	Query Answering under Non-guarded Rules in Datalog+/-, Andrea Calì, Georg Gottlob,
+	Andreas Pierris.
+	\item 
+
+\end{itemize}
+
+\section{Tâches effectuées}\label{tasks}
+\begin{itemize}
+	\item implémentation des différents graphes utilisés comme structures de données 
+	\item construction du graphe de dépendances des règles
+	\item mise en place d'un algorithme d'unification de règles
+	\item lecture d'une base à partir d'un fichier
+	\item lecture des fichiers Datalog (.dtg)
+	\item écriture de la base de règles dans un fichier
+	\item construction du graphe des composantes fortement connexes du graphe de
+	dépendances des règles
+	\item visualisation des graphes via une sortie PostScript 
+	\item reconnaissance des classes de règles concrètes
+	\item déterminer si une base de règle est décidable, et quels algorithmes utiliser
+	sur celle-ci
+\end{itemize}
+
+\section{Problèmes rencontrés}\label{problems}
+L'un des deux membres du groupe a disparu sans laisser de trace, ce qui a évidemment posé
+des problèmes de finition : aucune interface graphique n'a donc été mise en place afin de
+pouvoir compléter les autres taches.
+
+
+\vfill
+{\raggedleft R\'ealis\'e avec \LaTeX{} \par}
+
+\end{document}
+

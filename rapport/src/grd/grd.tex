@@ -66,7 +66,7 @@ si un tel unificateur existe, puis la correction de celui-ci ainsi que ses compl
 	Ce qui en th\'eorie am\`enerait la complexit\'e de cette boucle en 
 	$\bigcirc(nombre\ d'atomes\ \times arite\ max\ de\ H_{1})$.
 	Or ici, la complexit\'e ne d\'epend pas de cette arit\'e max, mais uniquement de
-	l'arit\'e du pr\'edicat de la conclusion $C_{2}$.
+	larit\'e du pr\'edicat de la conclusion $C_{2}$.
 
 	Le dernier algorithme est celui qui teste réellement si il existe un unificateur
 	entre une conclusion atomique, et un bon ensemble d'unification atomique minimal.
@@ -87,43 +87,4 @@ si un tel unificateur existe, puis la correction de celui-ci ainsi que ses compl
 
 \subsection{Complexites}\label{grd_complexites}
 	\input{./src/grd/unification/complexites.tex}
-
-\section{Composantes fortement connexes}\label{grd_scc}
-
-Les composantes fortement connexes du graphe de dépendances sont utilisées pour le 
-{\em découper} de façon à attribuer des étiquettes différentes à celles-ci en fonction
-des classes concrètes auxquelles son ensemble de règles appartient.
-
-De plus une fois chaque sous ensemble étiqueté, il faut encore vérifier que celles-ci
-sont compatibles entre elles.
-
-Pour cela, nous définissons le graphe orienté des composantes fortement connexes associé
-tel que son ensemble de sommets est l'ensemble des composantes du graphe, et
-qu'il existe un arc entre deux composantes $C_i$ et $C_j$ si et seulement s'il existe un
-arc d'un sommet de $C_i$ vers un sommet de $C_j$.
-Par définition des composantes fortement connexes, ce graphe est évidemment sans
-circuit, et les arcs de celui-ci influent directement sur la décidabilité de l'ensemble
-de règles.
-
-On dit que $C_i$ {\em précède} $C_j$ s'il n'existe aucun arc de $C_j$ vers $C_i$, et on
-note cette relation $C_i \triangleright C_j$.
-
-De plus,
-on associe à chaque $C_i$ une étiquette qui déterminera la classe abstraite considérée pour
-cette composante.
-Une condition (suffisante)%TODO
-pour que l'ensemble de règles soit décidable est la suivante :\\
-$\{C_i : etiquette(C_i) = FES\} \triangleright \{C_i : etiquette(C_i) = GBTS\} \triangleright
-\{C_i : etiquette(C_i) = FUS\}$
-C'est à dire qu'aucune règle \fes ne doit dépendre d'une règle \fus ou \gbts, et
-qu'aucune règle \gbts ne doit dépendre d'une règle \fus.
-
-En effet les algorithmes de chaînage arrière par exemple réécrivent la requête jusqu'à ce
-qu'elle corresponde à la base, tandis que ceux avant ajoutent des faits jusqu'à obtenir
-la requête. Il est donc évident que si une composante n'accepte que le chaînage arrière,
-il ne doit exister aucune règle de celle-ci de laquelle dépende une règle de la
-composante acceptant uniquement le chaînage avant (si tel était le cas, cette règle ne
-serait jamais déclenchée).
-
-
 
