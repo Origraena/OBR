@@ -1,11 +1,18 @@
 % implementation.tex
 
+\section{Outils utilisés}\label{outils}
+Nous avons mis en place un dépôt {\em git} (\href{}) 
+comme gestionnaire de versions afin de pouvoir
+modifier et partager le code source sans problème, le langage {\em Java} a été choisi
+pour des raisons de compatibilité avec les futurs utilisateurs de l'analyseur.
+
 \input{src/implementation/structures.tex}
 
-\section{GRDAnalyser}\label{impl_grd_analyser}
+\section{Analyseur}\label{impl_grd_analyser}
 Les règles (les données) sont donc stockées directement dans le graphe de dépendances des
-règles dont une instance est encapsulée dans le \grdanalyser.
-De plus le \grdanalyser est en fait constitué de deux parties distinctes supplémentaires
+règles dont une instance est encapsulée dans la classe \code{GRDAnalyser} qui représente
+notre analyseur.
+De plus celui-ci est en fait constitué de deux parties distinctes supplémentaires
 : la première est en charge de la détermination des classes concrètes, tandis que la
 seconde vérifie si la base est décidable et combine les classes
 abstraites de manière à savoir quels algorithmes utiliser.
@@ -35,7 +42,6 @@ ce n'est pas possible.
 Une fois cette opération effectuée, si tous les sommets sont étiquetés par des valeurs 
 strictement positives, l'ensemble de règles est décidable.
 
-
 \section{Formats de fichiers}\label{formats_fichiers}
 Le graphe de dépendances des règles est capable de charger une base à partir d'un
 fichier, celui-ci devant être écrit dans un format spécifique : chaque ligne doit être
@@ -46,8 +52,10 @@ où chaque atome $i$ est écrit :
 $p_i(t_{i1},t_{i2},...,t_{ik})$\\
 Les termes sont interprêtés comme des constantes s'ils sont encadrés par des simple
 guillemets.\\%TODO
-Par exempe la règle $\forall x ( \rightarrow (\exists z ) )$ doit être écrite : \\
-{\em }
+Par exempe la règle 
+$\forall x \forall y (p(x,a) \wedge q(y) \rightarrow \exists z (r(x,y,z)))$ 
+doit être écrite : \\
+$p(x,$'a'$);q(y)-->r(x,y,z)$
 
 En plus du format interne ci-dessus, il est également possible de fournir un fichier
 Datalog (.dtg) qui ne contient que des règles à hypothèse atomique. Chaque ligne est soit
@@ -59,7 +67,8 @@ sera convertie en une règle contenant ses deux atomes actuels dans son hypothè
 une conclusion au prédicat spécial {\em ABSURD}.
 De plus, les termes sont maintenant considérés comme des variables s'ils commencent par
 un point d'interrogation et comme des constantes sinon.\\%TODO
-Ainsi la ligne du fichier correspondant à la règle $\forall x ( \rightarrow (\exists z ) )$ 
+Ainsi la ligne du fichier correspondant à la règle 
+$\forall x (p(x,a) \rightarrow \exists z (r(x,a,z)))$ 
 doit être :\\
-{\em .}
+$r(?x,a,?z)$ :- $p(?x,a).$
 

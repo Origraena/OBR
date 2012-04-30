@@ -4,7 +4,8 @@
 Trois classes abstraites ont été définies, chacune permettant l'usage de certains
 algorithmes sur l'ensemble de règles considéré.
 Elles sont dites {\em abstraites} puisque déterminer si un ensemble de règles appartient
-à l'une de ces classes est un problème non décidable.
+à l'une de ces classes est un problème non décidable. En effet ces classes n'imposent
+aucune contrainte vérifiable.
 De plus elles sont incomparables entre elles, et non exclusives. 
 
 \subsection{Finite Expansion Set}\label{classes_abstraites_fus}
@@ -24,7 +25,7 @@ construire la décomposition de l'arbre et en utilisant un algorithme d'arrêt s
 \subsection{Finite Unification Set}\label{classes_abstraites_fes}
 Enfin la dernière classe abstraite assure la finition des algorithmes de chaînage
 arrière utilisant les méthodes en {\em largeur} qui ne garderait que les faits {\em le plus
-généraux} lors de leur génération.
+généraux} lors de leur génération (voir \cite{}).
 
 
 \section{Classes concrètes}\label{classes_concretes}

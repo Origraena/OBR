@@ -89,6 +89,17 @@ $$
 Ainsi nous pouvons utiliser l'algorithme \ref{algo_conversion} afin d'effectuer cette
 conversion.
 \input{./src/definitions/algo_conversion.tex}
+
+Reprenons l'exemple de la section précédente\\ 
+$R : \forall x \forall y\ (salle(x) \wedge date(y) \wedge reservee(x,y) 
+\rightarrow \exists z\ (cours(z) \wedge aLieu(z,x,y)))$.\\
+Si on applique l'algorithme sus-mentionné nous obtenons l'ensemble de règles : $R^A =\\ \{
+	R^A_0 : \forall x \forall y\ (salle(x) \wedge date(y) \wedge reservee(x,y)
+	\rightarrow \exists z (p_R(x,y,z))) ;\\
+	R^A_1 : \forall x \forall y \forall z (p_R(x,y,z) \rightarrow cours(z)) ;\\
+	R^A_2 : \forall x \forall y \forall z (p_R(x,y,z) \rightarrow aLieu(z,x,y))
+\}$
+
 Toute règle pouvant donc se réécrire de manière 
 %TODO strictement 
 équivalente en un ensemble de
