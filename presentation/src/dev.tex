@@ -1,18 +1,17 @@
 % dev.tex
 
 \begin{frame}
-	\frametitle{Spécifications}
+	\frametitle{Structures de données}
 	\begin{itemize}
-		\item Langage Java
+		\item Différents types de graphes
+		\item Structure générique et algorithmes
+		\item Sommets et arcs de types paramétrables
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Structures de données}
 	\begin{itemize}
-		\item Différents types de graphes
-		\item Structure générique et algorithmes
-		\item Sommets et arcs de types paramétrables
 		\item Règles : graphe biparti non orienté (prédicats et termes, position du terme)
 		\item Dépendances des règles : graphe orienté (règles, aucun)
 		\item Composantes fortement connexes : graphe orienté (ensembles de sommets,
@@ -28,7 +27,7 @@
 		\item Divisé en deux parties
 		\item Détermination des classes concrètes
 		\item Combinaison des classes abstraites
-		\item Règles à conclusion atomique (sans perdre de généralité)
+		\item Règles à conclusion atomique (sans perte de généralité)
 	\end{itemize}
 \end{frame}
 
@@ -36,6 +35,7 @@
 	\frametitle{Détermination des classes concrètes}
 	\begin{itemize}
 		\item Possibilité d'ajouter de nouveaux tests
+		\item Calcul sur l'ensemble des règles, puis sur chaque composante connexe
 		\item Renvoient des étiquettes
 		\item Indiquent les classes abstraites satisfaites
 	\end{itemize}
@@ -45,11 +45,11 @@
 	\frametitle{Combinaison des classes abstraites}
 	\begin{itemize}
 		\item Vérification de l'ensemble des règles
-		\item Parcours du graphe des composantes à partir des sources
 		\item Etiquettes des classes abstraites valuées
+		\item Parcours du graphe des composantes à partir des sources
 		\item Attribue à chaque composante l'étiquette la plus {\em petite} compatible
 		\item Décidable si tous les sommets sont étiquetés
-		\item Liste des types d'algorithmes à utiliser
+	%	\item Liste des types d'algorithmes à utiliser
 	\end{itemize}
 \end{frame}
 

@@ -48,7 +48,7 @@
 
 	\begin{exampleblock}{Exemple règle existentielle}
 		"Tout humain a un père qui est un homme."\\
-		$\forall x$ (humain($x$) $\rightarrow \exists z$ (homme($z$) $\wedge$ pere($z$,Tom)))
+		$\forall x$ (humain($x$) $\rightarrow \exists z$ (homme($z$) $\wedge$ pere($z$,$x$)))
 	\end{exampleblock}
 	\end{center}
 \end{frame}
@@ -60,6 +60,7 @@
 		\item Ensembles de sommets et d'arêtes identiques à une conjonction d'atomes
 		\item 2-coloration des atomes pour différencier hypothèse et conclusion
 	\end{itemize}
+	\vspace{10mm}
 	\begin{exampleblock}{Exemple}
 		\begin{center}
 		"Tout humain a un père qui est un homme."\\
@@ -117,13 +118,13 @@
 	\begin{columns}
 	
 	\begin{column}{0.45\linewidth}
-		\begin{enumerate}
+		\begin{itemize}
 			\item un sommet par atome étiqueté par son prédicat \checkmark
 			\item un sommet par terme étiqueté si constante \checkmark
 			\item une arête pour chaque apparition de terme dans un atome 
 			dont le poids est la position du terme \checkmark
 			\item coloration des sommets atomes en fonction de leur position \checkmark
-		\end{enumerate}
+		\end{itemize}
 	\end{column}
 	\vline
 	\hfill

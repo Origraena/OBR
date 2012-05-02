@@ -1,4 +1,4 @@
-\beamer@endinputifotherversion {3.07pt}
+\beamer@endinputifotherversion {3.17pt}
 \select@language {french}
 \beamer@sectionintoc {1}{Contexte}{3}{0}{1}
 \beamer@sectionintoc {2}{Notions de logique}{8}{0}{2}
@@ -9,6 +9,6 @@
 \beamer@sectionintoc {4}{Classes de r\IeC {\`e}gles}{44}{0}{4}
 \beamer@subsectionintoc {4}{1}{Classes abstraites}{45}{0}{4}
 \beamer@subsectionintoc {4}{2}{Classes concr\IeC {\`e}tes}{52}{0}{4}
-\beamer@subsectionintoc {4}{3}{Combinaisons}{77}{0}{4}
+\beamer@subsectionintoc {4}{3}{D\IeC {\'e}cidabilit\IeC {\'e}}{77}{0}{4}
 \beamer@sectionintoc {5}{D\IeC {\'e}veloppement}{80}{0}{5}
 \beamer@sectionintoc {6}{Conclusion}{87}{0}{6}

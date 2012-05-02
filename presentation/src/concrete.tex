@@ -8,7 +8,31 @@
 		\item Spécialisent les classes abstraites
 		\item Classes pouvant être comparables
 	\end{itemize}
+	\vspace{10mm}
 \end{frame}
+
+\begin{frame}
+	\frametitle{Graphe de dépendances des règles acyclique}
+	\begin{itemize}
+		\item L'ensemble des règles forment un graphe de dépendances sans circuit
+		\item $aGRD(R) \in FES \cup FUS$
+	\end{itemize}
+	\vspace{10mm}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Graphe de dépendances des règles acyclique}
+	\begin{itemize}
+		\item L'ensemble des règles forment un graphe de dépendances sans circuit
+		\item $aGRD(R) \in FES \cup FUS$
+	\end{itemize}
+	\vspace{10mm}
+	\begin{exampleblock}{Exemple}
+		\ruleB \\
+		\ruleD
+	\end{exampleblock}
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Guardée}
@@ -69,7 +93,6 @@
 	\begin{itemize}
 		\item La frontière de la règle est de taille 1
 		\item Spécialisation des règles à frontière gardée
-		\item Utiles pour les notions d'héritage
 		\item $fr-1(R) = \{\forall R_i \in R : |$frontière$(R_i)| = 1 \} \in GBTS$
 	\end{itemize}
 	\vspace{10mm}
@@ -80,7 +103,6 @@
 	\begin{itemize}
 		\item La frontière de la règle est de taille 1
 		\item Spécialisation des règles à frontière gardée
-		\item Utiles pour les notions d'héritage
 		\item $fr-1(R) = \{\forall R_i \in R : |$frontière$(R_i)| = 1 \} \in GBTS$
 	\end{itemize}
 	\vspace{10mm}
@@ -95,6 +117,7 @@
 	\begin{itemize}
 		\item L'hypothèse de la règle ne contient qu'un seul atome
 		\item Spécialisation des règles gardées
+		\item Utiles pour les notions d'héritage
 		\item $ah(R) = \{\forall R_i = (H_i,C_i) \in R : |H_i| = 1 \} \in GBTS \cap FUS$
 	\end{itemize}
 	\vspace{10mm}
@@ -105,6 +128,7 @@
 	\begin{itemize}
 		\item L'hypothèse de la règle ne contient qu'un seul atome
 		\item Spécialisation des règles gardées
+		\item Utiles pour les notions d'héritage
 		\item $ah(R) = \{\forall R_i = (H_i,C_i) \in R : |H_i| = 1 \} \in GBTS \cap FUS$
 	\end{itemize}
 	\vspace{10mm}
@@ -151,7 +175,7 @@
 		\item Spécialisation des règles de domaine restreint
 		\item Une seule application nécessaire
 		\item Partage possible de constantes entre l'hypothèse et la conclusion
-		\item $disc(R) = \{\forall R_i \in R : $frontière$(R_i) = \emptyset \} \in FUS$
+		\item $disc(R) = \{\forall R_i \in R : $frontière$(R_i) = \emptyset \} \in FES \cap GBTS \cap FUS$
 	\end{itemize}
 	\vspace{10mm}
 \end{frame}
@@ -163,7 +187,7 @@
 		\item Spécialisation des règles de domaine restreint
 		\item Une seule application nécessaire
 		\item Partage possible de constantes entre l'hypothèse et la conclusion
-		\item $disc(R) = \{\forall R_i \in R : $frontière$(R_i) = \emptyset \} \in FUS$
+		\item $disc(R) = \{\forall R_i \in R : $frontière$(R_i) = \emptyset \} \in FES \cap GBTS \cap FUS$
 	\end{itemize}
 	\vspace{10mm}
 	\begin{exampleblock}{Exemple}
@@ -274,28 +298,6 @@
 		l'hypothèse ou ne pas être dans une position de rang infini
 		\item $ws(R) \notin FES \cup GBTS \cup FUS$
 	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Graphe de dépendances des règles acyclique}
-	\begin{itemize}
-		\item L'ensemble des règles forment un graphe de dépendances sans circuit
-		\item $aGRD(R) \in FES \cup FUS$
-	\end{itemize}
-	\vspace{10mm}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Graphe de dépendances des règles acyclique}
-	\begin{itemize}
-		\item L'ensemble des règles forment un graphe de dépendances sans circuit
-		\item $aGRD(R) \in FES \cup FUS$
-	\end{itemize}
-	\vspace{10mm}
-	\begin{exampleblock}{Exemple}
-		\ruleB \\
-		\ruleD
-	\end{exampleblock}
 \end{frame}
 
 \begin{frame}
