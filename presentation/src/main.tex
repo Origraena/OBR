@@ -56,7 +56,15 @@ pdftitle = {Outils d'analyse d'une base de règles - présentation},
 \AtBeginSection[]{ 
 	\begin{frame} 
 		\frametitle{Table des matières}
-		\tableofcontents[currentsection,hideothersubsections] 
+		\tableofcontents[currentsection,hideallsubsections] 
+		\vfill
+	\end{frame} 
+}
+
+\AtBeginSubsection[]{ 
+	\begin{frame} 
+		\frametitle{Table des matières}
+		\tableofcontents[currentsection,currentsubsection,hideothersubsections] 
 		\vfill
 	\end{frame} 
 }
@@ -65,7 +73,7 @@ pdftitle = {Outils d'analyse d'une base de règles - présentation},
 
 \begin{document}
 \Large
-\setlength{\parskip}{10mm plus5mm minus5mm}
+%\setlength{\parskip}{10mm plus5mm minus5mm}
 %\renewenvironment{itemize}{\setlength{\itemsep}{10mm}}
 \lstset{
 	backgroundcolor=\color{lbcolor},
@@ -100,10 +108,12 @@ pdftitle = {Outils d'analyse d'une base de règles - présentation},
 
 \section{Contexte}
 \input{src/contexte.tex}
+\input{src/problematique.tex}
 
 \section{Notions de logique}
 \input{src/logique.tex}
 \input{src/regle.tex}
+\input{src/algos.tex}
 
 \section{Dépendance des règles}
 \input{src/grd.tex}
@@ -111,6 +121,11 @@ pdftitle = {Outils d'analyse d'une base de règles - présentation},
 \section{Classes de règles}
 \input{src/classes_regles.tex}
 
+\section{Développement}
+\input{src/dev.tex}
+
+\section{Conclusion}
+\input{src/conclusion.tex}
 
 \bibliographystyle{plain}
 \bibliography{src/bib}

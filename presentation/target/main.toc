@@ -1,10 +1,14 @@
 \beamer@endinputifotherversion {3.07pt}
 \select@language {french}
 \beamer@sectionintoc {1}{Contexte}{3}{0}{1}
-\beamer@sectionintoc {2}{Notions de logique}{4}{0}{2}
-\beamer@subsectionintoc {2}{1}{Atomes}{5}{0}{2}
-\beamer@subsectionintoc {2}{2}{R\IeC {\`e}gles}{11}{0}{2}
-\beamer@sectionintoc {3}{D\IeC {\'e}pendance des r\IeC {\`e}gles}{18}{0}{3}
-\beamer@sectionintoc {4}{Classes de r\IeC {\`e}gles}{26}{0}{4}
-\beamer@subsectionintoc {4}{1}{Classes abstraites}{27}{0}{4}
-\beamer@subsectionintoc {4}{2}{Classes concr\IeC {\`e}tes}{32}{0}{4}
+\beamer@sectionintoc {2}{Notions de logique}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{Atomes}{9}{0}{2}
+\beamer@subsectionintoc {2}{2}{R\IeC {\`e}gles}{16}{0}{2}
+\beamer@subsectionintoc {2}{3}{Requ\IeC {\^e}tes}{24}{0}{2}
+\beamer@sectionintoc {3}{D\IeC {\'e}pendance des r\IeC {\`e}gles}{36}{0}{3}
+\beamer@sectionintoc {4}{Classes de r\IeC {\`e}gles}{44}{0}{4}
+\beamer@subsectionintoc {4}{1}{Classes abstraites}{45}{0}{4}
+\beamer@subsectionintoc {4}{2}{Classes concr\IeC {\`e}tes}{52}{0}{4}
+\beamer@subsectionintoc {4}{3}{Combinaisons}{77}{0}{4}
+\beamer@sectionintoc {5}{D\IeC {\'e}veloppement}{80}{0}{5}
+\beamer@sectionintoc {6}{Conclusion}{87}{0}{6}

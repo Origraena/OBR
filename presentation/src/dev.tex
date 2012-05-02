@@ -1,0 +1,64 @@
+% dev.tex
+
+\begin{frame}
+	\frametitle{Spécifications}
+	\begin{itemize}
+		\item Langage Java
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Structures de données}
+	\begin{itemize}
+		\item Différents types de graphes
+		\item Structure générique et algorithmes
+		\item Sommets et arcs de types paramétrables
+		\item Règles : graphe biparti non orienté (prédicats et termes, position du terme)
+		\item Dépendances des règles : graphe orienté (règles, aucun)
+		\item Composantes fortement connexes : graphe orienté (ensembles de sommets,
+		aucun) sans circuit
+		\item Dépendances des positions : graphe orienté (positions des prédicats,
+		spécial ou non)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Analyseur}
+	\begin{itemize}
+		\item Divisé en deux parties
+		\item Détermination des classes concrètes
+		\item Combinaison des classes abstraites
+		\item Règles à conclusion atomique (sans perdre de généralité)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Détermination des classes concrètes}
+	\begin{itemize}
+		\item Possibilité d'ajouter de nouveaux tests
+		\item Renvoient des étiquettes
+		\item Indiquent les classes abstraites satisfaites
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Combinaison des classes abstraites}
+	\begin{itemize}
+		\item Vérification de l'ensemble des règles
+		\item Parcours du graphe des composantes à partir des sources
+		\item Etiquettes des classes abstraites valuées
+		\item Attribue à chaque composante l'étiquette la plus {\em petite} compatible
+		\item Décidable si tous les sommets sont étiquetés
+		\item Liste des types d'algorithmes à utiliser
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Fichiers}
+	\begin{itemize}
+		\item Lecture et écriture via un format interne
+		\item Conversion des fichiers Datalog (.dtg)
+		\item Sortie PostScript pour l'affichage des graphes
+	\end{itemize}
+\end{frame}
+
