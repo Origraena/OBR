@@ -1,0 +1,10 @@
+\beamer@endinputifotherversion {3.07pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Contexte}{3}{0}{1}
+\beamer@sectionintoc {2}{Notions de logique}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{Atomes}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{R\IeC {\`e}gles}{11}{0}{2}
+\beamer@sectionintoc {3}{D\IeC {\'e}pendance des r\IeC {\`e}gles}{18}{0}{3}
+\beamer@sectionintoc {4}{Classes de r\IeC {\`e}gles}{26}{0}{4}
+\beamer@subsectionintoc {4}{1}{Classes abstraites}{27}{0}{4}
+\beamer@subsectionintoc {4}{2}{Classes concr\IeC {\`e}tes}{32}{0}{4}

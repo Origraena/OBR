@@ -1,0 +1,6 @@
+homme(x)-->humain(x)
+humain(x)-->pR2(x,z)
+pR2(x,z)-->homme(z)
+pR2(x,z)-->pere(z,x)
+parent(x,y);homme(x)-->pere(x,y)
+pere(x,y)-->parent(x,y)

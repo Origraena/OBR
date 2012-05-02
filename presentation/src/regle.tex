@@ -1,0 +1,183 @@
+% regle.tex
+
+\subsection{Règles}
+\begin{frame}
+	\frametitle{Règle}
+	\begin{center}
+	\begin{itemize}
+		\item Deux conjonctions d'atomes : une hypothèse H et une conclusion C
+		\item $H \rightarrow C$
+		\item Variable soit universelle ($\in H$) ou existentielle ($\notin H$)
+		\item Frontière : variable à la fois dans H et dans C ($\in H \cap C$)\\
+	\end{itemize}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Règle}
+	\begin{center}
+	\begin{itemize}
+		\item Deux conjonctions d'atomes : une hypothèse H et une conclusion C
+		\item $H \rightarrow C$
+		\item Variable soit universelle ($\in H$) ou existentielle ($\notin H$)
+		\item Frontière : variable à la fois dans H et dans C ($\in H \cap C$)\\
+	\end{itemize}
+
+	\begin{exampleblock}{Exemple règle universelle}
+		"Tout homme est un humain."\\
+		$\forall x$ (homme($x$) $\rightarrow$ humain($x$))
+	\end{exampleblock}
+
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Règle}
+	\begin{center}
+	\begin{itemize}
+		\item Deux conjonctions d'atomes : une hypothèse H et une conclusion C
+		\item $H \rightarrow C$
+		\item Variable soit universelle ($\in H$) ou existentielle ($\notin H$)
+		\item Frontière : variable à la fois dans H et dans C ($\in H \cap C$)\\
+	\end{itemize}
+
+	\begin{exampleblock}{Exemple règle universelle}
+		"Tout homme est un humain."\\
+		$\forall x$ (homme($x$) $\rightarrow$ humain($x$))
+	\end{exampleblock}
+
+	\begin{exampleblock}{Exemple règle existentielle}
+		"Tout humain a un père qui est un homme."\\
+		$\forall x$ (humain($x$) $\rightarrow \exists z$ (homme($z$) $\wedge$ pere($z$,Tom)))
+	\end{exampleblock}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Représentation graphique d'une règle}
+	\begin{center}
+	\begin{itemize}
+		\item Ensembles de sommets et d'arêtes identiques à une conjonction d'atomes
+		\item 2-coloration des atomes pour différencier hypothèse et conclusion
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+		\begin{center}
+		"Tout humain a un père qui est un homme."\\
+		$\forall x$ (humain($x$) $\rightarrow \exists z$ (homme($z$) $\wedge$
+		pere($z$,$x$)))
+		\end{center}
+	\end{exampleblock}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Représentation graphique d'une règle}
+
+	\begin{columns}
+	
+	\begin{column}{0.45\linewidth}
+		\begin{itemize}
+			\item un sommet par atome étiqueté par son prédicat \checkmark
+			\item un sommet par terme étiqueté si constante \checkmark
+			\item une arête pour chaque apparition de terme dans un atome 
+			dont le poids est la position du terme \checkmark
+			\item coloration des sommets atomes en fonction de leur position
+		\end{itemize}
+	\end{column}
+	\vline
+	\hfill
+	\begin{column}{0.45\linewidth}
+		$\forall x$ (humain($x$) $\rightarrow \exists z$ (homme($z$) $\wedge$
+		pere($z$,$x$)))
+		\begin{figure}
+			\begin{tikzpicture}[
+				auto,
+				inner sep=1mm
+			]
+			\node [atom] (humain) at (0,-1.5) {humain$\backslash$1};
+			\node [atom] (pere) at (3,0) {pere$\backslash$2};
+			\node [atom] (homme) at (-0.2,0) {homme$\backslash$1};
+			\node[term]	(z) at (1.5,0) {}
+				edge[atomedge] node {1} (pere)
+				edge[atomedge] node {1} (homme)
+			;
+			\node[term] (x) at (3,-1.5) {}
+				edge[atomedge] node {1} (humain)
+				edge[atomedge] node {2} (pere)
+			;
+			\end{tikzpicture}
+		\end{figure}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Représentation graphique d'une règle}
+
+	\begin{columns}
+	
+	\begin{column}{0.45\linewidth}
+		\begin{enumerate}
+			\item un sommet par atome étiqueté par son prédicat \checkmark
+			\item un sommet par terme étiqueté si constante \checkmark
+			\item une arête pour chaque apparition de terme dans un atome 
+			dont le poids est la position du terme \checkmark
+			\item coloration des sommets atomes en fonction de leur position \checkmark
+		\end{enumerate}
+	\end{column}
+	\vline
+	\hfill
+	\begin{column}{0.45\linewidth}
+		$\forall x$ (humain($x$) $\rightarrow \exists z$ (homme($z$) $\wedge$
+		pere($z$,$x$)))
+		\begin{figure}
+			\begin{tikzpicture}[
+				auto,
+				inner sep=1mm
+			]
+			\node [atombody] (humain) at (0,-1.5) {humain$\backslash$1};
+			\node [atomhead] (pere) at (3,0) {pere$\backslash$2};
+			\node [atomhead] (homme) at (-0.2,0) {homme$\backslash$1};
+			\node[term]	(z) at (1.5,0) {}
+				edge[atomedge] node {1} (pere)
+				edge[atomedge] node {1} (homme)
+			;
+			\node[term] (x) at (3,-1.5) {}
+				edge[atomedge] node {1} (humain)
+				edge[atomedge] node {2} (pere)
+			;
+			\lightatomlegend{0}{-2.5}
+			\end{tikzpicture}
+		\end{figure}
+	\end{column}
+
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Les différents éléments d'une règle}
+	\begin{center}
+	$\forall x$ (humain($x$) $\rightarrow \exists z$ (homme($z$) $\wedge$
+	pere($z$,$x$)))
+	\end{center}
+	\begin{figure}
+		\begin{tikzpicture}[
+			auto,
+			inner sep=1mm
+		]
+		\node [atombody] (humain) at (0,-1.5) {humain$\backslash$1};
+		\node [atomhead] (pere) at (3,0) {pere$\backslash$2};
+		\node [atomhead] (homme) at (-0.2,0) {homme$\backslash$1};
+		\node[termhead]	(z) at (1.5,0) {}
+			edge[atomedge] node {1} (pere)
+			edge[atomedge] node {1} (homme)
+		;
+		\node[termfr] (x) at (3,-1.5) {}
+			edge[atomedge] node {1} (humain)
+			edge[atomedge] node {2} (pere)
+		;
+		\atomlegend{-4}{0}
+		\end{tikzpicture}
+	\end{figure}
+\end{frame}
+

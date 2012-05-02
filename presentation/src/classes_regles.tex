@@ -1,0 +1,277 @@
+% classes_regles.tex
+
+
+
+\subsection{Classes abstraites}
+
+\begin{frame}[t]
+	\frametitle{Classes de règles abstraites}
+	\vspace{10mm}
+	\begin{itemize}
+		\item Aucune propriété vérifiable
+		\item Assurent la décidabilité du problème en suivant certains algorithmes
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Classes de règles abstraites}
+	\vspace{10mm}
+	\begin{itemize}
+		\item Aucune propriété vérifiable
+		\item Assurent la décidabilité du problème en suivant certains algorithmes
+		\item Finite Extension Set : algorithmes de chaînage avant
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Classes de règles abstraites}
+	\vspace{10mm}
+	\begin{itemize}
+		\item Aucune propriété vérifiable
+		\item Assurent la décidabilité du problème en suivant certains algorithmes
+		\item Finite Extension Set : algorithmes de chaînage avant
+		\item (Greedy) Bounded Treewidth Set : algorithmes de chaînage avant avec condition
+		d'arrêt particulière
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Classes de règles abstraites}
+	\vspace{10mm}
+	\begin{itemize}
+		\item Aucune propriété vérifiable
+		\item Assurent la décidabilité du problème en suivant certains algorithmes
+		\item Finite Extension Set
+		\item (Greedy) Bounded Treewidth Set : algorithmes de chaînage avant avec condition
+			d'arrêt particulière
+		\item Finite Unification Set : algorithmes de chaînage arrière
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Classes de règles abstraites}
+	\vspace{10mm}
+	\begin{itemize}
+		\item Aucune propriété vérifiable
+		\item Assurent la décidabilité du problème en suivant certains algorithmes
+		\item Finite Extension Set
+		\item (Greedy) Bounded Treewidth Set : algorithmes de chaînage avant avec condition
+			d'arrêt particulière
+		\item Finite Unification Set : algorithmes de chaînage arrière
+		\item Classes incomparables
+	\end{itemize}
+\end{frame}
+
+
+\subsection{Classes concrètes}
+
+\begin{frame}
+	\frametitle{Classes de règles concrètes}
+	\vspace{10mm}
+	\begin{itemize}
+		\item Imposent des contraintes sur la forme des règles ou de la base
+		\item Spécialisent les classes abstraites
+		\item Classes pouvant être comparables
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Guardée}
+	\begin{itemize}
+		\item Un atome de l'hypothèse contient toutes les variables de celle-ci
+		\item $\exists a \in H_i : variable(H_i) \subseteq variables(a)$
+		\item Simple à vérifier
+		\item $guarded(R) = \{\forall R_i \in R : R_i $ est gardée$\} \in GBTS$
+	\end{itemize}
+	\vspace{10mm}
+	\begin{exampleblock}{Exemple}
+		\ruleC \\
+		Garde : parent($x$,$y$)
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Frontière gardée}
+	\begin{itemize}
+		\item Un atome de l'hypothèse contient toutes les variables de la frontière
+		\item $\exists a \in H :$ frontière($R$) $\subseteq variables(a)$
+		\item Seule la frontière influe sur l'application d'une règle
+		\item Généralisation des règles gardées
+		\item $fr-guarded(R) = \{\forall R_i \in R : R_i $ a une frontière gardée$\} \in GBTS$
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+		$\forall x \forall y (p(x) \wedge q(y) \rightarrow \exists z (r(y,z)))$\\
+		Garde-frontière : $q(y)$
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Frontière de taille 1}
+	\begin{itemize}
+		\item La frontière de la règle est de taille 1
+		\item Spécialisation des règles à frontière gardée
+		\item Utiles pour les notions d'héritage
+		\item $fr-1(R) = \{\forall R_i \in R : |$frontière$(R_i)| = 1 \} \in GBTS$
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+		\ruleB \\
+		frontière$(R_2) = \{x\}$
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hypothèse atomique}
+	\begin{itemize}
+		\item L'hypothèse de la règle ne contient qu'un seul atome
+		\item Spécialisation des règles gardées
+		\item $ah(R) = \{\forall R_i = (H_i,C_i) \in R : |H_i| = 1 \} \in GBTS \cap FUS$
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+		\ruleA
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Domaine restreint}
+	\begin{itemize}
+		\item Les atomes de la conclusion contiennent soit toutes les variables de
+		l'hypothèse, soit aucune
+		\item $\forall a_j \in R_i (variables(H_i) \subseteq variables(a_j)) \vee 
+		(variables(H_i) \cap variables(a_j) = \emptyset)$
+		\item Incomparable avec les autres classes concrètes exhibées
+		\item $dr(R) = \{\forall R_i \in R : R_i$ a un domaine restreint $\} \in FUS$
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+		\ruleB \\
+		$variables(homme(z)) \cap variables(H_2) = \emptyset$\\
+		$variables(H_2) \subseteq variables(pere(z,x))$
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Déconnectée}
+	\begin{itemize}
+		\item Frontière vide
+		\item Spécialisation des règles de domaine restreint
+		\item Une seule application nécessaire
+		\item $disc(R) = \{\forall R_i \in R : $frontière$(R_i) = \emptyset \} \in FUS$
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+		$\forall x (p(x) \wedge q(a) \rightarrow \exists z (r(a,z)))$
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Universelle}
+	\begin{itemize}
+		\item Aucune variable existentielle
+		\item Couramment utilisées
+		\item $rr(R) = \{\forall R_i \in R : variables(R_i) \subseteq variables(H_i) \}
+		\in FES \cap GBTS$
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+		\ruleE
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Faiblement acyclique}
+	\begin{itemize}
+		\item Contrainte sur l'ensemble des règles
+		\item Nécessite l'usage d'une nouvelle structure : le graphe de dépendances des
+		positions
+		\item $wa(R) \in FES$
+	\end{itemize}
+	\begin{exampleblock}{Exemple de non faible acyclicité}
+		\ruleA \\
+		\ruleB \\
+	\end{exampleblock}
+	\begin{exampleblock}{Exemple de faible acyclicité}
+		\ruleC \\
+		\ruleD \\
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sticky}
+	\begin{itemize}
+		\item Contrainte sur l'ensemble des règles
+		\item Marquage des variables
+		\item Une variable marquée ne doit pas apparaître plusieurs fois dans l'hypothèse
+		d'une règle
+		\item $sticky(R) \in FES$
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+		\ruleC \\
+		\ruleD \\
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Weakly sticky}
+	\begin{itemize}
+		\item Généralisation de faiblement acyclique et de sticky
+		\item Les variables marquées ne doivent pas apparaître plusieurs fois dans
+		l'hypothèse ou ne pas être dans une position de rang infini
+		\item $ws(R) \notin FES \cup GBTS \cup FUS$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Graphe de dépendances des règles acyclique}
+	\begin{itemize}
+		\item L'ensemble des règles forment un graphe de dépendances sans circuit
+		\item $aGRD(R) \in FES \cup FUS$
+	\end{itemize}
+	\begin{exampleblock}{Exemple de faible acyclicité}
+		\ruleB \\
+		\ruleD
+	\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Schéma récapitulatif}
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[
+	auto,
+	node distance=1.5cm,
+	inner sep=1mm,
+	scale=0.95
+]
+	\draw [blue] (-3.8,-5.5) -- (3.2,-5.5) -- (3.2,-2.5) -- (-3.8,-2.5) -- (-3.8,-5.5);
+	\draw [red] (0.3,1) -- (3.7,1) -- (3.7,-5.7) -- (0.3,-5.7) -- (0.3,1);
+	\draw [green] (4,1) -- (9,1) -- (9,-4.5) -- (-2.2,-4.5) -- (-2.2,-3.5) --
+	(0.5,-3.5) -- (0.5,-2) -- (4,-2) -- (4,1);
+
+	\node [blue] (fes) at (-3,-5) {FES};
+	\node [red] (fus) at (1,0.5) {FUS};
+	\node [green] (gbts) at (8,0.5) {GBTS};
+
+	% terms
+	\node [class]	(ws)		at (-2,0)	{weakly sticky};
+	\node [class]	(dr)		at (2,-1)	{domaine restreint};
+	\node [class]	(agrd)		at (2,-5)	{grd acyclique};
+	\node [class]	(fg)		at (6,0)	{frontière guardée};
+	\node [class]	(sticky)	at (2,0)	{sticky}
+		edge[classedge]	(ws);
+	\node [class]	(wa)		at (-2,-3)	{faiblement acyclique}
+		edge[classedge]	(ws);
+	\node [class]	(disc)		at (2,-3)	{déconnectée}
+		edge[classedge] (wa)
+		edge[classedge] (dr)
+		edge[classedge] (fg);
+	\node [class]	(guarded)	at (6,-2)	{guardée}
+		edge[classedge]	(fg);
+	\node [class]	(fr1)		at (8,-2)	{frontière 1}
+		edge[classedge] (fg);
+	\node [class]	(ah)		at (6,-4)	{hypothèse atomique}
+		edge[classedge] (guarded);
+	\node [class]	(rr)		at (-1,-4)	{universelles}
+		edge[classedge] (wa);
+\end{tikzpicture}
+\end{center}
+\end{figure}
+\end{frame}
+

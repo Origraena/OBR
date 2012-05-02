@@ -20,12 +20,13 @@ forme d'un arbre de largeur bornée.
 Cette classe ne permet pas l'utilisation direct d'algorithmes, mais par contre la classe
 abstraite Greedy Bounded Treewidth qui est une spécialisation de celle-ci, s'assure que
 le chaînage avant s'exécute en temps fini, et ce via un algorithme glouton permettant de
-construire la décomposition de l'arbre et en utilisant un algorithme d'arrêt spécifique.
+construire la décomposition de l'arbre et en utilisant une condition d'arrêt spécifique
+(l'algorithme est détaillé en \cite{walking}).
 
 \subsection{Finite Unification Set}\label{classes_abstraites_fes}
 Enfin la dernière classe abstraite assure la finition des algorithmes de chaînage
 arrière utilisant les méthodes en {\em largeur} qui ne garderait que les faits {\em le plus
-généraux} lors de leur génération (voir \cite{}).
+généraux} lors de leur génération (voir \cite{ontological11}).
 
 
 \section{Classes concrètes}\label{classes_concretes}
@@ -77,7 +78,8 @@ De plus, on définit une fonction $etiquette : V_C \rightarrow \{FES,GBTS,FUS\}$
 associe à chaque $C_i$ une étiquette qui déterminera la classe abstraite considérée pour
 cette composante.
 
-La propriété suivante s'assure que l'ensemble des règles est décidable :
+La propriété suivante s'assure que l'ensemble des règles est décidable (voir
+\ref{ontological11}) :
 $\{C_i : etiquette(C_i) = FES\} \triangleright \{C_i : etiquette(C_i) = GBTS\} \triangleright
 \{C_i : etiquette(C_i) = FUS\}$
 C'est à dire qu'aucune règle \fes ne doit dépendre d'une règle \fus ou \gbts, et

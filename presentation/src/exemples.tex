@@ -1,0 +1,26 @@
+% exemples.tex
+
+
+\newcommand{\ruleA}[0]{
+$R_1$ : $\forall x$ (homme($x$) $\rightarrow$ humain($x$))
+}
+
+\newcommand{\ruleB}[0]{
+$R_2$ : $\forall x$ (humain($x$) 
+$\rightarrow$ $\exists z$ (homme($z$) $\wedge$ père($z$,$x$)))
+}
+
+\newcommand{\ruleC}[0]{
+$R_3$ : $\forall x \forall y$ (parent($x$,$y$) $\wedge$ homme($x$) 
+$\rightarrow$ père($x$,$y$))
+}
+
+\newcommand{\ruleD}[0]{
+$R_4$ : $\forall x \forall y$ (père($x$,$y$) $\rightarrow$ parent($x$,$y$))
+}
+
+\newcommand{\ruleE}[0]{
+$R_5$ : $\forall x \forall y \forall z$ (mêmeFamille($x$,$y$) $\wedge$ mêmeFamille($y$,$z$)
+$\rightarrow$ mêmeFamille($x$,$z$))
+}
+

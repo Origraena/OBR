@@ -1,4 +1,4 @@
 java -cp target/class/:lib/graphs.jar Main \
-res/rulebase \
-res/rulebase.ps \
-res/rulebase_scc.ps
+res/exemple \
+res/exemple.ps \
+res/exemple_scc.ps

@@ -1,0 +1,119 @@
+\documentclass[9pt]{beamer}
+
+% packages
+\usepackage[french]{babel}       
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{lscape}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+% commands
+\newcommand{\N}[0]{\mathbb{N}}
+\newcommand{\code}[1]{{\em #1}}
+
+\input{src/tikz_config.tex}
+
+%\geometry{left=1.5cm,right=1cm,marginparwidth=0.5cm,marginparsep=2mm,top=1cm,bottom=1cm}
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
+\definecolor{titlegrey}{gray}{0.9}
+\colorlet{blockred}{red!30!black!15}
+\colorlet{blocktitlered}{red!40!black!30}
+\colorlet{titlered}{red!66!black}
+
+\setbeamertemplate{navigation symbols}{}
+
+\useinnertheme[shadow=true]{rounded} 
+\useoutertheme{infolines}
+\usecolortheme{beaver}
+
+\setbeamerfont{block title}{size={}}
+\setbeamercolor{titlelike}{parent=structure,bg=titlegrey}
+
+\setbeamercolor{block body example}{bg=blockred}
+\setbeamercolor{block title example}{fg=titlered,bg=blocktitlered}
+
+\title[Outils d'analyse d'une base de règles]{Outils d'Analyse d'une Base de Règles}
+\author[]{Swan Rocher}
+\institute{Université Montpellier 2}
+\date{\today}
+
+\hypersetup{ 
+pdfpagemode = FullScreen,
+pdfauthor = {Swan Rocher},
+pdftitle = {Outils d'analyse d'une base de règles - présentation},
+}
+
+\AtBeginSection[]{ 
+	\begin{frame} 
+		\frametitle{Table des matières}
+		\tableofcontents[currentsection,hideothersubsections] 
+		\vfill
+	\end{frame} 
+}
+
+\input{src/exemples.tex}
+
+\begin{document}
+\Large
+\setlength{\parskip}{10mm plus5mm minus5mm}
+%\renewenvironment{itemize}{\setlength{\itemsep}{10mm}}
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,
+	rulecolor=,
+	language=Java,
+		basicstyle=\scriptsize,
+		numbers=left,
+		numberstyle=\tiny,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{1,0,0},
+        commentstyle=\color[rgb]{0,0,1},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+
+
+% TOC
+%\setcounter{tocdepth}{1}
+%\tableofcontents
+
+\input{src/title.tex}
+
+\section{Contexte}
+\input{src/contexte.tex}
+
+\section{Notions de logique}
+\input{src/logique.tex}
+\input{src/regle.tex}
+
+\section{Dépendance des règles}
+\input{src/grd.tex}
+
+\section{Classes de règles}
+\input{src/classes_regles.tex}
+
+
+\bibliographystyle{plain}
+\bibliography{src/bib}
+
+\end{document}
+

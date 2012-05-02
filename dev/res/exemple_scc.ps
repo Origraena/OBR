@@ -1,0 +1,73 @@
+%!PS-Adobe-3.0
+%%BoundingBox: 0 0 480 640
+
+%%BeginProlog 
+/arrowhead {% stack: s x1 y1, current point: x0 y0
+gsave
+currentpoint % s x1 y1 x0 y0
+4 2 roll exch % s x0 y0 y1 x1
+4 -1 roll exch % s y0 y1 x0 x1
+sub 3 1 roll % s x1-x2 y0 y1
+sub exch % s y0-y1 x1-x2
+atan rotate % rotate over arctan((y0-y1)/(x1-x2))
+dup scale % scale by factor s
+-7 2 rlineto 1 -2 rlineto -1 -2 rlineto
+closepath fill % fill arrowhead
+grestore
+newpath
+} def
+%%EndProlog 
+240 480 5 0 360 arc
+0 setgray
+fill
+stroke
+
+/Times-Roman findfont
+15 scalefont
+setfont
+230 490 moveto
+(C0) show
+
+320 320 5 0 360 arc
+0 setgray
+fill
+stroke
+
+/Times-Roman findfont
+15 scalefont
+setfont
+310 330 moveto
+(C1) show
+
+160 320 5 0 360 arc
+0 setgray
+fill
+stroke
+
+/Times-Roman findfont
+15 scalefont
+setfont
+150 330 moveto
+(C2) show
+
+240 480 moveto
+160 320 lineto
+stroke
+newpath 160 320 moveto 2 240 480 arrowhead
+
+240 480 moveto
+320 320 lineto
+stroke
+newpath 320 320 moveto 2 240 480 arrowhead
+
+320 320 moveto
+160 320 lineto
+stroke
+newpath 160 320 moveto 2 320 320 arrowhead
+
+/Times-Roman findfont
+18 scalefont
+setfont
+30 30 moveto
+(Strongly Connected Components) show
+
