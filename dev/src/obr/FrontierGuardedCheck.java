@@ -42,7 +42,9 @@ public class FrontierGuardedCheck implements DecidableClassCheck{
 	protected boolean ruleCheck(AtomicRule rule) {
 		ArrayList<Vertex<Object>> frontier = rule.frontier();
 		boolean guarded;
+		int i = 0;
 		for (Atom atom : rule) {
+			if (!rule.isHead(i)) {
 			guarded = true;
 			for (Vertex<Object> vertexTerm : frontier) {
 				Term t = (Term)(vertexTerm.getValue());
@@ -53,6 +55,8 @@ public class FrontierGuardedCheck implements DecidableClassCheck{
 			}
 			if (guarded)
 				return true;
+			}
+			i++;
 		}
 		return false;
 	}
