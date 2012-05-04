@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 public class RangeRestrictedCheck implements DecidableClassCheck {
 
 	/** Associated label. */
-	public static final DecidableClassLabel LABEL = new DecidableClassLabel("range-restricted",true,false,true);
+	public static final DecidableClassLabel LABEL = new DecidableClassLabel("range-restricted",false,true,true);
 
 	/**
 	 * Checks a graph of rule dependencies.

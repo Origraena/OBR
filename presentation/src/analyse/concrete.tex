@@ -1,0 +1,97 @@
+% concrete.tex
+
+\begin{frame}
+	\frametitle{Classes concrètes}
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[
+	auto,
+	node distance=1.5cm,
+	inner sep=1mm,
+	scale=0.95
+]
+	% legende
+	\node [rectangle,draw,fill=yellow!20,minimum width=8mm] (legendA) at (-2.5,1.5) {};
+	\node [] (legendAl) at (-1.3,1.5) {globale};
+	\node [rectangle,draw,fill=black!10,minimum width=8mm] (legendB) at (-2.5,1) {};
+	\node [] (legendBl) at (-1.3,1) {unitaire};
+
+	% abstraites
+	\draw [blue] (-3.8,-5.5) -- (3.2,-5.5) -- (3.2,-2.5) -- (-3.8,-2.5) -- (-3.8,-5.5);
+	\draw [red] (0.4,1) -- (3.7,1) -- (3.7,-5.7) -- (0.4,-5.7) -- (0.4,1);
+	\draw [green] (4,1) -- (9,1) -- (9,-4.5) -- (-2.4,-4.5) -- (-2.4,-3.5) --
+	(0.5,-3.5) -- (0.5,-2) -- (4,-2) -- (4,1);
+
+	\node [blue] (fes) at (-3,-5) {FES};
+	\node [red] (fus) at (1,0.5) {FUS};
+	\node [green] (gbts) at (8,0.5) {GBTS};
+
+	% concretes
+	\node [classens]	(ws)		at (-2,0)	{weakly sticky};
+	\node [class]	(dr)		at (2,-1)	{domaine restreint};
+	\node [classens]	(agrd)		at (2,-5)	{grd acyclique};
+	\node [class]	(fg)		at (6,0)	{frontière guardée};
+	\node [classens]	(sticky)	at (2,0)	{sticky}
+		edge[classedge]	(ws);
+	\node [classens]	(wa)		at (-2,-3)	{faiblement acyclique}
+		edge[classedge]	(ws);
+	\node [class]	(disc)		at (2,-3)	{déconnectée}
+		edge[classedge] (wa)
+		edge[classedge] (dr)
+		edge[classedge] (fg);
+	\node [class]	(guarded)	at (6,-2)	{guardée}
+		edge[classedge]	(fg);
+	\node [class]	(fr1)		at (8,-2)	{frontière 1}
+		edge[classedge] (fg);
+	\node [class]	(ah)		at (6,-4)	{hypothèse atomique}
+		edge[classedge] (guarded);
+	\node [class]	(rr)		at (-1,-4)	{portée réduite}
+		edge[classedge] (wa);
+\end{tikzpicture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Portée réduite}
+	\begin{itemize}
+		\item Aucune variable existentielle
+		\item $variables(R) \subseteq variables(H)$
+		\item $FES \cap GBTS$
+	\end{itemize}
+	\vspace{10mm}
+	\begin{exampleblock}{Exemple}
+		\ruleE
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Frontière gardée}
+	\begin{itemize}
+		\item Un atome de l'hypothèse contient toutes les variables de la frontière
+		\item $\exists a \in H :$ frontière($R$) $\subseteq variables(a)$
+		\item Seule la frontière influe sur une nouvelle application d'une règle
+		\item $GBTS$
+	\end{itemize}
+	\vspace{10mm}
+	\begin{exampleblock}{Exemple}
+		$\forall x \forall y (p(x) \wedge q(y) \rightarrow \exists z (r(y,z)))$\\
+		Garde-frontière : $q(y)$
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hypothèse atomique}
+	\begin{itemize}
+		\item L'hypothèse de la règle ne contient qu'un seul atome
+		\item Spécialisation des règles gardées
+		\item Utiles pour les notions d'héritage
+		\item $|H| = 1$
+		\item $GBTS \cap FUS$
+	\end{itemize}
+	\vspace{10mm}
+	\begin{exampleblock}{Exemple}
+		\ruleA
+	\end{exampleblock}
+\end{frame}
+

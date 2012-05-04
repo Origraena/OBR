@@ -1,0 +1,43 @@
+% atome.tex
+
+\begin{frame}
+	\frametitle{Atome}
+	\begin{center}
+	\begin{itemize}
+		\item Prédicat : symbole relationnel d'arité donnée
+		\item Atome : prédicat et termes associés à ses positions
+		\item Terme : variable ou constante (pas de fonction)
+	\end{itemize}
+	\vspace{10mm}
+	\begin{exampleblock}{Exemple}
+	"$x$ est le {\em père} de {\em Tom}."\\
+	père($x$,Tom)
+	\begin{itemize}
+		\item prédicat : père
+		\item variable $x$ en position 1
+		\item constante $Tom$ en position 2
+	\end{itemize}
+	\end{exampleblock}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Faits}
+	\begin{center}
+	\vspace{10mm}
+	\begin{itemize}
+		\item Conjonction de $k$ atomes
+		\item Existentiellement fermée
+		\item $A = \exists (atome_1 \wedge atome_2 \wedge ... \wedge atome_k)$
+%		\item Quantification des variables : universellement ou existentiellement
+%	\item Représentation par un graphe non orienté
+	\end{itemize}
+	\vfill
+	\begin{exampleblock}{Exemple}
+		"Il existe un homme qui est le père de Tom."\\
+		$\exists x$ (homme($x$) $\wedge$ pere($x$,Tom))
+	\end{exampleblock}
+	\end{center}
+	\vspace{10mm}
+\end{frame}
+

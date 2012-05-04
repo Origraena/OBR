@@ -1,15 +1,40 @@
 % contexte.tex
 
-Base de données sans ontologie => ne permet pas de répondre à la requête-exemple.
-On ajoute l'ontologie => on peut déduire de nouveaux faits, ...
+\section{Introduction}
+A l'heure actuelle, les bases de connaissance sont de plus en plus répandues, et ce dans
+un grand nombre de domaines.
+En effet pouvoir représenter les informations et obtenir des réponses à des requêtes sur
+celles-ci est primordial.
+Si nous considérons une base de données classique, les seules réponses envisageables sont
+celle contenues directement dans ces données.
+Ainsi une requête consiste à vérifier la présence de certaines propriétés sur celles-ci.
 
-Requête / base de connaissance (vision globale).
+Mais pouvoir déduire des informations supplémentaires à partir des initiales est très
+important, et donc pour cela les bases de connaissance définissent une {\em ontologie}
+autour des données.
+Cette dernière met en place un ensemble de règles qui peuvent être plus ou moins
+complexes.
 
-Universelles / Existentielles.
+Pendant longtemps, seules des règles {\em simples} étaient prises en compte. Mais le
+développement du Web-sémantique et le besoin d'effectuer des requêtes toujours plus
+complexes ont amené à ajouter aux règles la possibilité de créer de nouveaux individus.
+Ainsi, bien qu'il est soit possible d'obtenir une réponse d'une base de connaissance {\em simple} (par exemple
+au format Datalog) à coup sûr, si nous ajoutons ces règles particulières (par exemple au
+format Datalog+/-) alors il peut
+arriver qu'aucune réponse ne soit donnée en temps fini.
+Nous disons donc que le problème de réponse à une requête dans une base de connaissance
+est de manière général indécidable.
 
-Non décidabilité de la réponse à une requête dans une base contenant des existentielles.
+Prenons l'exemple d'une règle disant que "si un individu est un homme, alors il existe un
+autre individu qui est un homme et le père du premier", et une donnée "Tom est un homme".
+Il est évident que si nous souhaitons déduire toutes les informations possibles à partir
+de cette base, il se posera vite un problème.
+En effet, Tom est un homme, donc il existe un autre homme $x1$ qui est le père de Tom.
+Et donc il existe encore un autre homme $x2$ qui a également un père $x3$, etc...
 
-Exemples avec des MOTS.
+Il est donc nécessaire de pouvoir déterminer des classes de règles (les plus générales
+possibles), permettant de s'assurer que les réponses aux requêtes soient données en temps
+fini. 
 
 \input{src/contexte/problematique.tex}
 

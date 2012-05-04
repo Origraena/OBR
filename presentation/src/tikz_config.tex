@@ -57,6 +57,13 @@
 	minimum size=5mm
 ]
 
+\tikzstyle{classens}=[
+	rectangle,
+	draw,
+	fill=yellow!20,
+	minimum size=5mm
+]
+
 \tikzstyle{classedge}=[
 	->
 ]
@@ -70,28 +77,35 @@
 	->,
 	bend left=45
 ]
-
 \tikzstyle{rule}=[
 	circle,
 	draw,
 	fill=red!10,
 	minimum size=5mm
 ]
+\tikzstyle{comp}=[
+	circle,
+	draw,
+	fill=red!10,
+	minimum size=22mm
+]
 
 \newcommand{\atomlegend}[2]{
 	\node [rectangle,draw,fill=blue!20,minimum width=0.8cm] (body) at(#1,#2) {};
-	\node [] (bodyLabel)							at(#1+1.4,#2)			{corps};
+	\node [] (bodyLabel)							at(#1+1.4,#2)			{hypothèse};
 	\node [rectangle,draw,fill=yellow!20,minimum width=0.8cm] (head) at(#1,#2-0.5) {};
-	\node [] (headLabel)							at(#1+1.4,#2-0.5)				{tête};
+	\node [] (headLabel)							at(#1+1.4,#2-0.5)
+	{conclusion};
 	\node [rectangle,draw,fill=green!20,minimum width=0.8cm] (fr) at(#1,#2-1) {};
 	\node [] (frLabel)							at(#1+1.4,#2-1)				{frontière};
 }
 
 \newcommand{\lightatomlegend}[2]{
 	\node [rectangle,draw,fill=blue!20,minimum width=0.8cm] (body) at(#1,#2) {};
-	\node [] (bodyLabel)							at(#1+1.4,#2)			{corps};
+	\node [] (bodyLabel)							at(#1+1.4,#2)			{hypothèse};
 	\node [rectangle,draw,fill=yellow!20,minimum width=0.8cm] (head) at(#1,#2-0.5) {};
-	\node [] (headLabel)							at(#1+1.4,#2-0.5)				{tête};
+	\node [] (headLabel)							at(#1+1.4,#2-0.5)
+	{conclusion};
 }
 
 

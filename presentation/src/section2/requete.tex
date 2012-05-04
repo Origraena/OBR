@@ -1,0 +1,131 @@
+
+\begin{frame}
+	\frametitle{Requête}
+	\begin{itemize}
+		\item Conjonction d'atomes existentiellement fermée
+		\item Plusieurs méthodes de réponses
+	\end{itemize}
+	\vspace{10mm}
+	\begin{exampleblock}{Exemple}
+		"Tom a-t'il un père ?"\\
+		$\exists x$ père($x$,Tom)
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Chaînage avant}
+	\begin{itemize}
+		\item Génération de nouveaux faits à partir des précédents et de l'ontologie
+		\item A chaque création de fait, vérification de l'existence d'une réponse à la 
+		requête dans $F$
+		\item Arrêt lorsque tous les faits sont générés ou si réponse positive
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+	\frametitle{Chaînage avant}
+	\begin{itemize}
+		\item Génération de nouveaux faits à partir des précédents et de l'ontologie
+		\item A chaque création de fait, vérification de l'existence d'une réponse à la 
+		requête dans $F$
+		\item Arrêt lorsque tous les faits sont générés ou si réponse positive
+	\end{itemize}
+
+	\begin{exampleblock}{Exemple}
+	Base :
+	\begin{itemize}
+		\item $F = parent(Jean,Tom) \wedge homme(Jean)$
+		\item $R = \forall x \forall y (homme(x) \wedge parent(x,y) \rightarrow
+		$père$(x,y))$
+	\end{itemize}
+	Requête : père$(Jean,Tom)$
+	\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[t]
+	\frametitle{Chaînage avant}
+	\begin{itemize}
+		\item Génération de nouveaux faits à partir des précédents et de l'ontologie
+		\item A chaque création de fait, vérification de l'existence d'une réponse à la 
+		requête dans $F$
+		\item Arrêt lorsque tous les faits sont générés ou si réponse positive
+	\end{itemize}
+
+	\begin{exampleblock}{Exemple}
+	Base :
+	\begin{itemize}
+		\item $F = parent(Jean,Tom) \wedge homme(Jean)$
+		\item $R = \forall x \forall y (homme(x) \wedge parent(x,y) \rightarrow
+		$père$(x,y))$
+	\end{itemize}
+	Requête : père$(Jean,Tom)$
+	\begin{itemize}
+		\item Application de l'unique règle
+		\item $x \leftarrow Jean, y \leftarrow Tom$
+		\item $F = parent(Jean,Tom) \wedge homme(Jean) \wedge $père$(Jean,Tom)$
+		\item $Q \in F \rightarrow$ réponse positive !
+	\end{itemize}
+	\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[t]
+	\frametitle{Chaînage arrière}
+	\begin{itemize}
+		\item Réécriture de la requête via l'ontologie
+		\item A chaque réécriture, vérification de l'existence d'une réponse à l'une de
+		celles-ci dans $F$
+		\item Arrêt lorsque celle-ci ne peut plus être réécrire ou si réponse positive
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+	\frametitle{Chaînage arrière}
+	\begin{itemize}
+		\item Réécriture de la requête via l'ontologie
+		\item A chaque réécriture, vérification de l'existence d'une réponse à l'une de
+		celles-ci dans $F$
+		\item Arrêt lorsque celle-ci ne peut plus être réécrire ou si réponse positive
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+	Base :
+	\begin{itemize}
+		\item $F = parent(Jean,Tom) \wedge homme(Jean)$
+		\item $R = \forall x \forall y (homme(x) \wedge parent(x,y) \rightarrow
+		$père$(x,y))$
+	\end{itemize}
+	Requête : $Q = $ père$(Jean,Tom)$\\
+	\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[t]
+	\frametitle{Chaînage arrière}
+	\begin{itemize}
+		\item Réécriture de la requête via l'ontologie
+		\item A chaque réécriture, vérification de l'existence d'une réponse à l'une de
+		celles-ci dans $F$
+		\item Arrêt lorsque celle-ci ne peut plus être réécrire ou si réponse positive
+	\end{itemize}
+	\begin{exampleblock}{Exemple}
+	Base :
+	\begin{itemize}
+		\item $F = parent(Jean,Tom) \wedge homme(Jean)$
+		\item $R = \forall x \forall y (homme(x) \wedge parent(x,y) \rightarrow
+		$père$(x,y))$
+	\end{itemize}
+	Requête : $Q = $ père$(Jean,Tom)$\\
+	\begin{itemize}
+		\item Réécriture via l'unique règle
+		\item $Jean \rightarrow x, Tom \rightarrow y$
+		\item $Q' = \{Q_0 = $père$(Jean,Tom)$, $Q_1 = parent(Jean,Tom) \wedge
+		homme(Jean) \}$
+		\item $Q_1 \in F \rightarrow$ réponse positive !
+	\end{itemize}
+	\end{exampleblock}
+\end{frame}
+
+
