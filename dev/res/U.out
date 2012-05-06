@@ -1,0 +1,287 @@
+Reading file : res/U.dtg
+Invoking DTG parser...
+
+[1] GRAPH OF RULE DEPENDENCIES
+
+R0:	AssociateProfessor(X)-->Professor(X)
+R1:	Professor(X)-->FacultyStaff(X)
+R2:	AssistantProfessor(X)-->Professor(X)
+R3:	Student(X)-->aux_0(X,?Y)
+R4:	Faculty(X)-->Organization(X)
+R5:	teacherOf(X,Y)-->Course(Y)
+R6:	hasExamRecord(X,Y)-->ExamRecord(Y)
+R7:	GraduateStudent(X)-->Person(X)
+R8:	Student(X)-->Person(X)
+R9:	ExamRecord(X)-->Work(X)
+R10:	Program(X)-->Organization(X)
+R11:	hasFaculty(X,Y)-->University(X)
+R12:	Director(X)-->Person(X)
+R13:	College(X)-->Organization(X)
+R14:	advisor(X,Y)-->Professor(Y)
+R15:	mastersDegreeFrom(X,Y)-->degreeFrom(X,Y)
+R16:	headOf(X,Y)-->worksFor(X,Y)
+R17:	FacultyStaff(X)-->Employee(X)
+R18:	Career(X)-->Work(X)
+R19:	worksFor(X,Y)-->memberOf(X,Y)
+R20:	Chair(X)-->Professor(X)
+R21:	Dean(X)-->aux_1(X,?Y)
+R22:	undergraduateDegreeFrom(X,Y)-->degreeFrom(X,Y)
+R23:	hasAlumnus(X,Y)-->Person(Y)
+R24:	FullProfessor(X)-->Professor(X)
+R25:	member(X,Y)-->Person(Y)
+R26:	isPartOfUniversity(Y,X)-->hasFaculty(X,Y)
+R27:	teachingAssistantOf(X,Y)-->Course(Y)
+R28:	BachelorExam(X)-->Exam(X)
+R29:	SystemsStaff(X)-->AdministrativeStaff(X)
+R30:	isPartOfUniversity(X,Y)-->Faculty(X)
+R31:	undergraduateDegreeFrom(X,Y)-->Person(X)
+R32:	degreeFrom(X,Y)-->Person(X)
+R33:	member(X,Y)-->Organization(X)
+R34:	hasAlumnus(X,Y)-->University(X)
+R35:	Dean(X)-->Professor(X)
+R36:	ResearchAssistant(X)-->Student(X)
+R37:	VisitingProfessor(X)-->Professor(X)
+R38:	Employee(X)-->aux_2(X,?Y)
+R39:	GraduateStudent(X)-->aux_3(X,?Y)
+R40:	memberOf(Y,X)-->member(X,Y)
+R41:	doctoralDegreeFrom(X,Y)-->degreeFrom(X,Y)
+R42:	affiliatedOrganizationOf(X,Y)-->Organization(X)
+R43:	Course(X)-->Work(X)
+R44:	ClericalStaff(X)-->AdministrativeStaff(X)
+R45:	affiliateOf(X,Y)-->Organization(X)
+R46:	mastersDegreeFrom(X,Y)-->Person(X)
+R47:	GraduateCourse(X)-->Course(X)
+R48:	hasAlumnus(Y,X)-->degreeFrom(X,Y)
+R49:	doctoralDegreeFrom(X,Y)-->Person(X)
+R50:	Director(X)-->aux_4(X,?Y)
+R51:	UndergraduateStudent(X)-->Student(X)
+R52:	isPartOfUniversity(X,Y)-->University(Y)
+R53:	University(X)-->Organization(X)
+R54:	advisor(X,Y)-->Person(X)
+R55:	Lecturer(X)-->FacultyStaff(X)
+R56:	doctoralDegreeFrom(X,Y)-->University(Y)
+R57:	Exam(X)-->Work(X)
+R58:	AdministrativeStaff(X)-->Employee(X)
+R59:	teacherOf(X,Y)-->FacultyStaff(X)
+R60:	hasExamRecord(X,Y)-->Student(X)
+R61:	Employee(X)-->Person(X)
+R62:	PostDoc(X)-->FacultyStaff(X)
+R63:	ExDean(X)-->Professor(X)
+R64:	Degree(X)-->Work(X)
+R65:	hasFaculty(X,Y)-->Faculty(Y)
+R66:	publicationAuthor(X,Y)-->Person(Y)
+R67:	affiliateOf(X,Y)-->Person(Y)
+R68:	degreeFrom(X,Y)-->University(Y)
+R69:	undergraduateDegreeFrom(X,Y)-->University(Y)
+R70:	affiliatedOrganizationOf(X,Y)-->Organization(Y)
+R71:	mastersDegreeFrom(X,Y)-->University(Y)
+R72:	orgPublication(X,Y)-->Organization(X)
+R73:	tenured(X,Y)-->Professor(X)
+R74:	aux_1(X,?Y)-->headOf(X,?Y)
+R75:	aux_1(X,?Y)-->College(Y)
+R76:	aux_2(X,?Y)-->worksFor(X,?Y)
+R77:	aux_2(X,?Y)-->Organization(Y)
+R78:	aux_0(X,?Y)-->takesCourse(X,?Y)
+R79:	aux_0(X,?Y)-->Course(Y)
+R80:	aux_3(X,?Y)-->takesCourse(X,?Y)
+R81:	aux_3(X,?Y)-->GraduateCourse(Y)
+R82:	aux_4(X,?Y)-->headOf(X,?Y)
+R83:	aux_4(X,?Y)-->Program(Y)
+
+R0	-->	R1,
+R1	-->	R17,
+R2	-->	R1,
+R3	-->	R78,R79,
+R5	-->	R43,
+R6	-->	R9,
+R11	-->	R53,
+R14	-->	R1,
+R15	-->	R32,R68,
+R16	-->	R19,
+R17	-->	R38,R61,
+R19	-->	R40,
+R20	-->	R1,
+R21	-->	R74,R75,
+R22	-->	R32,R68,
+R24	-->	R1,
+R26	-->	R11,R65,
+R27	-->	R43,
+R28	-->	R57,
+R29	-->	R58,
+R30	-->	R4,
+R34	-->	R53,
+R35	-->	R1,
+R36	-->	R3,R8,
+R37	-->	R1,
+R38	-->	R76,R77,
+R39	-->	R80,R81,
+R40	-->	R25,R33,
+R41	-->	R32,R68,
+R44	-->	R58,
+R47	-->	R43,
+R48	-->	R32,R68,
+R50	-->	R82,R83,
+R51	-->	R3,R8,
+R52	-->	R53,
+R55	-->	R17,
+R56	-->	R53,
+R58	-->	R38,R61,
+R59	-->	R17,
+R60	-->	R3,R8,
+R62	-->	R17,
+R63	-->	R1,
+R65	-->	R4,
+R68	-->	R53,
+R69	-->	R53,
+R71	-->	R53,
+R73	-->	R1,
+R75	-->	R13,
+R79	-->	R43,
+R81	-->	R47,
+R83	-->	R10,
+
+
+
+[2] STRONGLY CONNECTED COMPONENTS
+
+C0:	73
+C1:	72
+C2:	71
+C3:	70
+C4:	69
+C5:	67
+C6:	66
+C7:	64
+C8:	63
+C9:	62
+C10:	60
+C11:	59
+C12:	56
+C13:	55
+C14:	54
+C15:	52
+C16:	51
+C17:	50
+C18:	83
+C19:	82
+C20:	49
+C21:	48
+C22:	46
+C23:	45
+C24:	44
+C25:	42
+C26:	41
+C27:	39
+C28:	81
+C29:	47
+C30:	80
+C31:	37
+C32:	36
+C33:	35
+C34:	34
+C35:	31
+C36:	30
+C37:	29
+C38:	58
+C39:	28
+C40:	57
+C41:	27
+C42:	26
+C43:	65
+C44:	24
+C45:	23
+C46:	22
+C47:	21
+C48:	75
+C49:	74
+C50:	20
+C51:	18
+C52:	16
+C53:	19
+C54:	40
+C55:	33
+C56:	25
+C57:	15
+C58:	68
+C59:	32
+C60:	14
+C61:	13
+C62:	12
+C63:	11
+C64:	53
+C65:	10
+C66:	8
+C67:	7
+C68:	6
+C69:	9
+C70:	5
+C71:	4
+C72:	3
+C73:	79
+C74:	43
+C75:	78
+C76:	2
+C77:	0
+C78:	1
+C79:	17
+C80:	61
+C81:	38
+C82:	77
+C83:	76
+C0	-->	C78,
+C2	-->	C64,
+C4	-->	C64,
+C8	-->	C78,
+C9	-->	C79,
+C10	-->	C72,C66,
+C11	-->	C79,
+C12	-->	C64,
+C13	-->	C79,
+C15	-->	C64,
+C16	-->	C72,C66,
+C17	-->	C19,C18,
+C18	-->	C65,
+C21	-->	C59,C58,
+C24	-->	C38,
+C26	-->	C59,C58,
+C27	-->	C30,C28,
+C28	-->	C29,
+C29	-->	C74,
+C31	-->	C78,
+C32	-->	C72,C66,
+C33	-->	C78,
+C34	-->	C64,
+C36	-->	C71,
+C37	-->	C38,
+C38	-->	C81,C80,
+C39	-->	C40,
+C41	-->	C74,
+C42	-->	C63,C43,
+C43	-->	C71,
+C44	-->	C78,
+C46	-->	C59,C58,
+C47	-->	C49,C48,
+C48	-->	C61,
+C50	-->	C78,
+C52	-->	C53,
+C53	-->	C54,
+C54	-->	C56,C55,
+C57	-->	C59,C58,
+C58	-->	C64,
+C60	-->	C78,
+C63	-->	C64,
+C68	-->	C69,
+C70	-->	C74,
+C72	-->	C75,C73,
+C73	-->	C74,
+C76	-->	C78,
+C77	-->	C78,
+C78	-->	C79,
+C79	-->	C81,C80,
+C81	-->	C83,C82,
+
+
+
+[3] DIAGNOSTIC
+
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0

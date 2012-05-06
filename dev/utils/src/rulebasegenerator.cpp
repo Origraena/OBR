@@ -17,8 +17,8 @@ int main(int argc, char** argv) {
 	int cstProba = 50;
 	int termSize = 3;
 	int predicateSize = 2;
-	std::string predicate_open = "<";
-	std::string predicate_close = ">";
+	std::string predicate_open = "(";
+	std::string predicate_close = ")";
 	std::string term_separator = ",";
 	std::string atom_separator = ";";
 	std::string head_separator = "-->";

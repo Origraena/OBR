@@ -1,4 +1,4 @@
-utils/bin/rulebasegen 100 20 30 3 3 3 4 33
+utils/bin/rulebasegen 1000 350 200 6 4 6 5 20
 # nbRules			number of rules		
 # nbPredicates		number of predicates
 # nbTerms			number of terms
