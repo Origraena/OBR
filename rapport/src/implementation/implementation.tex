@@ -3,7 +3,8 @@
 \section{Outils utilisés}\label{outils}
 Nous avons mis en place un dépôt {\em git} (\href{}) 
 comme gestionnaire de versions afin de pouvoir
-modifier et partager le code source sans problème, le langage {\em Java} a été choisi
+modifier et partager le code source sans problème, le langage {\em Java} était imposé
+comme contrainte
 pour des raisons de compatibilité avec les futurs utilisateurs de l'analyseur.
 
 \input{src/implementation/structures.tex}
@@ -71,4 +72,11 @@ Ainsi la ligne du fichier correspondant à la règle
 $\forall x (p(x,a) \rightarrow \exists z (r(x,a,z)))$ 
 doit être :\\
 $r(?x,a,?z)$ :- $p(?x,a).$
+
+%%%%	\section{Quelques résultats}\label{resultats}
+%%%%	Après avoir testé sur différentes bases de connaissance {\em réelles} il s'est avéré
+%%%%	qu'en pratique il est très difficile d'avoir un ensemble de règles non décidable.
+%%%%	Le nombre de bases vérifiées n'étant pas si élevé (du fait que la plupart des bases
+%%%%	ne contiennent pas de variables existentielles), il est possible de trouver des cas
+%%%%	pratiques où ce serait le cas.
 

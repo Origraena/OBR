@@ -201,7 +201,7 @@ public class AtomConjunction implements Iterable<Atom> {
 				case 2 :
 					if (sub2[1].charAt(sub2[1].length()-1) != END_TERM_LIST)
 						throw new UnrecognizedStringFormatException();
-					sub2[1] = sub2[1].substring(0,sub2[1].length()-1);	// the last char is to be removed
+					sub2[1] = sub2[1].substring(0,sub2[1].length()-1);	// the last char must be removed
 					sub3 = sub2[1].split(TERM_SEPARATOR);
 					arity = sub3.length;
 					break;

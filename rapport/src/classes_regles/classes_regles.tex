@@ -1,5 +1,9 @@
 % classes_regles.tex
 
+Une fois le graphe de dépendances des règles construit, il nous faut déterminer les
+classes auxquelles appartiennent les règles. Nous allons vois que celles-ci sont divisées
+en deux types, les classes abstraites et concrètes.
+
 \section{Classes abstraites}\label{classes_abstraites}
 Trois classes abstraites ont été définies, chacune permettant l'usage de certains
 algorithmes sur l'ensemble de règles considéré.
@@ -34,16 +38,19 @@ Comme expliqué dans la section précédente, il est impossible de déterminer �
 si un ensemble
 de règles appartient à l'une de ces classes, par contre de nombreuses classes dites
 {\em concrètes }
-ont été définies. Chacune d'entre elle, en ajoutant des contraintes sur la forme des
-règles voir sur l'ensemble des règles, 
+ont été définies. Chacune d'entre elle, en vérifiant des propriétés sur la forme des
+règles ou sur un ensemble des règles, 
 permet de s'assurer que celui-ci appartient à certaines des classes
 abstraites.
+
+De plus, la liste des classes concrètes citées ci-après n'est pas exhaustive, seules les
+classes détectées par notre outil d'analyse sont présentées.
 
 \input{src/classes_regles/concretes.tex}
 
 \section{Schéma d'inclusion des classes de règles}
 Sur la figure \ref{fig_recap_classes}, les flèches représentent la spécialisation tandis
-que les couleurs l'appartenance aux classes abstraites. De plus, seules les classes cités
+que les couleurs l'appartenance aux classes abstraites. De plus, seules les classes citées
 ci-dessus apparaissent sur celle-ci.
 \input{src/classes_regles/schema.tex}
 
@@ -58,8 +65,13 @@ Dans cette optique nous utilisons les composantes fortement connexes du graphe d
 dépendances
 de façon à attribuer des étiquettes différentes à celles-ci en fonction
 des classes concrètes auxquelles leurs ensembles de règles appartiennent.
+En effet par définition des composantes, il paraît naturel d'exécuter nos algorithmes
+presque indépendamment sur chacune d'elle. La seule condition est de ne traiter une
+composante qu'une fois que chacun de ses prédécesseurs a été traité.
+Ainsi nous imposons tout de même un ordre sur celles-ci et il faut donc que l'on puisse
+effectuer notre requête en le respectant.
 
-Puis une fois chaque sous ensemble étiqueté, il faut encore vérifier que celles-ci
+Donc une fois chaque sous ensemble étiqueté, il faut encore vérifier que celles-ci
 sont compatibles entre elles.
 Pour cela, nous définissons le graphe orienté des composantes fortement connexes associé
 $G_{C} = (V_C,E_C)$
@@ -92,4 +104,7 @@ il ne doit exister aucune règle de celle-ci de laquelle dépende une règle de 
 composante acceptant uniquement le chaînage avant (si tel était le cas, cette règle ne
 serait jamais déclenchée).
 
+Nous avons donc bien mis en place un système permettant de vérifier autant que possible
+s'il existe un algorithme permettant d'obtenir une réponse à une requête sur un ensemble de 
+règles en temps fini.
 

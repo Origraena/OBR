@@ -8,9 +8,9 @@
 \STATE $\triangleright$ Pr\'ecoloration
 \FORALL {$sommet\ atome\ a \in H_{1}$}
 	\IF {$UnificationLocale(a,R) \neq$ \'echec}
-		\STATE $couleurLogique[a] \leftarrow noir$
+		\STATE $localementUnifiable[a] \leftarrow vrai$
 	\ELSE
-		\STATE $couleurLogique[a] \leftarrow blanc$
+		\STATE $localementUnifiable[a] \leftarrow faux$
 	\ENDIF
 \ENDFOR 
 
@@ -18,13 +18,13 @@
 \STATE $E \leftarrow \{i : c_{i}\ est\ une\ \exists-var\ de\ C_{2}\}$
 
 \STATE $\triangleright$ Extension des ensembles
-\FORALL {$sommet\ atome\ a \in H_{1} : couleurLogique[a] = noir$}
-	\IF {$Q \leftarrow Extension(H_{1},a,couleurLogique,E) \neq $ \'echec} 
+\FORALL {$sommet\ atome\ a \in H_{1} : localementUnifiable[a] = noir$}
+	\IF {$Q \leftarrow Extension(H_{1},a,localementUnifiable,E) \neq $ \'echec} 
 		\IF {$UnificationLocale(Q,R) \neq$ \'echec}
 			\RETURN succ\`es
 		\ENDIF
 	\ENDIF
-	\STATE $couleurLogique[a] \leftarrow blanc$
+	\STATE $localementUnifiable[a] \leftarrow faux$
 \ENDFOR
 \RETURN \'echec
 \end{algorithmic}

@@ -4,39 +4,37 @@ On note :
 \begin{itemize}
 	\item $k$ : nombre d'atomes dans $R$
 	\item $p$ : arit\'e maximum des prédicats de $R$
-	\item $t \leq n \times p$ : nombre de termes de $R$
+	\item $t \leq k \times p$ : nombre de termes de $R$
 \end{itemize}
 et :
 \begin{itemize}
-	\item $n = k + t$ : nombre de sommets dans $G_R$
-	\item $m \leq n \times p$ : nombre d'arêtes dans $G_R$
+	\item $n = k + t \leq (k+1) \times p$ : nombre de sommets dans $G_R$
+	\item $m \leq k \times p$ : nombre d'arêtes dans $G_R$\\
 \end{itemize}
 
 Avec notre représentation nous avons donc les complexités suivantes :
 \begin{itemize}
 	\item Parcourir les sommets prédicats : $\bigcirc(k)$.
 	\item Parcourir tous les sommets : $\bigcirc(n)$.
-	\item Acc\'eder au $i^{eme}$ voisin d'un sommet : $\bigcirc(1)$.
+	\item Acc\'eder au $i^{eme}$ voisin d'un sommet : $\bigcirc(1)$.\\
 \end{itemize}
 
+%%%%	\begin{itemize}
+%%%%		\item $n$ = nombre d'atomes dans $H_{1}$
+%%%%		\item $p$ = arit\'e de $C_{2}$
+%%%%		\item $t$ = nombre de termes "colorables" dans $H_{1}$
+%%%%		\item $m$ = nombre d'ar\^etes "suivables" dans $H_{1}$
+%%%%	\end{itemize}
 
+%%%%	On remarque que dans le pire des cas on a :
+%%%%	\begin{itemize}
+%%%%		\item $t = n \times p$
+%%%%		\item $m = n \times p$
+%%%%	\end{itemize}
 
-\begin{itemize}
-	\item $n$ = nombre d'atomes dans $H_{1}$
-	\item $p$ = arit\'e de $C_{2}$
-	\item $t$ = nombre de termes "colorables" dans $H_{1}$
-	\item $m$ = nombre d'ar\^etes "suivables" dans $H_{1}$
-\end{itemize}
-
-On remarque que dans le pire des cas on a :
-\begin{itemize}
-	\item $t = n \times p$
-	\item $m = n \times p$
-\end{itemize}
-
-\subsubsection{Temps}
+%\subsubsection{Temps}
 	\input{./src/grd/unification/complexites_temps.tex}
 
-\subsubsection{Espace}
-	\input{./src/grd/unification/complexites_espace.tex}
+%\subsubsection{Espace}
+%	\input{./src/grd/unification/complexites_espace.tex}
 

@@ -1,9 +1,33 @@
 % conclusion.tex
 
-En conclusion, nous pouvons dire qu'une grande partie des classes concrètes exhibées à ce
-jour sont reconnues par notre analyseur, et ainsi celui-ci est la plupart du temps 
+\subsection{Gestion du projet}
+Comme signalé dans les outils utilisés (section \ref{outils}) git a été utilisé comme
+gestionnaire de version.
+La communication a quant à elle était principalement effectuée par courriels, et des
+réunions avec les encadrants ont été organisées presque hebdomadairement.
+
+\subsection{Problèmes rencontrés}
+Le principal problème a été l'abandon du projet par l'un des membres du groupe. De plus,
+il a été relativement difficile de prendre du recul rapidement. Ainsi certaines
+implémentations auraient sans doute été faites différemment avec une meilleure
+organisation du temps.
+
+\subsection{Contributions}
+Malgré tout, les contraintes du projet ont été respectées.
+Tout d'abord, afin de subvenir aux besoins de l'implémentation nous avons donc programmé une
+bibliothèque adaptée pour nos graphes, et nous avons conçu un algorithme permettant
+de vérifier la dépendance entre deux règles afin de pouvoir construire le graphe de
+dépendances associé à un ensemble.
+De plus une grande partie des classes concrètes exhibées à ce
+jour est reconnue par notre analyseur, et ainsi celui-ci est la plupart du temps 
 capable de déterminer si
 le problème d'effectuer une requête sur un ensemble de règles est décidable ou non.
+Comme prévu, une entrée à partir des
+fichiers respectant un format spécifique interne ou le format Datalog a été ajoutée.
+Et enfin nous avons également trouvé agréable de mettre en place une sortie PostScript
+minimale pour la visualisation des différents graphes, ainsi qu'une entrée 
+
+\subsection{Perspectives}
 
 Mais à l'heure actuelle, d'autres classes sont définies
 régulièrement et il serait intéressant de les implémenter afin de fournir un outil

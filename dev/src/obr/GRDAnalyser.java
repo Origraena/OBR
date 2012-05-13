@@ -211,10 +211,10 @@ public class GRDAnalyser {
 				_grdAbstractClass = DecidableClassLabel.FUS;
 			else
 				_decidable = false;
-			//if (!_decidable) {
+			if (!_decidable) {
 				_sccAbstractClass = new int[_grd.getNbComponents()];
 				processCombine();
-			//}
+			}
 			_processed = true;
 		}
 
@@ -262,15 +262,14 @@ public class GRDAnalyser {
 			}
 			else 
 				result.append("You must use different algorithms depending on the stongly connected component.\n\n");
-//			else {
-//				result.append("Strongly Connected Components Abstract Classes :\n");
-			for (int i = 0 ; i < _sccAbstractClass.length ; i++) {
-				result.append("SCC[");
-				result.append(i);
-				result.append("]\t");
-				result.append(DecidableClassLabel.longName(_sccAbstractClass[i]));
-				result.append('\n');
-//				}
+			if (_grd.isCyclic()) {
+				for (int i = 0 ; i < _sccAbstractClass.length ; i++) {
+					result.append("SCC[");
+					result.append(i);
+					result.append("]\t");
+					result.append(DecidableClassLabel.longName(_sccAbstractClass[i]));
+					result.append('\n');
+				}
 			}
 			return result.toString();
 		}

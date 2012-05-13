@@ -5,7 +5,8 @@
 \begin{algorithmic}[1]
 \REQUIRE	$H_{1}$ : conjonction d'atomes, 
 			$a \in H_{1}$ : sommet atome racine, 
-			$couleurLogique$ : tableau de taille \'egal au nombre d'atomes dans $H_{1}$ tel que $couleurLogique[a] = noir$ ssi $UnificationLocale(a,R) =$ succ\`es, 
+			$localementUnifiable$ : tableau de taille \'egal au nombre d'atomes dans
+			$H_{1}$ tel que $localementUnifiable[a] = vrai$ ssi $UnificationLocale(a,R) =$ succ\`es, 
 			$E$ : ensemble des positions des variables existentielles
 \ENSURE $Q$ : bon ensemble d'unification minimal des atomes de ${H_1}$ construit \`a partir de $a$ s'il existe, \'echec sinon.
 \STATE $\triangleright$ Initialisation du parcours
@@ -13,7 +14,7 @@
 %	\STATE $couleur[v] \leftarrow blanc$   $\triangleright$ coloration pour le parcours
 %\ENDFOR
 \FORALL {$sommet\ atome\ a \in H_{1}$}
-	\IF {$couleurLogique[a] = noir$}
+	\IF {$localementUnifiable[a] = vrai$}
 		\FORALL {$sommet\ terme\ t\ \in voisins(a)$}
 			\STATE $couleur[t] = blanc$
 		\ENDFOR
@@ -39,7 +40,7 @@
 	\ELSE
 		\STATE $\triangleright$ u est un terme
 		\FORALL {$v \in voisins(u)$}
-			\IF {$couleurLogique[v] = blanc$}
+			\IF {$localementUnifiable[v] = faux$}
 				\RETURN \'echec
 			\ELSE
 				\IF {$couleur[v] = blanc$}

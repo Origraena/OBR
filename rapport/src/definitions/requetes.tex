@@ -41,9 +41,12 @@ dans ce cas donner une réponse négative.
 
 \section{Chaînage arrière}\label{def_backward}
 Le chaînage arrière quant à lui consiste à réécrire la requête $Q$ en plusieurs nouvelles
-requêtes juqu'à ce qu'une de celles-ci soit dans $F$.
+requêtes juqu'à ce que la réponse à une de celles-ci soit dans $F$.
 Pour cela les conclusions des règles de la base sont {\em unifiées} avec 
 des sous-ensembles de $Q$ (voir section \ref{grd_unif}
-pour plus de détails).
+pour plus de détails sur l'unification).
 % On part de Q et on réécrit jusqu'à ce que Q soit dans K
 
+Que l'on considère le chaînage avant ou arrière, la notion de dépendance de règles est
+très importante. En effet lors de la génération de nouveaux faits seules certaines règles
+ont besoin d'être appliquées et il en est de même lors de la réécriture de la requête.

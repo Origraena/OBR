@@ -27,8 +27,15 @@ La notion d'unificateur est abordée dans la section suivante.
 Afin de pouvoir construire ce graphe, il faut donc pouvoir déterminer si une règle peut
 en déclencher une autre, c'est à dire s'il existe un unificateur entre la conclusion de
 la première et l'hypothèse de la seconde.
+
 Tout d'abord, l'unification est définie, s'en suit un algorithme permettant de vérifier
 si un tel unificateur existe, puis la correction de celui-ci ainsi que ses complexités. 
+
+Il faut noter que l'unification de règles est de façon générale un problème NP-complet,
+mais ici nous
+décidons de ne traiter que les règles à conclusion atomique 
+(voir section \ref{def_regle_atomique}) et ainsi nous simplifions grandement le problème
+sans que notre analyse en soit perturbée.
 
 \subsection{Définitions}\label{grd_unif_def}
 \input{./src/grd/unification/unif_definitions.tex}
@@ -41,8 +48,6 @@ si un tel unificateur existe, puis la correction de celui-ci ainsi que ses compl
 	Dans la suite, les règles sont supposées représentées par des graphes (tels que
 	définis en \ref{def_representation_regle}) et à conclusion atomique.
 
-	% TODO changer les couleurLogique en estLocalementUnifiable, et les couleur en
-	% estTraite
 	Le premier algorithme fait appel aux deux suivants de manière à déterminer si il
 	existe au moins un unificateur entre les deux conjonctions d'atomes.
 	En première phase, il vérifie l'exitence d'unificateurs avec chaque atome de manière
@@ -68,17 +73,17 @@ si un tel unificateur existe, puis la correction de celui-ci ainsi que ses compl
 	Or ici, la complexit\'e ne d\'epend pas de cette arit\'e max, mais uniquement de
 	larit\'e du pr\'edicat de la conclusion $C_{2}$.
 
-	Le dernier algorithme est celui qui teste réellement si il existe un unificateur
+	Le dernier algorithme est quant à lui celui qui teste réellement si il existe un unificateur
 	entre une conclusion atomique, et un bon ensemble d'unification atomique minimal.
 	Il est appelé une première fois pour tester les atomes de la conjonction séparement,
-	et permettre une préselection des atomes (qui vont servir de racine).
+	et permettre une préselection des atomes (qui vont servir de racine pour l'extension).
 	Durant la dernière phase (lorsqu'il est appelé sur les ensembles étendus), s'il trouve
 	un unificateur, celui-ci assure que la règle peut amener à déclencher la conjonction.
 	\input{./src/grd/unification/algorithme_unification_locale.tex}
 
 
 
-\subsection{Correction}\label{grd_correction}
+%\subsection{Correction}\label{grd_correction}
 %\subsubsection{Propri\'et\'es}\label{unification_correction_proprietes}
 %	{\em Propri\'et\'e 1} \\
 %	Soit $R = (H,C)$ une r\`egle \`a conclusion atomique, \\

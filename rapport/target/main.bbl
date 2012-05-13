@@ -12,11 +12,6 @@ A.~Cal{\`\i}, G.~Gottlob, and A.~Pieris.
 \newblock Query answering under non-guarded rules in datalog+/-.
 \newblock {\em Web Reasoning and Rule Systems}, pages 1--17, 2010.
 
-\bibitem{algorithmique}
-T.H. Cormen, C.E. Leiserson, R.L. Rivest, T.H. Cormen, and T.H. Cormen.
-\newblock {\em Introduction {\`a} l'algorithmique}.
-\newblock Dunod, 1994.
-
 \bibitem{ontological11}
 M.L. Mugnier.
 \newblock Ontological query answering with existential rules.
