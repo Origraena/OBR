@@ -5,27 +5,11 @@
 |                    Janvier - Mai 2012                     |
 +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
 
-+-------ProjectTree-----------------------------------------+
-| /                                                    root |
-|    dev/                                  development root |
-|       src/                                  sources files |
-|       res/                                resources files |
-|       lib/                                  library files |
-|          graphs.jar                     graph library [1] |
-|       utils/                              rule base utils |
-|       target/                                 target root |
-|          obr.jar                                 jar file |
-|          class/                                  binaries |
-|          doc/                               documentation |
-|       build.sh                      compile sources files |
-|       clean.sh                          clean class files |
-|       release.sh                          create jar file |
-|       doc.sh                        compile documentation |
-|       launch.sh                            execute binary |
-|   rapport/                                     latex root |
-|   gantt.xls                                         Gantt |
-+-----------------------------------------------------------+
+build.sh    : compile les sources
+launch*.sh  : lance les différents exemples
+utils/      : contient des utilitaires tels que des générateurs de base
+target/     : binaires et documentation
 
         References
-[1] https://github.com/Origraena/moca/tree/master/common/graphs/java
+Graphs : https://github.com/Origraena/moca/tree/master/common/graphs/java
 
