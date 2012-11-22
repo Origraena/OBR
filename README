@@ -5,6 +5,11 @@
 |                    Janvier - Mai 2012                     |
 +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
 
+
+/!\ this project is not maintained anymore on github
+it has been moved into a private repository, its content is not up to date /!\
+
+
 build.sh    : compile les sources
 launch*.sh  : lance les différents exemples
 utils/      : contient des utilitaires tels que des générateurs de base
